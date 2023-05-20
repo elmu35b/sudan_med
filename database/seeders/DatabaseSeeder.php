@@ -43,5 +43,7 @@ class DatabaseSeeder extends Seeder
         //     'address'=> 'saudi arabia',
         //     'phone'=> '0919232991',
         // ]);
+
+        // HERE IT
     }
 }
