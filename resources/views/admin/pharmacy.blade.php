@@ -53,24 +53,25 @@
                         <div class="card-body">
                             <h4 class="card-title">الصيدليات</h4>
                             {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            <a href="" class="btn btn-primary">اضافة صيدلية</a>
+                            {{-- <a href="" class="btn btn-primary">اضافة صيدلية</a> --}}
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">#</th>
-                                            <th class="border-top-0">اسم الدواء</th>
-                                            <th class="border-top-0">الاسم الانجليزي</th>
-                                            <th class="border-top-0">كلمات البحث</th>
-                                            <th class="border-top-0">متوفر</th>
+                                            {{-- <th class="border-top-0">#</th> --}}
+                                            <th class="border-top-0">اسم </th>
+                                            <th class="border-top-0">العنوان</th>
+                                            <th class="border-top-0">المدينة</th>
+                                            <th class="border-top-0">رقم الهاتف</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($pharmas as $pharm)
                                             <tr>
-                                                <td>{{$pharm->phone}}</td>
                                                 <td>{{$pharm->name}}</td>
                                                 <td>{{$pharm->address}}</td>
+                                                <td>{{$pharm->city->name}}</td>
+                                                <td>{{$pharm->phone}}</td>
                                                 <td>@Sonu</td>
                                             </tr>
                                         @endforeach

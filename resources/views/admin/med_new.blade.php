@@ -52,7 +52,7 @@
                     <div class="card">
                         <div class="card-body">
                             <form class="form-horizontal form-material mx-2" method="POST"
-                                action="{{ route('dash.medicines_save') }}"
+                                action="{{ route('admin.medicines_save') }}"
                                     enctype="multipart/form-data"
                                 >
                                 @csrf

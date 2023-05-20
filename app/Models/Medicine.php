@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Medicine extends Model
 {
@@ -29,5 +30,14 @@ class Medicine extends Model
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class,);
+    }
+
+    /**
+     * Get all of the essentials for the Medicine
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    **/
+    public function essentials(): HasMany
+    {
+        return $this->hasMany(EssentialMedicine::class);
     }
 }

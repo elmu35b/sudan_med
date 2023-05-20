@@ -44,7 +44,7 @@ class DashController extends Controller
     public function saveMed(Request $request)
     {
         // return $request;
-     return   $this->imageResize($request->img);
+    //  return   $this->imageResize($request->img);
 
         $user =  Auth::user();
         $med = new Medicine([
@@ -63,8 +63,10 @@ class DashController extends Controller
             $med->lng = $user->lng;
         }
         $med->city_id = $user->city_id ;
+        $med->img_url =   $this->imageResize($request->img);
 
-        return $med;
+
+        // return $med;
         $med->save();
         return redirect()->route('dash.medicines')->with('success','success');
         // return view('dashboard.med_save');

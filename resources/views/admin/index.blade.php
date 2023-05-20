@@ -11,12 +11,12 @@
         <div class="page-breadcrumb">
             <div class="row align-items-center">
                 <div class="col-md-6 col-8 align-self-center">
-                    <h3 class="page-title mb-0 p-0">HOME</h3>
+                    <h3 class="page-title mb-0 p-0">_</h3>
                     <div class="d-flex align-items-center">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">_</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">_</li>
+                                <li class="breadcrumb-item active" aria-current="page">الادوية</li>
                             </ol>
                         </nav>
                     </div>
@@ -34,68 +34,55 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
-            {{-- @if (Session::has('password-success'))
-                <p class="alert alert-info">{{ Session::get('password-success') }}</p>
-            @endif --}}
+            @if (Session::has('search'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{Session::get('search')}}
+                    نتــائج البحث ::
+
+                    <a type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </a>
+                </div>
+
+            @endif
             <!-- Row -->
             <div class="row">
-
-                <!-- Column -->
-                <!-- Column -->
-                <div class="col-lg-12 col-xlg-12 col-md-12">
+                <!-- column -->
+                <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <form class="form-horizontal form-material mx-2" method="POST"
-                                action="{{ route('dash.update_password') }}">
-                                @csrf
-                                {{-- <small style="color:red">Only Password can be updated</small> --}}
-
-                                <div class="form-group">
-                                    <label class="col-md-12 mb-0">Name</label>
-                                    <div class="col-md-12">
-                                        <input type="text" disabled value="{{ Auth::user()->name }}"
-                                            class="form-control ps-0 form-control-line">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="example-email" class="col-md-12">Email</label>
-                                    <div class="col-md-12">
-                                        <input type="email" disabled value="{{ Auth::user()->email }}"
-                                            class="form-control ps-0 form-control-line" name="example-email"
-                                            id="example-email">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-12 mb-0">Password</label>
-                                    <div class="col-md-12">
-                                        <input type="password" required name="password"
-                                            class="form-control  @error('password') is-invalid @enderror ">
-                                    </div>
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-12 mb-0">Phone No</label>
-                                    <div class="col-md-12">
-                                        <input type="text" value="{{ Auth::user()->phone }}" disabled
-                                            class="form-control ps-0 form-control-line">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-12 d-flex">
-                                        <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">Update
-                                            Profile</button>
-                                    </div>
-                                </div>
-                            </form>
+                            <h4 class="card-title">الادوية </h4>
+                            {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
+                            <a href="{{ route('admin.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a
+                                href="{{ route('dash.medicines_new') }}">
+                            <div class="table-responsive">
+                                <table class="table user-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">الكمية</th>
+                                            <th class="border-top-0">اسم الدواء</th>
+                                            <th class="border-top-0">المدينة</th>
+                                            <th class="border-top-0">كلمات البحث</th>
+                                            <th class="border-top-0">متوفر</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($medicines as $med)
+                                            <tr>
+                                                <td>{{$med->quantity}}</td>
+                                                <td>{{$med->name}} / {{$med->name_en}}</td>
+                                                <td>{{$med->city->name}}</td>
+                                                <td>{{$med->tags}}</td>
+                                                <td>{{$med->price ?? '0'}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                {{ $medicines->links('pagination::bootstrap-4') }}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Column -->
             </div>
             <!-- Row -->
             <!-- ============================================================== -->

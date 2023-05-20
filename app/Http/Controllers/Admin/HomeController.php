@@ -21,8 +21,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        $meds = Medicine::where('available', true)->paginate(25);
-        return view('admin.index', compact('meds'));
+        $medicines = Medicine::where('available', true)->paginate(25);
+        // return $medicines;
+        return view('admin.index', compact('medicines'));
     }
 
     public function pharmacy()
