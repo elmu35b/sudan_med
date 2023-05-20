@@ -35,13 +35,13 @@ class DatabaseSeeder extends Seeder
         //         'name' => 'ام درمان'
         //     ]
         // );
-        User::create([
-            'name'=> 'musab',
-            'city_id'=> 2,
-            'password'=> Hash::make('Musab@94'),
-            'type'=> 'admin',
-            'address'=> 'saudi arabia',
-            'phone'=> '0919232991',
-        ]);
+        // User::create([
+        //     'name'=> 'musab',
+        //     'city_id'=> 2,
+        //     'password'=> Hash::make('Musab@94'),
+        //     'type'=> 'admin',
+        //     'address'=> 'saudi arabia',
+        //     'phone'=> '0919232991',
+        // ]);
     }
 }
