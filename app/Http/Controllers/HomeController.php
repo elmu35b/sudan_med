@@ -59,7 +59,22 @@ class HomeController extends Controller
         return $cities;
     }
 
-    public function search(Request $request)
+
+
+
+    public function searchByCity(Request $request)
+    {
+
+        $medicines = Medicine::where(['city_id' => $request->city_id, 'available' => true,])
+            ->where('name', 'like', '%' . $request->search . '%')
+            ->orWhere('name_en', 'like', '%' . $request->search . '%')
+            ->orWhere('tags', 'like', '%' . $request->search . '%')
+            ->with('user')
+            ->get();
+
+        return view('search', compact('medicines','cities'));
+    }
+    public function searchByLocation(Request $request)
     {
         // return $request;
         $cities = Cache::get('cities');

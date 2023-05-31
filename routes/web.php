@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class ,'index'])->name('home');
-Route::post('/search', [HomeController::class ,'search'])->name('search');
+Route::post('/search', [HomeController::class ,'searchByCity'])->name('search');
+// Route::post('/search', [HomeController::class ,'search'])->name('search');
 
 Auth::routes();
 
