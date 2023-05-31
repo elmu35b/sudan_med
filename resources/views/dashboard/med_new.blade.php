@@ -93,8 +93,8 @@
                                         <div class="form-group">
                                             <label class="col-md-12 mb-0">هل الدواء مجاني ام مدفوع</label>
                                             <div class="col-md-12">
-                                                <select name="price_type" lass="form-control ps-0 form-control-line">
-                                                    <option value="free">مجاتي</option>
+                                                <select name="price_type" class="form-control">
+                                                    <option value="free">مجاني</option>
                                                     <option value="not_free">مدفوع</option>
                                                 </select>
                                                 {{-- <input type="text" name="price"

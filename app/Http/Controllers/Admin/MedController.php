@@ -28,7 +28,9 @@ class MedController extends Controller
 
     public function saveMed(Request $request)
     {
-        return $request;
+        // return $request;
+    ini_set('upload_max_filesize',128);
+
         // return   $this->imageResize($request->img);
 
         $user =  Auth::user();

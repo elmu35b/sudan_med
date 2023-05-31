@@ -46,6 +46,9 @@ class DashController extends Controller
         // return $request;
     //  return   $this->imageResize($request->img);
 
+    ini_set('upload_max_filesize',128);
+
+
         $user =  Auth::user();
         $med = new Medicine([
             'name' => $request->name,
