@@ -103,6 +103,24 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="row mb-3">
+                                    <label for="phone"
+                                        class="col-md-4 col-form-label text-md-end">{{ __('رقم واتسـابك') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="wa" type="wa"
+                                            class="form-control @error('wa') is-invalid @enderror" name="wa"
+                                            value="{{ old('wa') }}" required autocomplete="wa">
+
+                                        @error('wa')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="row mb-3">
                                     <label for="city"
                                         class="col-md-4 col-form-label text-md-end">{{ __('اختــار المدينة الانت فيها حاليا') }}</label>
@@ -147,6 +165,25 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="phone"
+                                        class="col-md-4 col-form-label text-md-end">{{ __('اسم الحي ') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="hood" type="text"
+                                            class="form-control @error('hood') is-invalid @enderror" name="hood"
+                                            value="{{ old('hood') }}" required autocomplete="hood">
+
+                                        @error('hood')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                        {{-- <small style="color:red">
+                                            اكتب اسم الحي
+                                        </small> --}}
                                     </div>
                                 </div>
                                 <div class="row mb-3">

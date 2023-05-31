@@ -53,7 +53,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $cities = City::all();
-        return view('auth.register',compact('cities'));
+        return view('auth.register', compact('cities'));
     }
 
 
@@ -68,10 +68,12 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'string', 'min:10', 'unique:users'],
-            'address'=> ['required'],
+            'phone' => ['required', 'string', 'min:10', 'unique:users,phone'],
+            'wa' => ['required', 'string', 'min:10', 'unique:users,wa'],
+            'address' => ['required'],
+            'hood' => ['required'],
             'password' => ['required', 'string', 'min:5',],
-            'type'=> ['required','in:single,pharmacy'],
+            'type' => ['required', 'in:single,pharmacy'],
         ]);
     }
 
@@ -88,10 +90,12 @@ class RegisterController extends Controller
             'name' => $data['name'],
             // 'email' => $data['email'],
             'phone' => $data['phone'],
+            'wa' => $data['wa'],
             'password' => Hash::make($data['password']),
-            'city_id'=> $data['city'],
-            'address'=> $data['address'],
-            'type'=> $data['type']
+            'city_id' => $data['city'],
+            'address' => $data['address'],
+            'hood' => $data['address'],
+            'type' => $data['type']
         ]);
     }
 }

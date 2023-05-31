@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone')->unique();
+            $table->string('wa')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
 
             $table->string('address');
+            $table->string('hood');
             $table->double('lat')->nullable();
             $table->double('lng')->nullable();
 

@@ -73,7 +73,8 @@
                                                 <td>{{$med->name}} / {{$med->name_en}}</td>
                                                 <td>{{$med->city->name}}</td>
                                                 <td>{{$med->tags}}</td>
-                                                <td>{{$med->price ?? '0'}}</td>
+                                                <td>{{$med->price_type }}</td>
+                                                {{-- <td>{{$med->price ?? '0'}}</td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

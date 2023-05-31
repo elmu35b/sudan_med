@@ -81,7 +81,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-6">
+                                    {{-- <div class="col-6">
                                         <div class="form-group">
                                             <label class="col-md-12 mb-0">السعر</label>
                                             <div class="col-md-12">
@@ -89,6 +89,20 @@
                                                     class="form-control ps-0 form-control-line">
                                             </div>
                                             <small>اذا كان الدواء مجانيا , اترك الحقل فارغا او اكتب 0</small>
+                                        </div>
+                                    </div> --}}
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="col-md-12 mb-0">هل الدواء مجاني ام مدفوع</label>
+                                            <div class="col-md-12">
+                                                <select name="price_type" lass="form-control ps-0 form-control-line">
+                                                    <option value="free">مجاتي</option>
+                                                    <option value="not_free">مدفوع</option>
+                                                </select>
+                                                {{-- <input type="text" name="price"
+                                                    class="form-control ps-0 form-control-line"> --}}
+                                            </div>
+                                            {{-- <small>اذا كان الدواء مجانيا , اترك الحقل فارغا او اكتب 0</small> --}}
                                         </div>
                                     </div>
                                     <div class="col-6">

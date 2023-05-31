@@ -34,14 +34,14 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
-            @if (!Auth::user()->lat || !Auth::user()->lat)
+            {{-- @if (!Auth::user()->lat || !Auth::user()->lat)
                 <p class="alert alert-info">
                     ضيف بيانات موقعك بالخريطة عشان البحث يكون اسهل للناس _ ||
                     <a href="{{ route('dash.update_geo') }}">
                         اضــغط هنا
                     </a>
                 </p>
-            @endif
+            @endif --}}
             <!-- Row -->
             <div class="row">
                 <!-- Column -->
@@ -52,9 +52,7 @@
                     <div class="card">
                         <div class="card-body">
                             <form class="form-horizontal form-material mx-2" method="POST"
-                                action="{{ route('dash.medicines_save') }}"
-                                    enctype="multipart/form-data"
-                                >
+                                action="{{ route('dash.medicines_save') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">اسم الدواء عربي</label>
@@ -81,7 +79,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-6">
+                                    {{-- <div class="col-6">
                                         <div class="form-group">
                                             <label class="col-md-12 mb-0">السعر</label>
                                             <div class="col-md-12">
@@ -89,6 +87,20 @@
                                                     class="form-control ps-0 form-control-line">
                                             </div>
                                             <small>اذا كان الدواء مجانيا , اترك الحقل فارغا او اكتب 0</small>
+                                        </div>
+                                    </div> --}}
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="col-md-12 mb-0">هل الدواء مجاني ام مدفوع</label>
+                                            <div class="col-md-12">
+                                                <select name="price_type" lass="form-control ps-0 form-control-line">
+                                                    <option value="free">مجاتي</option>
+                                                    <option value="not_free">مدفوع</option>
+                                                </select>
+                                                {{-- <input type="text" name="price"
+                                                    class="form-control ps-0 form-control-line"> --}}
+                                            </div>
+                                            {{-- <small>اذا كان الدواء مجانيا , اترك الحقل فارغا او اكتب 0</small> --}}
                                         </div>
                                     </div>
                                     <div class="col-6">

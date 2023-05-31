@@ -34,7 +34,7 @@ class MedController extends Controller
         $user =  Auth::user();
         $med = new Medicine([
             'name' => $request->name,
-            'price' => $request->price,
+            'price_type' => $request->price_type,
             'dose' => $request->dose,
             'name_en' => $request->name_en,
             'ex_date' => $request->ex_date,
@@ -43,19 +43,16 @@ class MedController extends Controller
             'quantity' => $request->quantity
         ]);
 
-        if ($user->lat != null  && $user->lng != null) {
-            $med->lat = $user->lat;
-            $med->lng = $user->lng;
-        }
+        // if ($user->lat != null  && $user->lng != null) {
+        //     $med->lat = $user->lat;
+        //     $med->lng = $user->lng;
+        // }
         $med->city_id = $user->city_id;
         $med->img_url =   $this->imageResize($request->img);
 
-
-        // return $med;
         $med->save();
         return redirect()->route('admin.medicines')->with('success', 'success');
-        // return view('dashboard.med_save');
-    }
+     }
 
     public function imageResize($image)
     {

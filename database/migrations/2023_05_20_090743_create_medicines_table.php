@@ -25,7 +25,9 @@ return new class extends Migration
             $table->string('ex_date')->nullable();
 
             $table->string('quantity')->default('1');
-            $table->integer('price');
+
+            // $table->integer('price');
+            $table->enum('price_type',['free','not_free'])->default('free');
 
             $table->string('img_url')->nullable();
 
