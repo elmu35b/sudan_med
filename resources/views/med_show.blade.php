@@ -112,36 +112,36 @@
         </div>
     </section>
     <!-- Categories Section End -->
-
-    <!-- Featured Section Begin -->
-    <section class="featured spad">
+    <section class="product-details spad">
         <div class="container">
-
-            <div class="row featured__filter">
-                <!--  -->
-                @foreach ($medicines as $med)
-                    <div class="col-6">
-                       <a href="{{route('medicine.show',['med'=> $med])}}">
-                        <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
-                                onclick="window.location.href = 'route('medicine.show',['med'=> $med])'"
-                                data-setbg="{{ asset('storage/' . $med->img_url) }}">
-
-                            </div>
-                            <div class="featured__item__text">
-                                <h6><a href="#">{{ $med->name }}</a></h6>
-                                <h5>{{ $med->price_type }}</h5>
-                            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large"
+                                src="img/product/details/product-details-1.jpg" alt="">
                         </div>
-                    </a>
+
                     </div>
-                @endforeach
-                <!--  -->
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <h3> {{$med->name}}</h3>
+                        <h4> {{$med->name}}</h4>
+                        <h5>{{$med->ex_date}}  : تاريخ الانتهاء</h5>
+
+                        <div class="product__details__price">{{$med->price_type}}</div>
+                        <p> {{$med->dose}}</p>
+
+                        <a href="tel:{{$med->user->phone}}" class="primary-btn">اتصــل : {{$med->user->phone}}</a>
+                        <a  class="primary-btn">واتساب : {{$med->user->wa}}</a>
+
+                    </div>
+                </div>
 
             </div>
         </div>
     </section>
-    <!-- Featured Section End -->
 
 
 

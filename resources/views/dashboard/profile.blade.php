@@ -11,12 +11,12 @@
         <div class="page-breadcrumb">
             <div class="row align-items-center">
                 <div class="col-md-6 col-8 align-self-center">
-                    <h3 class="page-title mb-0 p-0">Profile</h3>
+                    <h3 class="page-title mb-0 p-0">حــسابي</h3>
                     <div class="d-flex align-items-center">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                                <li class="breadcrumb-item"><a href="#">_</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">تحــديث بيانات الحساب</li>
                             </ol>
                         </nav>
                     </div>
@@ -34,8 +34,8 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
-            @if (Session::has('password-success'))
-                <p class="alert alert-info">{{ Session::get('password-success') }}</p>
+            @if (Session::has('data_updated'))
+                <p class="alert alert-info">تم تحديث البيانات</p>
             @endif
             <!-- Row -->
             <div class="row">
@@ -46,27 +46,62 @@
                     <div class="card">
                         <div class="card-body">
                             <form class="form-horizontal form-material mx-2" method="POST"
-                                action="{{ route('dash.update_password') }}">
+                                action="{{ route('dash.update_data') }}">
                                 @csrf
-                                <small style="color:red">Only Password can be updated</small>
 
                                 <div class="form-group">
-                                    <label class="col-md-12 mb-0">Name</label>
+                                    <label class="col-md-12 mb-0">الاسم</label>
                                     <div class="col-md-12">
-                                        <input type="text" disabled value="{{ Auth::user()->name }}"
+                                        <input type="text"  value="{{ Auth::user()->name }}" name="name"
                                             class="form-control ps-0 form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="example-email" class="col-md-12">Email</label>
+                                    <label for="example-email" class="col-md-12">الايميل</label>
                                     <div class="col-md-12">
-                                        <input type="email" disabled value="{{ Auth::user()->email }}"
+                                        <input type="email"  value="{{ Auth::user()->email }}" name="email"
                                             class="form-control ps-0 form-control-line" name="example-email"
                                             id="example-email">
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="col-md-12 mb-0">Password</label>
+                                    <label class="col-md-12 mb-0">رقم الهاتف</label>
+                                    <div class="col-md-12">
+                                        <input type="text" value="{{ Auth::user()->phone }}" name="phone"
+                                            class="form-control ps-0 form-control-line">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">رقم الواتساب</label>
+                                    <div class="col-md-12">
+                                        <input type="text" value="{{ Auth::user()->wa }}" name="wa"
+                                            class="form-control ps-0 form-control-line">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12 d-flex">
+                                        <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">
+                                            تحديث البيانات
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-xlg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="form-horizontal form-material mx-2" method="POST"
+                                action="{{ route('dash.update_password') }}">
+                                @csrf
+
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">كلمة السر</label>
                                     <div class="col-md-12">
                                         <input type="password" required name="password"
                                             class="form-control  @error('password') is-invalid @enderror ">
@@ -77,18 +112,14 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-12 mb-0">Phone No</label>
-                                    <div class="col-md-12">
-                                        <input type="text" value="{{ Auth::user()->phone }}" disabled
-                                            class="form-control ps-0 form-control-line">
-                                    </div>
-                                </div>
+
+
 
                                 <div class="form-group">
                                     <div class="col-sm-12 d-flex">
-                                        <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">Update
-                                            Profile</button>
+                                        <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">
+                                            تحديث البيانات
+                                        </button>
                                     </div>
                                 </div>
                             </form>

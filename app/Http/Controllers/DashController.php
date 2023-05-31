@@ -75,9 +75,23 @@ class DashController extends Controller
 
     public function updatePassword(Request $request)
     {
+
         Auth::user()->update(['password' => Hash::make('password')]);
 
         return redirect()->back()->with('password_updated', 'success');
+    }
+
+    public function updateData(Request $request)
+    {
+        // return $request;
+        Auth::user()->update([
+             'email' => $request->email,
+             'name' => $request->name,
+            'phone' => $request->phone,
+            'wa' => $request->wa,
+        ]);
+
+        return redirect()->back()->with('data_updated', 'success');
     }
 
 

@@ -28,9 +28,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        // Cache::clear();
-        // return 'jhh';
         $cities = Cache::get('cities');
         if (!$cities) {
             logger('caching');
@@ -45,7 +42,7 @@ class HomeController extends Controller
         //     // return $c->count();
         // }
         $meds = [];
-        return view('home', compact('cities', 'meds'));
+        return view('shop', compact('cities',));
 
         // $cities = City::all();
 
@@ -53,6 +50,20 @@ class HomeController extends Controller
 
     }
 
+
+
+    public function show(Medicine $med)
+    {
+        $cities = Cache::get('cities');
+        if (!$cities) {
+            logger('caching');
+            $temp = $this->getCities();
+            $caching =   Cache::put('cities', $temp, 120);
+
+            $cities = Cache::get('cities');
+        }
+        return view('med_show',compact('med','cities'));
+    }
     public function getCities()
     {
         $cities = City::all();
@@ -64,6 +75,17 @@ class HomeController extends Controller
 
     public function searchByCity(Request $request)
     {
+
+        // return Medicine::all();
+           // return $request;
+           $cities = Cache::get('cities');
+           if (!$cities) {
+               logger('caching');
+               $temp = $this->getCities();
+               $caching =   Cache::put('cities', $temp, 120);
+
+               $cities = Cache::get('cities');
+           }
 
         $medicines = Medicine::where(['city_id' => $request->city_id, 'available' => true,])
             ->where('name', 'like', '%' . $request->search . '%')

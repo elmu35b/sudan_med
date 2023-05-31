@@ -62,17 +62,17 @@
                                             <th class="border-top-0">#</th>
                                             <th class="border-top-0">اسم الدواء</th>
                                             <th class="border-top-0">الاسم الانجليزي</th>
-                                            <th class="border-top-0">كلمات البحث</th>
-                                            <th class="border-top-0">متوفر</th>
+                                            {{-- <th class="border-top-0">كلمات البحث</th> --}}
+                                            {{-- <th class="border-top-0">متوفر</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($medicines as $med)
                                             <tr>
-                                                <td>6</td>
-                                                <td>Nigam</td>
-                                                <td>Eichmann</td>
-                                                <td>@Sonu</td>
+                                                <td></td>
+                                                <td>{{$med->name}}</td>
+                                                <td>{{$med->name_en}}</td>
+                                                <td></td>
                                             </tr>
                                         @endforeach
                                     </tbody>

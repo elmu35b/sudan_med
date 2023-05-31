@@ -1,174 +1,217 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
 
 <head>
-    <title>Pharma &mdash; Colorlib Template</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Med</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('shop/fonts/icomoon/style.css') }}">
+    <!-- Google Font -->
+    {{-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet"> --}}
 
-    <link rel="stylesheet" href="{{ asset('shop/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('shop/css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('shop/css/jquery-ui.css') }}">
-    <link rel="stylesheet" href="{{ asset('shop/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('shop/css/owl.theme.default.min.css') }}">
-
-
-    <link rel="stylesheet" href="{{ asset('shop/css/aos.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('shop/css/style.css') }}">
-
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{{ asset('ns/css/bootstrap.min.css') }}" type="text/css">
+    {{-- <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"> --}}
+    {{-- <link rel="stylesheet" href="css/elegant-icons.css" type="text/css"> --}}
+    <!-- <link rel="stylesheet" href="css/nice-select.css" type="text/css"> -->
+    {{-- <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css"> --}}
+    {{-- <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css"> --}}
+    {{-- <link rel="stylesheet" href="css/slicknav.min.css" type="text/css"> --}}
+    <link rel="stylesheet" href="{{ asset('ns/css/style.css') }}" type="text/css">
 </head>
 
 <body>
+    <!-- Page Preloder -->
+    <!-- <div id="preloder">
+        <div class="loader"></div>
+    </div> -->
 
-    <div class="site-wrap">
 
+    <!-- Humberger End -->
 
-        <div class="site-navbar py-2">
+    <!-- Header Section Begin -->
+    <header class="header">
 
-            <div class="search-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <!-- <a href="/"></a> -->
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active"><a href="{{ route('home') }}">الرئيسية</a></li>
+                            <li><a href="{{ route('register') }}">عنــدك دواء ؟</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- <div class="col-lg-3">
+                    <div class="header__cart">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        </ul>
+                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    <section class="">
+        <div class="container">
+            <div class="row">
                 <div class="container">
-                    <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-                    <form action="#" method="post">
-                        <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+                    <form action="{{ route('search') }}" method="post">
+                        @csrf
+                        <input type="text" name="search" class="form-control"
+                            placeholder="اكتب اسم الدواء , عربي او انجليزي">
+                        <label for="city_id"> اختــار المدينة </label>
+                        <br>
+                        <select name="city_id" class="form-control" id="">
+                            @foreach ($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+
+                            @endforeach
+                        </select>
+                        <!-- <div class="row"> -->
+                        <button class="form-control btn btn-primary mt-2 mb-1 d-flex justify-content-center"
+                            type="submit">
+                            ابحـــث
+                        </button>
+                        <!-- </div> -->
                     </form>
                 </div>
+
             </div>
+            <!-- <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                <div class="hero__text">
+                    <span>FRUIT FRESH</span>
+                    <h2>Vegetable <br />100% Organic</h2>
+                    <p>Free Pickup and Delivery Available</p>
+                    <a href="#" class="primary-btn">SHOP NOW</a>
+                </div>
+            </div> -->
+        </div>
+        </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
 
-            <div class="container">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="logo">
-                        <div class="site-logo">
-                            <a href="index.html" class="js-logo-clone">Sudan Med</a>
+    <!-- Categories Section Begin -->
+    <section class="categories">
+        <div class="container">
+
+        </div>
+    </section>
+    <!-- Categories Section End -->
+
+    <!-- Featured Section Begin -->
+    <section class="featured spad">
+        <div class="container">
+
+            <div class="row featured__filter">
+                <!--  -->
+                {{-- @foreach ($medicines as $med)
+                    <div class="col-6">
+                       <a href="{{route('medicine.show',['med'=> $med])}}">
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg"
+                                onclick="window.location.href = 'route('medicine.show',['med'=> $med])'"
+                                data-setbg="{{ asset('storage/' . $med->img_url) }}">
+
+                            </div>
+                            <div class="featured__item__text">
+                                <h6><a href="#">{{ $med->name }}</a></h6>
+                                <h5>{{ $med->price_type }}</h5>
+                            </div>
                         </div>
+                    </a>
                     </div>
-                    <div class="main-nav d-none d-lg-block">
-                        <nav class="site-navigation text-right text-md-center" role="navigation">
-                            <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                <li class="active"><a href="{{ route('home') }}">الرئيسية</a></li>
-                                {{-- <li><a href="shop.html">Store</a></li> --}}
-                                <li><a href="{{ route('register') }}">عندك أدوية ؟</a></li>
-                                <li><a href="contact.html"></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="icons">
+                @endforeach --}}
+                <!--  -->
 
-                        <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
-                                class="icon-menu"></span></a>
+            </div>
+        </div>
+    </section>
+    <!-- Featured Section End -->
+
+
+
+
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <!-- <a href="./index.html"><img src="img/logo.png" alt=""></a> -->
+                            <h4>الدعم الفني</h4>
+                        </div>
+                        <ul>
+                            <li>لو عند ادوية سجـــل حساب وضيف الادوية</li>
+                            <li>ســاعد اخوانك واخواتك</li>
+
+                            <li> <a href="tel:00249121941942">00249121941942</a> تلفون </li>
+                            <li> <a href="email:musabgaili@gmail.com"> musabgaili@gmail.com</a> ايميل </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Useful Links</h6>
+                        <ul>
+                            <li><a href="{{route('login')}}">دخــول لحسابك</a></li>
+                            <li><a href="{{route('register')}}">سجل حســاب</a></li>
+
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved | This
+                                template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                        <!-- <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div> -->
                     </div>
                 </div>
             </div>
         </div>
+    </footer>
+    <!-- Footer Section End -->
 
-        {{-- <div class="site-blocks-cover" style="background-image: url('{{ asset('shop/images/hero_1.jpg') }}');">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7 mx-auto order-lg-2 align-self-center">
-                        <div class="site-block-cover-content text-center">
-                            <h2 class="sub-title">Effective Medicine, New Medicine Everyday</h2>
-                            <h1>Welcome To Pharma</h1>
-                            <p>
-                                <a href="#" class="btn btn-primary px-5 py-3">Shop Now</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-        @yield('content')
+    <!-- Js Plugins -->
+    <script src="{{ asset('ns/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('ns/js/bootstrap.min.js') }}"></script>
+    <!-- <script src="js/jquery.nice-select.min.js"></script> -->
+    <script src="{{ asset('ns/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('ns/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('ns/js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('ns/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('ns/js/main.js') }}"></script>
 
 
-        {{-- <div class="site-section bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="title-section text-center col-12">
-                        <h2 class="text-uppercase">New Products</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 block-3 products-wrap">
-                        <div class="nonloop-block-3 owl-carousel">
-
-                            <div class="text-center item mb-4">
-                                <a href="shop-single.html"> <img src="images/product_03.png" alt="Image"></a>
-                                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                                <p class="price">$120.00</p>
-                            </div>
-
-                            <div class="text-center item mb-4">
-                                <a href="shop-single.html"> <img src="images/product_01.png" alt="Image"></a>
-                                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                                <p class="price">$120.00</p>
-                            </div>
-
-                            <div class="text-center item mb-4">
-                                <a href="shop-single.html"> <img src="images/product_02.png" alt="Image"></a>
-                                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                                <p class="price">$120.00</p>
-                            </div>
-
-                            <div class="text-center item mb-4">
-                                <a href="shop-single.html"> <img src="images/product_04.png" alt="Image"></a>
-                                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                                <p class="price">$120.00</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-
-
-
-
-
-        <footer class="site-footer">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
-                        <h3 class="footer-heading mb-4">Quick Links</h3>
-                        <ul class="list-unstyled">
-                            <li><a href="{{ route('register') }}">عندك ادوية ؟</a></li>
-                            <li><a href="{{ route('login') }}">تسجيــل دخول</a></li>
-                            {{-- <li><a href="#">Diet &amp; Nutrition</a></li>
-                            <li><a href="#">Tea &amp; Coffee</a></li> --}}
-                        </ul>
-                    </div>
-
-                    <div class="col-md-6 col-lg-3">
-                        <div class="block-5 mb-5">
-                            <h3 class="footer-heading mb-4">Contact Info</h3>
-                            <ul class="list-unstyled">
-
-                                <li class="phone"><a href="https://wa.me/+249919232991">+249919232991</a></li>
-                                <li class="email"><a href="email:musabgaili@gmail.com"> musabgaili@gmail.com</a></li>
-                            </ul>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script src="{{ asset('shop/js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('shop/js/jquery-ui.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('shop/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('shop/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('shop/js/aos.js') }}"></script>
-
-    <script src="{{ asset('shop/js/main.js') }}"></script>
 
 </body>
 
