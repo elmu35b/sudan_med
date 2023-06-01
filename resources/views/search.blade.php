@@ -123,14 +123,14 @@
                     <div class="col-6">
                        <a href="{{route('medicine.show',['med'=> $med])}}">
                         <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
+                            {{-- <div class="featured__item__pic set-bg"
                                 onclick="window.location.href = 'route('medicine.show',['med'=> $med])'"
                                 data-setbg="{{ asset('storage/' . $med->img_url) }}">
 
-                            </div>
+                            </div> --}}
                             <div class="featured__item__text">
-                                <h6><a href="#">{{ $med->name }}</a></h6>
-                                <h5>{{ $med->price_type }}</h5>
+                                <h6><a href="{{route('medicine.show',['med'=> $med])}}">{{ $med->name }}</a></h6>
+                                <h5>{{ $med->price_type == 'free' ? 'مجاني': 'مدفوع' }}</h5>
                             </div>
                         </div>
                     </a>

@@ -22,27 +22,29 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        City::create(
-            ['name' => 'دنقلا'],
-        );
-        City::create(
-            [
-                'name' => 'الخرطوم'
-            ]
-        );
-        City::create(
-            [
-                'name' => 'ام درمان'
-            ]
-        );
-        // User::create([
-        //     'name'=> 'musab',
-        //     'city_id'=> 2,
-        //     'password'=> Hash::make('Musab@94'),
-        //     'type'=> 'admin',
-        //     'address'=> 'saudi arabia',
-        //     'phone'=> '0919232991',
-        // ]);
+        // City::create(
+        //     ['name' => 'دنقلا'],
+        // );
+        // City::create(
+        //     [
+        //         'name' => 'الخرطوم'
+        //     ]
+        // );
+        // City::create(
+        //     [
+        //         'name' => 'ام درمان'
+        //     ]
+        // );
+        User::create([
+            'name'=> 'musab',
+            'city_id'=> 2,
+            'password'=> Hash::make('123456'),
+            'type'=> 'admin',
+            'address'=> 'saudi arabia',
+            'hood'=> 'not-required',
+            'phone'=> '0919232994',
+            'wa'=> '0919232994',
+        ]);
 
         // HERE IT
     }

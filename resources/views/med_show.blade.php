@@ -116,11 +116,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <div class="product__details__pic">
-                        <div class="product__details__pic__item">
+                    <div class="">
+                        {{-- <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
                                 src="{{ asset('storage/' . $med->img_url) }}" alt="">
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>

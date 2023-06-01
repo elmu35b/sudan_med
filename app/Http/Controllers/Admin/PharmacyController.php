@@ -10,11 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 
-class HomeController extends Controller
+class PharmacyController extends Controller
 {
-    //
+
 
     public function __construct()
     {
@@ -63,7 +62,6 @@ class HomeController extends Controller
 
         //
         // return $meds;
-        Session::flash('search', $request->search);
         $cities = Cache::get('cities');
         if (!$cities) {
             logger('caching');
@@ -79,26 +77,17 @@ class HomeController extends Controller
 
 
 
-    public function profile()
+    public function showPharm(User $pharm)
     {
-        return view('admin.profile');
+        return view('admin.show_pharm',compact('pharm'));
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(Request $request, User $user)
     {
-        Auth::user()->update(['password' => Hash::make('password')]);
+        $user->update(['password' => Hash::make('password')]);
 
         return redirect()->back()->with('password_updated', 'success');
     }
 
 
-    public function updategeo()
-    {
-        return view('admin.geo');
-    }
-
-    public function savegeo(Request $request)
-    {
-        return $request;
-    }
 }

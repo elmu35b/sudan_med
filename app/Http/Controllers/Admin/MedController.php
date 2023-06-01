@@ -3,15 +3,35 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\Medicine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class MedController extends Controller
 {
     //
+
+
+    private $cities;
+
+    public function __construct()
+
+    {
+        $cities =  Cache::get('cities');
+        if (!$cities) {
+            logger('caching');
+            $temp = $this->getCities();
+            $caching =   Cache::put('cities', $temp, 120);
+
+            $cities = Cache::get('cities');
+            $this->cities = $cities;
+        }
+        $this->cities = $cities;
+    }
 
     public function medicines()
     {
@@ -28,10 +48,6 @@ class MedController extends Controller
 
     public function saveMed(Request $request)
     {
-        // return $request;
-    ini_set('upload_max_filesize',128);
-
-        // return   $this->imageResize($request->img);
 
         $user =  Auth::user();
         $med = new Medicine([
@@ -50,11 +66,11 @@ class MedController extends Controller
         //     $med->lng = $user->lng;
         // }
         $med->city_id = $user->city_id;
-        $med->img_url =   $this->imageResize($request->img);
+        // $med->img_url =   $this->imageResize($request->img);
 
         $med->save();
         return redirect()->route('admin.medicines')->with('success', 'success');
-     }
+    }
 
     public function imageResize($image)
     {
@@ -65,4 +81,19 @@ class MedController extends Controller
         return $final;
         // return $img->response('jpg');
     }
+
+
+    public function show(Medicine $med)
+    {
+        $cities = $this->cities;
+        return view('admin.med_show', compact('med','cities'));
+    }
+
+
+    public function getCities()
+    {
+        $cities = City::all();
+        return $cities;
+    }
 }
+

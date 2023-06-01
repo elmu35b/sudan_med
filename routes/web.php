@@ -39,7 +39,7 @@ Auth::routes();
 Route::group( ['prefix'=> 'dashboard', 'as'=> 'dash.'], function () {
     Route::get('/', [DashController::class ,'home'])->name('home');
     Route::get('/meds', [DashController::class ,'myMedicines'])->name('medicines');
-    Route::get('/meds/new', [DashController::class ,'newMed'])->name('medicines_new');
+    Route::get('/meds/create', [DashController::class ,'newMed'])->name('medicines_new');
     Route::post('/meds/save', [DashController::class ,'saveMed'])->name('medicines_save');
     Route::get('/profile', [DashController::class ,'profile'])->name('profile');
     Route::post('/profile/update-number', [DashController::class ,'updateNumber'])->name('update_number');
