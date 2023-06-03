@@ -51,6 +51,16 @@ class DatabaseSeeder extends Seeder
             'phone'=> '0919232991',
             'wa'=> '0919232991',
         ]);
+        User::create([
+            'name'=> 'Abdalla',
+            'city_id'=> 2,
+            'password'=> Hash::make('123456'),
+            'type'=> 'admin',
+            'address'=> '--',
+            'hood'=> '--',
+            'phone'=> '0121941942',
+            'wa'=> '0121941942',
+        ]);
 
         // HERE IT
     }
