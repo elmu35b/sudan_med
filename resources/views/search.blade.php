@@ -171,14 +171,14 @@
                         <div class="card mb-1 mt-1 ">
                             <div class="card-body ">
                                 <div class="card-title">
-                                    {{ $pharm->name }}
+                                    {{ $pharm->user->name }}
                                 </div>
-                                <p>{{ $pharm->city->name }}</p>
-                                <p>{{ $pharm->address }}</p>
-                                <p>{{ $pharm->hood }}</p>
-                                <a href="tel:{{$pharm->phone}}" class="btn btn-success"> اتصال  {{$pharm->phone}}</a>
+                                <p>{{ $pharm->user->city->name }}</p>
+                                <p>{{ $pharm->user->address }}</p>
+                                <p>{{ $pharm->user->hood }}</p>
+                                <a href="tel:{{$pharm->user->phone}}" class="btn btn-success"> اتصال  {{$pharm->user->phone}}</a>
                                 <br>
-                                <a href="tel:{{$pharm->wa}}" class="btn btn-success"> واتساب  {{$pharm->wa}}</a>
+                                <a href="tel:{{$pharm->user->wa}}" class="btn btn-success"> واتساب  {{$pharm->user->wa}}</a>
                             </div>
                         </div>
                     </div>

@@ -6,10 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords"
-     content="sudan , medicine , war">
-    <meta name="description"
-        content="search medicine , بحث عن دواء ">
+    <meta name="keywords" content="sudan , medicine , war">
+    <meta name="description" content="search medicine , بحث عن دواء ">
     <meta name="robots" content="noindex,nofollow">
     <title>{{ Auth::user()->name }}</title>
     {{-- <link rel="canonical" href="https://www.wrappixel.com/templates/materialpro-lite/" /> --}}
@@ -28,11 +26,14 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XQ8XSDXCH"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-9XQ8XSDXCH');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-9XQ8XSDXCH');
 </script>
 
 <body>
@@ -139,6 +140,13 @@
                                 href="{{ route('dash.profile') }}" aria-expanded="false">
                                 <i class="mdi me-2 mdi-account-check"></i><span class="hide-menu">حــسابي</span></a>
                         </li>
+
+                        @if (auth()->user()->type == 'pharmacy')
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="{{ route('dash.pharm_info') }}" aria-expanded="false">
+                                    <i class="mdi me-2 mdi-account-check"></i><span class="hide-menu">بيانات الصيدلية</span></a>
+                            </li>
+                        @endif
                         {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{ route('dash.medicines') }}" aria-expanded="false"><i
                                     class="mdi me-2 mdi-table"></i><span class="hide-menu">الادوية</span></a></li> --}}

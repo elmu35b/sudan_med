@@ -39,9 +39,7 @@
                     {{Session::get('search')}}
                     نتــائج البحث ::
 
-                    <a type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
+
                 </div>
 
             @endif

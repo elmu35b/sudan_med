@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\EssentialMedicine;
 use App\Models\Medicine;
+use App\Models\Pharmacy;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -98,7 +99,13 @@ class HomeController extends Controller
         })
             ->paginate(25);
 
-            $pharms = User::where(['type'=> 'pharmacy'])->paginate(25);
+            $pharms = Pharmacy::where('active',true)->whereHas('user' ,function($query) use ($request){
+                $query->where('city_id',$request->city_id);
+            })
+
+            ->paginate(25);
+            // return $pharm;
+            // $pharms = User::where(['type'=> 'pharmacy'])->paginate(25);
 
         return view('search', compact('medicines','cities','pharms'));
     }

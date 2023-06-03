@@ -62,6 +62,12 @@ Route::group( ['prefix'=> 'dashboard', 'as'=> 'dash.'], function () {
     Route::post('/profile/update-password', [DashController::class ,'updatePassword'])->name('update_password');
     Route::post('/profile/update-data', [DashController::class ,'updateData'])->name('update_data');
 
+
+
+    Route::get('/pharmacy-info', [DashController::class ,'pharmInfo'])->name('pharm_info');
+    Route::post('/pharmacy-info-update', [DashController::class ,'pharmInfoUpdate'])->name('pharm_info_update');
+
+
     // Route::get('/profile/update-geo', [DashController::class ,'updategeo'])->name('update_geo');
     // Route::post('/profile/save-geo', [DashController::class ,'savegeo'])->name('save_geo');
 });

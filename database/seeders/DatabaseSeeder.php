@@ -48,8 +48,8 @@ class DatabaseSeeder extends Seeder
             'type'=> 'admin',
             'address'=> 'saudi arabia',
             'hood'=> 'not-required',
-            'phone'=> '0919232994',
-            'wa'=> '0919232994',
+            'phone'=> '0919232991',
+            'wa'=> '0919232991',
         ]);
 
         // HERE IT

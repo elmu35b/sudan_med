@@ -44,9 +44,9 @@ class DashController extends Controller
     public function saveMed(Request $request)
     {
         // return $request;
-    //  return   $this->imageResize($request->img);
+        //  return   $this->imageResize($request->img);
 
-    // ini_set('upload_max_filesize',128);
+        // ini_set('upload_max_filesize',128);
 
 
         $user =  Auth::user();
@@ -58,18 +58,18 @@ class DashController extends Controller
             'ex_date' => $request->ex_date,
             'tags' => $request->tags,
             'user_id' => $user->id,
-            'quantity'=> $request->quantity
+            'quantity' => $request->quantity
         ]);
 
         // if($user->lat !=null  && $user->lng != null ){
         //     $med->lat = $user->lat ;
         //     $med->lng = $user->lng;
         // }
-        $med->city_id = $user->city_id ;
+        $med->city_id = $user->city_id;
         // $med->img_url =   $this->imageResize($request->img);
 
         $med->save();
-        return redirect()->route('dash.medicines')->with('success','success');
+        return redirect()->route('dash.medicines')->with('success', 'success');
     }
     public function profile()
     {
@@ -88,8 +88,8 @@ class DashController extends Controller
     {
         // return $request;
         Auth::user()->update([
-             'email' => $request->email,
-             'name' => $request->name,
+            'email' => $request->email,
+            'name' => $request->name,
             'phone' => $request->phone,
             'wa' => $request->wa,
         ]);
@@ -110,13 +110,40 @@ class DashController extends Controller
 
 
 
-    public function imageResize($image)
+    // public function imageResize($image)
+    // {
+    //     $img = \Image::make($image)->resize(300, 200)->encode('jpg',80);
+    //     $img_uuid = Str::uuid();
+    //     $final = $img_uuid . '.' . $image->getClientOriginalExtension();
+    //     Storage::disk('public')->put( $final, $img);
+    //     return $final;
+    //     // return $img->response('jpg');
+    // }
+
+
+
+    public function pharmInfo()
     {
-        $img = \Image::make($image)->resize(300, 200)->encode('jpg',80);
-        $img_uuid = Str::uuid();
-        $final = $img_uuid . '.' . $image->getClientOriginalExtension();
-        Storage::disk('public')->put( $final, $img);
-        return $final;
-        // return $img->response('jpg');
+        return view('dashboard.pharm_settings');
+    }
+
+    public function pharmInfoUpdate(Request $request)
+    {
+        // return $request;
+        $active = false ;
+       if ($request->active == false or $request->active == 'false'){
+        $active = false;
+       }else $active = true;
+
+
+
+        Auth::user()->pharmacy->update([
+            'opens_at' => $request->open_at,
+            'close_at' => $request->close_at,
+            'extra_number' => $request->extra_phone,
+            'active' => $active,
+        ]);
+        return Auth::user()->pharmacy;
+        // return view('dashboard.pharm_settings');
     }
 }

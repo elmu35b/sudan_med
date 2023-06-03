@@ -35,16 +35,18 @@
             <!-- Start Page Content -->
             <!-- ============================================================== -->
             @if (Session::has('success'))
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alerto">
                     <strong>تم</strong>
                     تم اضافة الدواء
-
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
 
             @endif
+            <script>
+                setTimeout(() => {
+                    var alertId = document.getElementById('alerto')
+                    alertId.classList.add('modal')
+                }, 3000);
+            </script>
             <!-- Row -->
             <div class="row">
                 <!-- column -->
