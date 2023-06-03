@@ -143,7 +143,7 @@ class DashController extends Controller
             'extra_number' => $request->extra_phone,
             'active' => $active,
         ]);
-        return Auth::user()->pharmacy;
-        // return view('dashboard.pharm_settings');
+        // return Auth::user()->pharmacy;
+        return view('dashboard.pharm_settings');
     }
 }

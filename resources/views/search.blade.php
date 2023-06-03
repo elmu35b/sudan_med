@@ -138,8 +138,14 @@
                         <div class="card mb-1 mt-1 ">
                             <div class="card-body ">
                                 <div class="card-title">
-                                    {{ $med->name }}
+                                    {{ $med->name }} / {{$med->name_en}}
                                 </div>
+                                <p>
+                                    {{$med->dose}}
+                                </p>
+                                <p>
+                                    {{$med->price_type == 'free'? 'مجاني' : 'غير مجاني'}}
+                                </p>
                                 <p>{{ $med->city->name }}</p>
                                 <p>{{ $med->user->address }}</p>
                                 <p>{{ $med->user->hood }}</p>
