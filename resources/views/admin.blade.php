@@ -137,6 +137,11 @@
                                         href="{{ route('admin.users') }}" aria-expanded="false"><i
                                             class="mdi me-2 mdi-table"></i><span class="hide-menu">الحسابات الفردية</span></a></li>
 
+
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="{{ route('admin.by_city') }}" aria-expanded="false"><i
+                                            class="mdi me-2 mdi-table"></i><span class="hide-menu">الصيدليات والافراد بالمدينة</span></a></li>
+
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{ route('admin.cities') }}" aria-expanded="false"><i
                                     class="mdi me-2 mdi-table"></i><span class="hide-menu">المدن</span></a></li>

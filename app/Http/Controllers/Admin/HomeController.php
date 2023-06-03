@@ -43,7 +43,7 @@ class HomeController extends Controller
         }
         $medicines = Medicine::where('available', true)->paginate(25);
         // return $medicines;
-        return view('admin.index', compact('medicines','cities'));
+        return view('admin.index', compact('medicines', 'cities'));
     }
 
     public function pharmacy()
@@ -82,7 +82,7 @@ class HomeController extends Controller
 
             $cities = Cache::get('cities');
         }
-        return view('admin.meds', compact('medicines','cities'))->with('search', $request->search);
+        return view('admin.meds', compact('medicines', 'cities'))->with('search', $request->search);
 
         // $meds = User::  where('name','like','%'.$request->search .'%')->paginate(25);
     }
@@ -102,13 +102,37 @@ class HomeController extends Controller
     }
 
 
-    public function updategeo()
+
+    public function byCity()
     {
-        return view('admin.geo');
+
+        $cities = Cache::get('cities');
+        if (!$cities) {
+            logger('caching');
+            $temp = $this->getCities();
+            $caching =   Cache::put('cities', $temp, 120);
+
+            $cities = Cache::get('cities');
+        }
+        return view('admin.by_city',compact('cities'));
     }
 
-    public function savegeo(Request $request)
+    public function byCityResult(Request $request)
     {
-        return $request;
+
+        $cities = Cache::get('cities');
+        if (!$cities) {
+            logger('caching');
+            $temp = $this->getCities();
+            $caching =   Cache::put('cities', $temp, 120);
+
+            $cities = Cache::get('cities');
+        }
+
+        $accounts = User::where(
+            'city_id' , $request->city_id
+        )
+            ->paginate(25);
+        return view('admin.by_city_result',compact('cities','accounts'));
     }
 }

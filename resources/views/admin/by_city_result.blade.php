@@ -43,18 +43,21 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
             @endif
             <!-- Row -->
             <div class="row">
                 <center>
                     <div class="col-8">
                         <div class="container">
-                            <form action="{{ route('admin.pharm.search') }}" method="post">
+                            <form action="{{ route('admin.by_city') }}" method="post">
                                 @csrf
-                                <input type="text" name="search" class="form-control"
-                                    placeholder="اكتب رقم هاتف الصيدلية">
-
+                                <label for="city_id"> اختــار المدينة </label>
+                                <br>
+                                <select name="city_id" class="form-control" id="">
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                </select>
                                 <!-- <div class="row"> -->
                                 <button class="form-control btn btn-primary mt-2 mb-1 d-flex justify-content-center"
                                     type="submit">
@@ -64,7 +67,7 @@
                             </form>
                         </div>
                     </div>
-                   </center>
+                </center>
                 <!-- column -->
                 <div class="col-sm-12">
                     <div class="card">
@@ -84,17 +87,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($pharmas as $pharm)
-                                        <tr onclick="window.location.href = '{{route('admin.pharm.show',['pharm'=> $pharm])}}'">
-                                            <td>{{$pharm->name}}</td>
-                                                <td>{{$pharm->address}}</td>
-                                                <td>{{$pharm->city->name}}</td>
-                                                <td>{{$pharm->phone}}</td>
+                                        @foreach ($accounts as $account)
+                                            <tr
+                                                @if ($account->type == 'pharmacy') onclick="window.location.href = '{{ route('admin.pharm.show', ['pharm' => $account]) }}'"
+                                            @else
+                                            onclick="window.location.href = '{{ route('admin.users.show', ['user' => $account]) }}'" @endif>
+                                                <td>{{ $account->name }}</td>
+                                                <td>{{ $account->address }}</td>
+                                                <td>{{ $account->city->name }}</td>
+                                                <td>{{ $account->phone }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $pharmas->links('pagination::bootstrap-4') }}
+                                {{ $accounts->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>

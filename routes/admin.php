@@ -39,7 +39,12 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->name('admin.')->group(
     Route::get('users/meds/new/{user}', [MedController::class ,'newMedUser'])->name('medicines_new.user');
 
 
+    Route::get('/by_city', [HomeController::class, 'byCity'])->name('by_city');
+    Route::post('/by_city', [HomeController::class, 'byCityResult'])->name('by_city');
+
+
     Route::get('/pharmacy', [PharmacyController::class, 'pharmacy'])->name('pharm');
+    Route::get('/pharmacy/city', [PharmacyController::class, 'pharmacyCity'])->name('pharm.by_city');
     Route::get('/pharm/show/{pharm}', [PharmacyController::class, 'showPharm'])->name('pharm.show');
     Route::post('/pharm/search/', [PharmacyController::class, 'searchPharm'])->name('pharm.search');
     Route::get('pharm/meds/new/{pharm}', [MedController::class ,'newMedPharm'])->name('medicines_new.pharm');

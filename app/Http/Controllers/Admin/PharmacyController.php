@@ -33,22 +33,37 @@ class PharmacyController extends Controller
 
     public function pharmacy()
     {
-        $pharmas = User::where('type', 'pharmacy')->paginate(10);
+        $pharmas = User::where('type', 'pharmacy')->paginate(25);
 
         return view('admin.pharmacy', compact('pharmas'));
     }
 
 
+    public function pharmacyCity(Request $request)
+    {
+        $pharmas = [];
+        if ($request->city_id == null) {
+            $pharmas = [];
+        } else {
+            $pharmas = User::where([
+                'type' => 'pharmacy',
+                'city_id' => $request->city_id
+            ])
+                ->paginate(25);
+        }
+        return view('admin.pharmacy_by_city', compact('pharmas'));
+    }
+
     public function showPharm(User $pharm)
     {
-       $medicines = $pharm->medicines()->paginate(25);
-        return view('admin.show_pharm',compact('pharm','medicines'));
+        $medicines = $pharm->medicines()->paginate(25);
+        return view('admin.show_pharm', compact('pharm', 'medicines'));
     }
 
     public function searchPharm(Request $request)
     {
-        $pharmas = User::where('type','pharmacy')->where('phone','like','%'.$request->search .'%')->paginate(10);
-        return view('admin.pharmacy',compact('pharmas'));
+        $pharmas = User::where('type', 'pharmacy')->where('phone', 'like', '%' . $request->search . '%')->paginate(10);
+        return view('admin.pharmacy', compact('pharmas'));
     }
 
     public function updatePassword(Request $request, User $user)
@@ -57,6 +72,4 @@ class PharmacyController extends Controller
 
         return redirect()->back()->with('password_updated', 'success');
     }
-
-
 }

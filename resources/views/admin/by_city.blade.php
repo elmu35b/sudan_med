@@ -43,18 +43,21 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
             @endif
             <!-- Row -->
             <div class="row">
                 <center>
                     <div class="col-8">
                         <div class="container">
-                            <form action="{{ route('admin.pharm.search') }}" method="post">
+                            <form action="{{ route('admin.by_city') }}" method="post">
                                 @csrf
-                                <input type="text" name="search" class="form-control"
-                                    placeholder="اكتب رقم هاتف الصيدلية">
-
+                                <label for="city_id"> اختــار المدينة </label>
+                                <br>
+                                <select name="city_id" class="form-control" id="">
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                </select>
                                 <!-- <div class="row"> -->
                                 <button class="form-control btn btn-primary mt-2 mb-1 d-flex justify-content-center"
                                     type="submit">
@@ -64,41 +67,9 @@
                             </form>
                         </div>
                     </div>
-                   </center>
+                </center>
                 <!-- column -->
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">الصيدليات</h4>
-                            {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            {{-- <a href="" class="btn btn-primary">اضافة صيدلية</a> --}}
-                            <div class="table-responsive">
-                                <table class="table user-table">
-                                    <thead>
-                                        <tr>
-                                            {{-- <th class="border-top-0">#</th> --}}
-                                            <th class="border-top-0">اسم </th>
-                                            <th class="border-top-0">العنوان</th>
-                                            <th class="border-top-0">المدينة</th>
-                                            <th class="border-top-0">رقم الهاتف</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($pharmas as $pharm)
-                                        <tr onclick="window.location.href = '{{route('admin.pharm.show',['pharm'=> $pharm])}}'">
-                                            <td>{{$pharm->name}}</td>
-                                                <td>{{$pharm->address}}</td>
-                                                <td>{{$pharm->city->name}}</td>
-                                                <td>{{$pharm->phone}}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                {{ $pharmas->links('pagination::bootstrap-4') }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <!-- Row -->
             <!-- ============================================================== -->
