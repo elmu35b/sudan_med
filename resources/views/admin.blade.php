@@ -87,8 +87,7 @@
 
                         <li class="nav-item search-box">
                             <a class="nav-link text-muted" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search"  name="search" action="{{route('admin.search')}}"
-                                method="POST">
+                            <form class="app-search" name="search" action="{{ route('admin.search') }}" method="POST">
                                 @csrf
                                 <a class="srh-btn"><i class="ti-close"></i></a>
 
@@ -133,14 +132,20 @@
                                 href="{{ route('admin.pharm') }}" aria-expanded="false"><i
                                     class="mdi me-2 mdi-table"></i><span class="hide-menu">الصيدليات</span></a></li>
 
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="{{ route('admin.users') }}" aria-expanded="false"><i
-                                            class="mdi me-2 mdi-table"></i><span class="hide-menu">الحسابات الفردية</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('admin.users') }}" aria-expanded="false"><i
+                                    class="mdi me-2 mdi-table"></i><span class="hide-menu">الحسابات الفردية</span></a>
+                        </li>
 
 
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('admin.by_city') }}" aria-expanded="false"><i
+                                    class="mdi me-2 mdi-table"></i><span class="hide-menu">الصيدليات والافراد
+                                    بالمدينة</span></a></li>
+
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="{{ route('admin.by_city') }}" aria-expanded="false"><i
-                                            class="mdi me-2 mdi-table"></i><span class="hide-menu">الصيدليات والافراد بالمدينة</span></a></li>
+                                        href="{{ route('admin.new_account') }}" aria-expanded="false"><i
+                                            class="mdi me-2 mdi-account-plus"></i><span class="hide-menu"> اضافة حســاب </span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{ route('admin.cities') }}" aria-expanded="false"><i

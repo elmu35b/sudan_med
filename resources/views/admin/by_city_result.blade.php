@@ -81,6 +81,7 @@
                                         <tr>
                                             {{-- <th class="border-top-0">#</th> --}}
                                             <th class="border-top-0">اسم </th>
+                                            <th class="border-top-0"> </th>
                                             <th class="border-top-0">العنوان</th>
                                             <th class="border-top-0">المدينة</th>
                                             <th class="border-top-0">رقم الهاتف</th>
@@ -93,6 +94,7 @@
                                             @else
                                             onclick="window.location.href = '{{ route('admin.users.show', ['user' => $account]) }}'" @endif>
                                                 <td>{{ $account->name }}</td>
+                                                <td>{{ $account->type == 'pharmacy' ? 'صيدلية' : "فرد" }}</td>
                                                 <td>{{ $account->address }}</td>
                                                 <td>{{ $account->city->name }}</td>
                                                 <td>{{ $account->phone }}</td>

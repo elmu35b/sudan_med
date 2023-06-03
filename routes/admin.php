@@ -33,6 +33,12 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->name('admin.')->group(
     Route::post('/profile', [HomeController::class, 'profile'])->name('profile');
 
 
+
+    Route::get('/account/new', [UserController::class, 'newAccount'])->name('new_account');
+    Route::post('/account/save', [UserController::class, 'saveAccount'])->name('save_account');
+
+
+
     Route::get('/users', [UserController::class, 'users'])->name('users');
     Route::get('/users/show/{user}', [UserController::class, 'showUser'])->name('users.show');
     Route::post('/users/search/', [UserController::class, 'searchUser'])->name('users.search');

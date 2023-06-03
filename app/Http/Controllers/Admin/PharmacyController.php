@@ -21,14 +21,6 @@ class PharmacyController extends Controller
     }
 
 
-    public function getCities()
-    {
-        $cities = City::all();
-        return $cities;
-    }
-
-
-
 
 
     public function pharmacy()

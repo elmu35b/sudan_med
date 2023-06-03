@@ -107,17 +107,18 @@
                                         </span>
                                     @enderror
                                 </div>
+                                {{$user}}
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">رقم الهاتف</label>
                                     <div class="col-md-12">
-                                        <input type="number" value="{{ $user->phone }}" required name="phone"
+                                        <input  value="{{ $user->phone }}" required name="phone"
                                             class="form-control ps-0 form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">رقم الواتساب</label>
                                     <div class="col-md-12">
-                                        <input type="number" value="{{ $user->wa }}" required name="phone"
+                                        <input  value="{{ $user->wa }}" required name="phone"
                                             class="form-control ps-0 form-control-line">
                                     </div>
                                 </div>
