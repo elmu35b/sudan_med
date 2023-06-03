@@ -20,19 +20,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use Spatie\Analytics\Period;
+
 Route::get('/x', function () {
+    // $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::days(7));
+    // return $analyticsData;
     // return view('welcome');
     // return Medicine::all();
-    User::create([
-        'name'=> 'musab',
-        'city_id'=> 2,
-        'password'=> Hash::make('123456'),
-        'type'=> 'pharmacy',
-        'address'=> 'saudi arabia',
-        'hood'=> 'not-required',
-        'phone'=> '0919232997',
-        'wa'=> '0919232997',
-    ]);
+    // User::create([
+    //     'name'=> 'musab',
+    //     'city_id'=> 2,
+    //     'password'=> Hash::make('123456'),
+    //     'type'=> 'pharmacy',
+    //     'address'=> 'saudi arabia',
+    //     'hood'=> 'not-required',
+    //     'phone'=> '0919232997',
+    //     'wa'=> '0919232997',
+    // ]);
 
 });
 Route::get('/', [HomeController::class ,'index'])->name('home');

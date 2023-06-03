@@ -22,6 +22,20 @@
     <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet">
 </head>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9XQ8XSDXCH"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-9XQ8XSDXCH');
+</script>
+
+
 <body>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
@@ -143,9 +157,10 @@
                                     class="mdi me-2 mdi-table"></i><span class="hide-menu">الصيدليات والافراد
                                     بالمدينة</span></a></li>
 
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="{{ route('admin.new_account') }}" aria-expanded="false"><i
-                                            class="mdi me-2 mdi-account-plus"></i><span class="hide-menu"> اضافة حســاب </span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('admin.new_account') }}" aria-expanded="false"><i
+                                    class="mdi me-2 mdi-account-plus"></i><span class="hide-menu"> اضافة حســاب
+                                </span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{ route('admin.cities') }}" aria-expanded="false"><i
