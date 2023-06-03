@@ -3,8 +3,10 @@
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\HomeController;
 use App\Models\Medicine;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +22,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/x', function () {
     // return view('welcome');
-    return Medicine::all();
+    // return Medicine::all();
+    User::create([
+        'name'=> 'musab',
+        'city_id'=> 2,
+        'password'=> Hash::make('123456'),
+        'type'=> 'pharmacy',
+        'address'=> 'saudi arabia',
+        'hood'=> 'not-required',
+        'phone'=> '0919232997',
+        'wa'=> '0919232997',
+    ]);
 
 });
 Route::get('/', [HomeController::class ,'index'])->name('home');

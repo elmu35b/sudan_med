@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MedController;
+use App\Http\Controllers\Admin\PharmacyController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 // Auth::routes();
 
-Route::prefix('admin')->middleware('is_admin')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'is_admin'])->name('admin.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/cities', [CityController::class, 'index'])->name('cities');
     Route::get('/medicines', [MedController::class, 'medicines'])->name('medicines');
@@ -34,14 +35,25 @@ Route::prefix('admin')->middleware('is_admin')->name('admin.')->group(function (
 
     Route::get('/users', [UserController::class, 'users'])->name('users');
     Route::get('/users/show/{user}', [UserController::class, 'showUser'])->name('users.show');
-    Route::get('/pharmacy', [HomeController::class, 'pharmacy'])->name('pharm');
-    Route::get('/pharm/show/{pharm}', [UserController::class, 'showPharm'])->name('pharm.show');
+    Route::post('/users/search/', [UserController::class, 'searchUser'])->name('users.search');
+    Route::get('users/meds/new/{user}', [MedController::class ,'newMedUser'])->name('medicines_new.user');
+
+
+    Route::get('/pharmacy', [PharmacyController::class, 'pharmacy'])->name('pharm');
+    Route::get('/pharm/show/{pharm}', [PharmacyController::class, 'showPharm'])->name('pharm.show');
+    Route::post('/pharm/search/', [PharmacyController::class, 'searchPharm'])->name('pharm.search');
+    Route::get('pharm/meds/new/{pharm}', [MedController::class ,'newMedPharm'])->name('medicines_new.pharm');
+
+    Route::post('/meds/with-user/save', [MedController::class ,'saveWithUser'])->name('medicines_save_with_user');
+
+
 
 
     //
     Route::get('/cities', [CityController::class ,'index'])->name('cities');
     Route::get('/cities/new', [CityController::class ,'newCity'])->name('cities_new');
     Route::post('/cities/save', [CityController::class ,'saveCity'])->name('cities_save');
+
 
 
 

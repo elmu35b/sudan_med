@@ -137,9 +137,6 @@
                                 </div>
 
 
-                                <input type="text"  name="user_id"  value="{{$user->id}}" id="">
-
-
                                 <div class="form-group">
                                     <div class="col-sm-12 d-flex">
                                         <button class="btn btn-success mx-auto mx-md-0 text-white">

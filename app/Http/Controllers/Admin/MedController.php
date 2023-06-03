@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Medicine;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -36,8 +37,10 @@ class MedController extends Controller
     public function medicines()
     {
         $medicines = Medicine::where('available', true)->paginate(25);
+        $cities = $this->cities;
+
         // return $medicines;
-        return view('admin.meds', compact('medicines'));
+        return view('admin.meds', compact('medicines','cities'));
     }
 
 
@@ -94,6 +97,45 @@ class MedController extends Controller
     {
         $cities = City::all();
         return $cities;
+    }
+
+
+    public function newMedPharm(User $pharm , )
+    {
+        return view('admin.med_new_with_user',['user'=> $pharm]);
+
+    }
+
+    public function newMeduser(User $user , )
+    {
+        return view('admin.med_new_with_user',['user'=> $user]);
+
+    }
+
+    public function saveWithUser(Request $request)
+    {
+
+        $med = new Medicine([
+            'name' => $request->name,
+            'price_type' => $request->price_type,
+            'dose' => $request->dose,
+            'name_en' => $request->name_en,
+            'ex_date' => $request->ex_date,
+            'tags' => $request->tags,
+            'user_id' => $request->user_id,
+            'quantity' => $request->quantity
+        ]);
+
+        // if ($user->lat != null  && $user->lng != null) {
+        //     $med->lat = $user->lat;
+        //     $med->lng = $user->lng;
+        // }
+        $med->city_id = $request->city_id;
+        // $med->img_url =   $this->imageResize($request->img);
+
+        $med->save();
+        return redirect()->route('admin.medicines')->with('success', 'success');
+        // return redirect()->back();
     }
 }
 

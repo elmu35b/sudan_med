@@ -50,10 +50,11 @@
                 <center>
                     <div class="col-8">
                         <div class="container">
-                            <form action="{{ route('admin.pharm.search') }}" method="post">
+                            <form action="{{ route('admin.users.search') }}" method="post">
                                 @csrf
                                 <input type="text" name="search" class="form-control"
-                                    placeholder="اكتب رقم هاتف الصيدلية">
+                                    placeholder="اكتب رقم هاتف الشخص">
+
 
                                 <!-- <div class="row"> -->
                                 <button class="form-control btn btn-primary mt-2 mb-1 d-flex justify-content-center"
@@ -84,18 +85,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($pharmas as $pharm)
-                                        <tr onclick="window.location.href = '{{route('admin.pharm.show',['pharm'=> $pharm])}}'">
-                                            <td>{{$pharm->name}}</td>
-                                                <td>{{$pharm->address}}</td>
-                                                <td>{{$pharm->city->name}}</td>
-                                                <td>{{$pharm->phone}}</td>
-                                                <td>@Sonu</td>
+                                        @foreach ($users as $user)
+                                        <tr onclick="window.location.href = '{{route('admin.users.show',['user'=> $user])}}'">
+                                            <td>{{$user->name}}</td>
+                                                <td>{{$user->address}}</td>
+                                                <td>{{$user->city->name}}</td>
+                                                <td>{{$user->phone}}</td>
+                                                {{-- <td>@Sonu</td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $pharmas->links('pagination::bootstrap-4') }}
+                                {{ $users->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>

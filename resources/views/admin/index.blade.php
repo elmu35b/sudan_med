@@ -47,6 +47,31 @@
             @endif
             <!-- Row -->
             <div class="row">
+                <center>
+                    <div class="col-8">
+                        <div class="container">
+                            <form action="{{ route('search') }}" method="post">
+                                @csrf
+                                <input type="text" name="search" class="form-control"
+                                    placeholder="اكتب اسم الدواء , عربي او انجليزي">
+                                <label for="city_id"> اختــار المدينة </label>
+                                <br>
+                                <select name="city_id" class="form-control" id="">
+                                    @foreach ($cities as $city)
+                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+
+                                    @endforeach
+                                </select>
+                                <!-- <div class="row"> -->
+                                <button class="form-control btn btn-primary mt-2 mb-1 d-flex justify-content-center"
+                                    type="submit">
+                                    ابحـــث
+                                </button>
+                                <!-- </div> -->
+                            </form>
+                        </div>
+                    </div>
+                   </center>
                 <!-- column -->
                 <div class="col-sm-12">
                     <div class="card">
@@ -68,8 +93,8 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($medicines as $med)
-                                            <tr>
-                                                <td>{{$med->quantity}}</td>
+                                        <tr onclick="window.location.href = '{{route('admin.medicines_show',['med'=> $med])}}'">
+                                            <td>{{$med->quantity}}</td>
                                                 <td>{{$med->name}} / {{$med->name_en}}</td>
                                                 <td>{{$med->city->name}}</td>
                                                 <td>{{$med->tags}}</td>

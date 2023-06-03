@@ -133,6 +133,10 @@
                                 href="{{ route('admin.pharm') }}" aria-expanded="false"><i
                                     class="mdi me-2 mdi-table"></i><span class="hide-menu">الصيدليات</span></a></li>
 
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="{{ route('admin.users') }}" aria-expanded="false"><i
+                                            class="mdi me-2 mdi-table"></i><span class="hide-menu">الحسابات الفردية</span></a></li>
+
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{ route('admin.cities') }}" aria-expanded="false"><i
                                     class="mdi me-2 mdi-table"></i><span class="hide-menu">المدن</span></a></li>
@@ -166,9 +170,9 @@
     <script src="{{ asset('assets/plugins/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/app-style-switcher.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/app-style-switcher.js') }}"></script> --}}
     <!--Wave Effects -->
-    <script src="{{ asset('assets/js/waves.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/waves.js') }}"></script> --}}
     <!--Menu sidebar -->
     <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
     <!-- ============================================================== -->
@@ -176,7 +180,7 @@
     <!-- ============================================================== -->
 
     <!--Custom JavaScript -->
-    {{-- <script src="{{ asset('assets/js/pages/dashboards/dashboard1.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/pages/dashboards/dashboard1.js') }}"></script>  --}}
     <script src="{{ asset('assets/js/custom.js') }}"></script>
 </body>
 

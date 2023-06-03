@@ -53,6 +53,16 @@ class HomeController extends Controller
         return view('admin.pharmacy', compact('pharmas'));
     }
 
+    public function showPharm(User $pharm)
+    {
+        return $pharm;
+    }
+
+    public function showUser(User $user)
+    {
+        return $user;
+    }
+
     public function search(Request $request)
     {
         // return $request;

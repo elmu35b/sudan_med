@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\EssentialMedicine;
 use App\Models\Medicine;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -77,7 +78,8 @@ class HomeController extends Controller
     {
 
         // return Medicine::all();
-           // return $request;
+        //    return $request;
+        // return Medicine::where(['city_id' => $request->city_id])->get();
            $cities = Cache::get('cities');
            if (!$cities) {
                logger('caching');
@@ -87,14 +89,18 @@ class HomeController extends Controller
                $cities = Cache::get('cities');
            }
 
-        $medicines = Medicine::where(['city_id' => $request->city_id, 'available' => true,])
-            ->where('name', 'like', '%' . $request->search . '%')
-            ->orWhere('name_en', 'like', '%' . $request->search . '%')
-            ->orWhere('tags', 'like', '%' . $request->search . '%')
-            ->with('user')
-            ->get();
+        $medicines = Medicine::where(['city_id' => $request->city_id, 'available' => true,])->where(function($query ) use ($request){
 
-        return view('search', compact('medicines','cities'));
+            $query->where('name', 'like', '%' . $request->search . '%');
+            $query->orWhere('name_en', 'like', '%' . $request->search . '%');
+            $query->orWhere('tags', 'like', '%' . $request->search . '%');
+            // ->with('user')
+        })
+            ->paginate(25);
+
+            $pharms = User::where(['type'=> 'pharmacy'])->paginate(25);
+
+        return view('search', compact('medicines','cities','pharms'));
     }
     public function searchByLocation(Request $request)
     {
