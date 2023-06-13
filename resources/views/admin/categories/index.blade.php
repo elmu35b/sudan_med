@@ -1,4 +1,4 @@
-@extends('dash')
+@extends('admin')
 
 
 @section('content')
@@ -34,14 +34,12 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
-            @if (Session::has('success'))
+            @if (Session::has('search'))
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>تم</strong>
-                    تم اضافة الدواء
+                    {{Session::get('search')}}
+                    نتــائج البحث ::
 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
                 </div>
 
             @endif
@@ -51,33 +49,30 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">الادوية التي ادخلتها في النظام</h4>
+                            <h4 class="card-title">التصنيفات </h4>
                             {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            <a href="{{ route('dash.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a
-                                href="{{ route('dash.medicines_new') }}">
+                            <a href="{{ route('admin.categories_create') }}" class="btn btn-primary">اضــافة تصنيف </a >
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
                                         <tr>
-                                        <th class="border-top-0">#</th>
-                                            <th class="border-top-0">اسم الدواء</th>
-                                            <th class="border-top-0">الاسم الانجليزي</th>
-                                            {{-- <th class="border-top-0">اسماء البدائل</th> --}}
-                                            {{-- <th class="border-top-0">متوفر</th> --}}
+                                            <th class="border-top-0">الاسم</th>
+                                            <th class="border-top-0">عدد الادوية</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($medicines as $med)
-                                        <tr onclick="window.location.href = '{{route('dash.medicines.show',['medicine'=> $med])}}'">
-                                            <td></td>
-                                                <td>{{$med->name}}</td>
-                                                <td>{{$med->name_en}}</td>
-                                                <td></td>
+                                        @foreach ($categories as $category)
+                                        <tr onclick="window.location.href = '{{route('admin.categories_show',['category'=> $category])}}'">
+                                            <td>{{$category->name}}</td>
+
+                                            <td>
+                                                {{$category->medicines->count()}}
+                                            </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $medicines->links('pagination::bootstrap-4') }}
+                                {{ $categories->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>

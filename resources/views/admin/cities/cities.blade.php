@@ -1,4 +1,4 @@
-@extends('dash')
+@extends('admin')
 
 
 @section('content')
@@ -16,7 +16,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">_</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">الادوية</li>
+                                <li class="breadcrumb-item active" aria-current="page">المدن</li>
                             </ol>
                         </nav>
                     </div>
@@ -34,14 +34,14 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
-            @if (Session::has('success'))
+            @if (Session::has('search'))
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>تم</strong>
-                    تم اضافة الدواء
+                    {{Session::get('search')}}
+                    نتــائج البحث ::
 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <a type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </a>
                 </div>
 
             @endif
@@ -51,33 +51,31 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">الادوية التي ادخلتها في النظام</h4>
+                            <h4 class="card-title">المدن </h4>
                             {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            <a href="{{ route('dash.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a
-                                href="{{ route('dash.medicines_new') }}">
+                            <a href="{{ route('admin.cities_new') }}" class="btn btn-primary">اضــافة مدينة</a>
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
                                         <tr>
-                                        <th class="border-top-0">#</th>
-                                            <th class="border-top-0">اسم الدواء</th>
-                                            <th class="border-top-0">الاسم الانجليزي</th>
-                                            {{-- <th class="border-top-0">اسماء البدائل</th> --}}
-                                            {{-- <th class="border-top-0">متوفر</th> --}}
+                                            {{-- <th class="border-top-0">#</th> --}}
+                                            <th class="border-top-0">المدينة</th>
+                                            <th class="border-top-0">الصيدليات</th>
+                                            <th class="border-top-0">المتطوعين</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($medicines as $med)
-                                        <tr onclick="window.location.href = '{{route('dash.medicines.show',['medicine'=> $med])}}'">
-                                            <td></td>
-                                                <td>{{$med->name}}</td>
-                                                <td>{{$med->name_en}}</td>
-                                                <td></td>
+                                        @foreach ($cities as $city)
+                                            <tr>
+                                                <td>{{$city->name}}</td>
+                                                <td>{{$city->pharmacies->count()}}</td>
+                                                <td>{{$city->users->where('type','single')->count()}}</td>
+
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $medicines->links('pagination::bootstrap-4') }}
+                                {{ $cities->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>

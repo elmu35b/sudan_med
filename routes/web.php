@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 use Spatie\Analytics\Period;
 
 Route::get('/x', function () {
+
+    return view('welcome');
     // $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::days(7));
     // return $analyticsData;
     // return view('welcome');

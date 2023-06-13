@@ -15,8 +15,8 @@
                     <div class="d-flex align-items-center">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">_</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">الادوية</li>
+                                <li class="breadcrumb-item"><a href="#">بيانات الحساب</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">_</li>
                             </ol>
                         </nav>
                     </div>
@@ -34,50 +34,20 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
-            @if (Session::has('search'))
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    {{Session::get('search')}}
-                    نتــائج البحث ::
-
-
-                </div>
-
+            @if (Session::has('password-success'))
+                <p class="alert alert-info">{{ Session::get('password-success') }}</p>
             @endif
+            <p class="alert alert-info"> او تغيير كلمة السر في حالة نسيها … {{__($user->name)}} …  يمكن هنا اضافة ادوية تابعة   </p>
+
             <!-- Row -->
             <div class="row">
-                <center>
-                    <div class="col-8">
-                        <div class="container">
-                            <form action="{{ route('admin.search') }}" method="post">
-                                @csrf
-                                <input type="text" name="search" class="form-control"
-                                    placeholder="اكتب اسم الدواء , عربي او انجليزي">
-                                <label for="city_id"> اختــار المدينة </label>
-                                <br>
-                                <select name="city_id" class="form-control" id="">
-                                    @foreach ($cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
 
-                                    @endforeach
-                                </select>
-                                <!-- <div class="row"> -->
-                                <button class="form-control btn btn-primary mt-2 mb-1 d-flex justify-content-center"
-                                    type="submit">
-                                    ابحـــث
-                                </button>
-                                <!-- </div> -->
-                            </form>
-                        </div>
-                    </div>
-                   </center>
-                <!-- column -->
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">الادوية </h4>
                             {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            {{-- <a href="{{ route('admin.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a
-                                href="{{ route('dash.medicines_new') }}"> --}}
+                            <a href="{{ route('admin.medicines_new.user',['user'=> $user]) }}" class="btn btn-primary">اضــافة دواء </a>
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
@@ -91,12 +61,13 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($medicines as $med)
-                                        <tr onclick="window.location.href = '{{route('admin.medicines_show',['med'=> $med])}}'">
-                                            <td>{{$med->quantity}}</td>
+                                            <tr onclick="window.location.href = '{{route('admin.medicines_show',['med'=> $med])}}'">
+                                                <td>{{$med->quantity}}</td>
                                                 <td>{{$med->name}} / {{$med->name_en}}</td>
                                                 <td>{{$med->city->name}}</td>
                                                 <td>{{$med->tags}}</td>
-                                                <td>{{$med->price ?? '0'}}</td>
+                                                <td>{{$med->price_type }}</td>
+                                                {{-- <td>{{$med->price ?? '0'}}</td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -106,6 +77,64 @@
                         </div>
                     </div>
                 </div>
+                <!-- Column -->
+                <!-- Column -->
+                <div class="col-lg-12 col-xlg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="form-horizontal form-material mx-2" method="POST"
+                                action="{{ route('admin.update_password') }}">
+                                @csrf
+                                {{-- <small style="color:red">Only Password can be updated</small> --}}
+
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">الاسم</label>
+                                    <div class="col-md-12">
+                                        <input type="text" disabled value="{{ $user->name }}" name="name"
+                                            class="form-control ps-0 form-control-line">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">تغيير كلمة سر الحساب</label>
+                                    <div class="col-md-12">
+                                        <input type="password" required name="password"
+                                            class="form-control  @error('password') is-invalid @enderror ">
+                                    </div>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                {{-- {{$user}} --}}
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">رقم الهاتف</label>
+                                    <div class="col-md-12">
+                                        <input  value="{{ $user->phone }}" required name="phone"
+                                            class="form-control ps-0 form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">رقم الواتساب</label>
+                                    <div class="col-md-12">
+                                        <input  value="{{ $user->wa }}" required name="phone"
+                                            class="form-control ps-0 form-control-line">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12 d-flex">
+                                        <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">
+                                            تحــديث البيانات
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
             </div>
             <!-- Row -->
             <!-- ============================================================== -->

@@ -130,11 +130,19 @@
                                 <p>{{ $pharm->city->name }}</p>
                                 <p>{{ $pharm->address }}</p>
                                 <p>{{ $pharm->hood }}</p>
-                                <a href="tel:{{ $pharm->phone }}" class="btn btn-success"> اتصال
+                                <a href="tel:{{ $pharm->phone }}" class="btn btn-primary"> اتصال
                                     {{ $pharm->phone }}</a>
                                 <br>
-                                <a href="tel:{{ $pharm->wa }}" class="btn btn-success"> واتساب
-                                    {{ $pharm->wa }}</a>
+                                @if ($pharm->wa[1] == 9 || $pharm->wa[1] == 1)
+
+                                <a href="https://wa.me/{{ $phone = '+249' . substr($pharm->wa, 1) }}"  class="btn btn-primary">  {{$pharm->wa}} واتساب </a>
+                            @elseif(substr($pharm->wa, 0, 5) == '00249')
+
+                                <a href="https://wa.me/  {{ $phone = '+249' . substr($pharm->wa, 5) }}"  class="btn btn-primary">  {{$pharm->wa}} واتساب </a>
+                            @else
+
+                            <a href="https://wa.me/{{$pharm->wa}}"  class="btn btn-primary">  {{$pharm->wa}} واتساب </a>
+                            @endif
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-@extends('dash')
+@extends('admin')
 
 
 @section('content')
@@ -16,7 +16,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">_</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">الادوية</li>
+                                <li class="breadcrumb-item active" aria-current="page">التصنيفات</li>
                             </ol>
                         </nav>
                     </div>
@@ -34,54 +34,47 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
-            @if (Session::has('success'))
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>تم</strong>
-                    تم اضافة الدواء
-
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-            @endif
+            {{-- @if (!Auth::user()->lat || !Auth::user()->lat)
+                <p class="alert alert-info">
+                    ضيف بيانات موقعك بالخريطة عشان البحث يكون اسهل للناس _ ||
+                    <a href="{{ route('dash.update_geo') }}">
+                        اضــغط هنا
+                    </a>
+                </p>
+            @endif --}}
             <!-- Row -->
             <div class="row">
-                <!-- column -->
-                <div class="col-sm-12">
+                <!-- Column -->
+
+                <!-- Column -->
+                <!-- Column -->
+                <div class="col-lg-8 col-xlg-9 col-md-7">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">الادوية التي ادخلتها في النظام</h4>
-                            {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            <a href="{{ route('dash.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a
-                                href="{{ route('dash.medicines_new') }}">
-                            <div class="table-responsive">
-                                <table class="table user-table">
-                                    <thead>
-                                        <tr>
-                                        <th class="border-top-0">#</th>
-                                            <th class="border-top-0">اسم الدواء</th>
-                                            <th class="border-top-0">الاسم الانجليزي</th>
-                                            {{-- <th class="border-top-0">اسماء البدائل</th> --}}
-                                            {{-- <th class="border-top-0">متوفر</th> --}}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($medicines as $med)
-                                        <tr onclick="window.location.href = '{{route('dash.medicines.show',['medicine'=> $med])}}'">
-                                            <td></td>
-                                                <td>{{$med->name}}</td>
-                                                <td>{{$med->name_en}}</td>
-                                                <td></td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                {{ $medicines->links('pagination::bootstrap-4') }}
-                            </div>
+                            <form class="form-horizontal form-material mx-2" method="POST"
+                                action="{{ route('admin.categories_save') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">اسم التصنيف عربي</label>
+                                    <div class="col-md-12">
+                                        <input type="text" required name="name"
+                                            class="form-control ps-0 form-control-line">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-12 d-flex">
+                                        <button class="btn btn-success mx-auto mx-md-0 text-white">
+                                            حــفظ
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+                <!-- Column -->
             </div>
             <!-- Row -->
             <!-- ============================================================== -->

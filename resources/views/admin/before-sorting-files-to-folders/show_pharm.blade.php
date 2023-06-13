@@ -55,7 +55,7 @@
                                             <th class="border-top-0">الكمية</th>
                                             <th class="border-top-0">اسم الدواء</th>
                                             <th class="border-top-0">المدينة</th>
-                                            <th class="border-top-0">كلمات البحث</th>
+                                            <th class="border-top-0">اسماء البدائل</th>
                                             <th class="border-top-0">متوفر</th>
                                         </tr>
                                     </thead>

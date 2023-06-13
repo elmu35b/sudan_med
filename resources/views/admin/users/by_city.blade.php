@@ -35,28 +35,22 @@
             <!-- Start Page Content -->
             <!-- ============================================================== -->
             @if (Session::has('success'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>تم</strong>
+                    تم اضافة الدواء
 
-                <div class="alert alert-warning alert-dismissible fade show" id="alerto" role="alert">
-                    {{-- {{Session::get('search')}} --}}
-                    تم اضافة الدواء بنجاح
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
             @endif
-            <script>
-                setTimeout(() => {
-                    var alertId = document.getElementById('alerto')
-                    alertId.classList.add('modal')
-                }, 3000);
-            </script>
-
             <!-- Row -->
             <div class="row">
                 <center>
                     <div class="col-8">
                         <div class="container">
-                            <form action="{{ route('admin.search') }}" method="post">
+                            <form action="{{ route('admin.by_city') }}" method="post">
                                 @csrf
-                                <input type="text" name="search" class="form-control"
-                                    placeholder="اكتب اسم الدواء , عربي او انجليزي">
                                 <label for="city_id"> اختــار المدينة </label>
                                 <br>
                                 <select name="city_id" class="form-control" id="">
@@ -75,42 +69,7 @@
                     </div>
                 </center>
                 <!-- column -->
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">الادوية </h4>
-                            {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            <a href="{{ route('admin.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a>
-                            <div class="table-responsive">
-                                <table class="table user-table">
-                                    <thead>
-                                        <tr>
-                                            <th class="border-top-0">الكمية</th>
-                                            <th class="border-top-0">اسم الدواء</th>
-                                            <th class="border-top-0">المدينة</th>
-                                            <th class="border-top-0">كلمات البحث</th>
-                                            <th class="border-top-0">متوفر</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($medicines as $med)
-                                            <tr
-                                                onclick="window.location.href = '{{ route('admin.medicines_show', ['med' => $med]) }}'">
-                                                <td>{{ $med->quantity }}</td>
-                                                <td>{{ $med->name }} / {{ $med->name_en }}</td>
-                                                <td>{{ $med->city->name }}</td>
-                                                <td>{{ $med->tags }}</td>
-                                                <td>{{ $med->price_type }}</td>
-                                                {{-- <td>{{$med->price ?? '0'}}</td> --}}
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                {{ $medicines->links('pagination::bootstrap-4') }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <!-- Row -->
             <!-- ============================================================== -->

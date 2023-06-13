@@ -11,12 +11,12 @@ class CityController extends Controller
     public function index()
     {
         $cities = City::paginate(20);
-        return view('admin.cities',compact('cities'));
+        return view('admin.cities.cities',compact('cities'));
     }
 
     public function newCity()
     {
-        return view('admin.city_new');
+        return view('admin.cities.city_new');
     }
 
     public function saveCity(Request $request)

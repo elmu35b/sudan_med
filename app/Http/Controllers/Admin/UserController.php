@@ -18,14 +18,14 @@ class UserController extends Controller
         $users = User::where('type','!=','admin')->paginate(25);
         // return $users;
 
-        return view('admin.users', compact('users'));
+        return view('admin.users.users', compact('users'));
     }
 
     public function showUser(User $user)
     {
         $medicines = $user->medicines()->paginate(25);
 
-        return view('admin.show_user', compact('user', 'medicines'));
+        return view('admin.users.show_user', compact('user', 'medicines'));
     }
 
     public function updateUser(Request $request, User $user)
@@ -40,7 +40,7 @@ class UserController extends Controller
     public function searchUser(Request $request)
     {
         $users = User::where('type', 'single')->where('phone', 'like', '%' . $request->search . '%')->paginate(10);
-        return view('admin.users', compact('users'));
+        return view('admin.users.users', compact('users'));
     }
 
 
@@ -63,7 +63,7 @@ class UserController extends Controller
 
             $cities = Cache::get('cities');
         }
-        return view('admin.new_account',compact('cities'));
+        return view('admin.users.new_account',compact('cities'));
     }
 
     public function saveAccount(Request $request)

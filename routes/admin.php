@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MedController;
@@ -50,7 +51,7 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->name('admin.')->group(
 
 
     Route::get('/pharmacy', [PharmacyController::class, 'pharmacy'])->name('pharm');
-    Route::get('/pharmacy/city', [PharmacyController::class, 'pharmacyCity'])->name('pharm.by_city');
+    // Route::get('/pharmacy/city', [PharmacyController::class, 'pharmacyCity'])->name('pharm.by_city');
     Route::get('/pharm/show/{pharm}', [PharmacyController::class, 'showPharm'])->name('pharm.show');
     Route::post('/pharm/search/', [PharmacyController::class, 'searchPharm'])->name('pharm.search');
     Route::get('pharm/meds/new/{pharm}', [MedController::class ,'newMedPharm'])->name('medicines_new.pharm');
@@ -59,6 +60,11 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->name('admin.')->group(
 
 
 
+
+    Route::get('/categories', [CategoryController::class ,'index'])->name('categories_index');
+    Route::get('/categories/show/{category}', [CategoryController::class ,'show'])->name('categories_show');
+    Route::get('/categories/create', [CategoryController::class ,'create'])->name('categories_create');
+    Route::post('/categories/save', [CategoryController::class ,'save'])->name('categories_save');
 
     //
     Route::get('/cities', [CityController::class ,'index'])->name('cities');

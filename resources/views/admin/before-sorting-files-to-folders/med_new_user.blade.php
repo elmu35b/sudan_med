@@ -130,7 +130,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12 mb-0">كلمات دلالية … كلمات البحث </label>
+                                    <label class="col-md-12 mb-0">كلمات دلالية … اسماء البدائل </label>
                                     <div class="col-md-12">
                                         <textarea rows="5" class="form-control ps-0 form-control-line" name="tags"></textarea>
                                     </div>

@@ -27,35 +27,22 @@ class PharmacyController extends Controller
     {
         $pharmas = User::where('type', 'pharmacy')->paginate(25);
 
-        return view('admin.pharmacy', compact('pharmas'));
+        return view('admin.pharmacies.pharmacy', compact('pharmas'));
     }
 
 
-    public function pharmacyCity(Request $request)
-    {
-        $pharmas = [];
-        if ($request->city_id == null) {
-            $pharmas = [];
-        } else {
-            $pharmas = User::where([
-                'type' => 'pharmacy',
-                'city_id' => $request->city_id
-            ])
-                ->paginate(25);
-        }
-        return view('admin.pharmacy_by_city', compact('pharmas'));
-    }
+
 
     public function showPharm(User $pharm)
     {
         $medicines = $pharm->medicines()->paginate(25);
-        return view('admin.show_pharm', compact('pharm', 'medicines'));
+        return view('admin.pharmacies.show_pharm', compact('pharm', 'medicines'));
     }
 
     public function searchPharm(Request $request)
     {
         $pharmas = User::where('type', 'pharmacy')->where('phone', 'like', '%' . $request->search . '%')->paginate(10);
-        return view('admin.pharmacy', compact('pharmas'));
+        return view('admin.pharmacies.pharmacy', compact('pharmas'));
     }
 
     public function updatePassword(Request $request, User $user)
@@ -64,4 +51,25 @@ class PharmacyController extends Controller
 
         return redirect()->back()->with('password_updated', 'success');
     }
+
+
+    /**
+     * @method deprecated .. no real need for it
+     * @method /App/Http/Controllers/Admin/HomeController::class/byCityResult() does the required
+     */
+
+    // public function pharmacyCity(Request $request)
+    // {
+    //     $pharmas = [];
+    //     if ($request->city_id == null) {
+    //         $pharmas = [];
+    //     } else {
+    //         $pharmas = User::where([
+    //             'type' => 'pharmacy',
+    //             'city_id' => $request->city_id
+    //         ])
+    //             ->paginate(25);
+    //     }
+    //     return view('admin.pharmacy_by_city', compact('pharmas'));
+    // }
 }

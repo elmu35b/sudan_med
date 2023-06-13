@@ -15,7 +15,7 @@
                     <div class="d-flex align-items-center">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">بيانات الحساب</a></li>
+                                <li class="breadcrumb-item"><a href="#">بيانات الصيدلية</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">_</li>
                             </ol>
                         </nav>
@@ -37,7 +37,7 @@
             @if (Session::has('password-success'))
                 <p class="alert alert-info">{{ Session::get('password-success') }}</p>
             @endif
-            <p class="alert alert-info"> او تغيير كلمة السر في حالة نسيها … {{__($user->name)}} …  يمكن هنا اضافة ادوية تابعة   </p>
+            <p class="alert alert-info"> او تغيير كلمة السر في حالة نسيها … {{$pharm->name}} …  يمكن هنا اضافة ادوية تابعة للصييدلية  </p>
 
             <!-- Row -->
             <div class="row">
@@ -47,7 +47,7 @@
                         <div class="card-body">
                             <h4 class="card-title">الادوية </h4>
                             {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            <a href="{{ route('admin.medicines_new.user',['user'=> $user]) }}" class="btn btn-primary">اضــافة دواء </a>
+                            <a href="{{ route('admin.medicines_new.pharm',['pharm'=> $pharm]) }}" class="btn btn-primary">اضــافة دواء </a>
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
@@ -55,7 +55,7 @@
                                             <th class="border-top-0">الكمية</th>
                                             <th class="border-top-0">اسم الدواء</th>
                                             <th class="border-top-0">المدينة</th>
-                                            <th class="border-top-0">كلمات البحث</th>
+                                            <th class="border-top-0">اسماء البدائل</th>
                                             <th class="border-top-0">متوفر</th>
                                         </tr>
                                     </thead>
@@ -90,7 +90,7 @@
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">الاسم</label>
                                     <div class="col-md-12">
-                                        <input type="text" disabled value="{{ $user->name }}" name="name"
+                                        <input type="text" disabled value="{{ $pharm->name }}" name="name"
                                             class="form-control ps-0 form-control-line">
                                     </div>
                                 </div>
@@ -107,18 +107,17 @@
                                         </span>
                                     @enderror
                                 </div>
-                                {{-- {{$user}} --}}
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">رقم الهاتف</label>
                                     <div class="col-md-12">
-                                        <input  value="{{ $user->phone }}" required name="phone"
+                                        <input type="number" value="{{ $pharm->phone }}" required name="phone"
                                             class="form-control ps-0 form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">رقم الواتساب</label>
                                     <div class="col-md-12">
-                                        <input  value="{{ $user->wa }}" required name="phone"
+                                        <input type="number" value="{{ $pharm->wa }}" required name="phone"
                                             class="form-control ps-0 form-control-line">
                                     </div>
                                 </div>

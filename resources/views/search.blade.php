@@ -145,11 +145,24 @@
                                 <p>{{ $med->city->name }}</p>
                                 <p>{{ $med->user->address }}</p>
                                 <p>{{ $med->user->hood }}</p>
-                                <a href="tel:{{ $med->user->phone }}" class="btn btn-success"> اتصال
+                                <a href="tel:{{ $med->user->phone }}" class="btn btn-primary"> اتصال
                                     {{ $med->user->phone }}</a>
                                 <br>
-                                <a href="tel:{{ $med->user->wa }}" class="btn btn-success"> واتساب
-                                    {{ $med->user->wa }}</a>
+                                {{-- <a href="https://wa.me/@if ($med->user->wa[1] == 9 || $med->user->wa[1] == 1) {{ '+249' . substr($med->user->wa, 1) }}
+                                 @elseif(substr($med->user->wa, 0, 5) == '00249') {{ '+249' . substr($med->user->wa, 5) }} @else {{ $med->user->wa }} @endif"
+                                    class="btn btn-primary"> واتساب
+                                    {{ $med->user->wa }}</a> --}}
+
+                                @if ($med->user->wa[1] == 9 || $med->user->wa[1] == 1)
+
+                                    <a href="https://wa.me/{{ $phone = '+249' . substr($med->user->wa, 1) }}"  class="btn btn-primary">  {{$med->user->wa}} واتساب </a>
+                                @elseif(substr($med->user->wa, 0, 5) == '00249')
+
+                                    <a href="https://wa.me/  {{ $phone = '+249' . substr($med->user->wa, 5) }}"  class="btn btn-primary">  {{$med->user->wa}} واتساب </a>
+                                @else
+
+                                <a href="https://wa.me/{{$med->user->wa}}"  class="btn btn-primary">  {{$med->user->wa}} واتساب </a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -161,7 +174,7 @@
             </div>
         </div>
     </section>
-{{--
+    {{--
     <section class="featured spad">
         <div class="container">
             <div class="d-flex justify-content-center">

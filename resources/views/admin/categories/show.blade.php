@@ -11,12 +11,12 @@
         <div class="page-breadcrumb">
             <div class="row align-items-center">
                 <div class="col-md-6 col-8 align-self-center">
-                    <h3 class="page-title mb-0 p-0">تفاصيل الدواء</h3>
+                    <h3 class="page-title mb-0 p-0">_</h3>
                     <div class="d-flex align-items-center">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">_</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ $med->name }}</li>
+                                <li class="breadcrumb-item active" aria-current="page">التصنيفات</li>
                             </ol>
                         </nav>
                     </div>
@@ -34,83 +34,56 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
-            @if (Session::has('password-success'))
-                <p class="alert alert-info">{{ Session::get('password-success') }}</p>
+            @if (Session::has('search'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{Session::get('search')}}
+                    نتــائج البحث ::
+
+
+                </div>
+
             @endif
             <!-- Row -->
             <div class="row">
-                {{-- Medicine Details --}}
-
-
+                <!-- column -->
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">تفاصيل الدواء</h4>
+                            <h4 class="card-title">التصنيفات </h4>
                             {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
+                            {{-- <a href="{{ route('admin.categoryicines_new') }}" class="btn btn-primary">اضــافة دواء </a
+                                href="{{ route('dash.medicines_new') }}"> --}}
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">اسم الصيدلية </th>
-                                            <th class="border-top-0">اسم الدواء</th>
-                                            <th class="border-top-0">المدينة</th>
-                                            <th class="border-top-0">كلمات البحث</th>
-                                            <th class="border-top-0">مجاني ؟</th>
+                                            <th class="border-top-0">الاسم</th>
+                                            <th class="border-top-0">عدد الادوية</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach ($alters as $med) --}}
                                         <tr>
-                                            <td>{{ $med->user->name }}</td>
-                                            <td>{{ $med->name }} / {{ $med->name_en }}</td>
-                                            <td>{{ $med->city->name }}</td>
-                                            {{-- <td>{{ $med->tags }}</td> --}}
-                                            <td></td>
-                                            <td>{{ $med->price_type == 'free' ? 'مجاني' : 'غير مجاني' }}</td>
-                                            {{-- <td>{{$med->price ?? '0'}}</td> --}}
-                                        </tr>
-                                        {{-- @endforeach --}}
+                                            <td>{{$category->name}}</td>
+
+                                            <td>
+                                                {{$category->medicines->count()}}
+                                            </td>
+                                            </tr>
                                     </tbody>
                                 </table>
-
-                                <hr>
-                                <div class="row">
-                                    <div class="col-6">
-                                        {{-- <div class="form-group"> --}}
-                                            <div>
-                                            <label class="col-md-12 mb-0">رقم الهاتف</label>
-                                            <div class="col-md-12">
-                                                <p class="btn btn-success mx-auto mx-md-0 text-white">
-                                                    {{ $med->user->phone }}</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        {{-- <div class="form-group"> --}}
-                                            <div>
-                                            <label class="col-md-12 mb-0">رقم الواتساب</label>
-                                            <div class="col-md-12">
-                                                <p class="btn btn-success mx-auto mx-md-0 text-white">{{ $med->user->wa }}
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- {{ $alters->links('pagination::bootstrap-4') }} --}}
                             </div>
                         </div>
                     </div>
                 </div>
 
 
-                {{-- Medicine Alternatives --}}
+                {{-- Meds Of Category --}}
+
 
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">الادوية البديلة </h4>
+                            <h4 class="card-title">الادوية </h4>
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
@@ -118,25 +91,25 @@
                                             <th class="border-top-0">الكمية</th>
                                             <th class="border-top-0">اسم الدواء</th>
                                             <th class="border-top-0">المدينة</th>
-                                            <th class="border-top-0">كلمات البحث</th>
-                                            <th class="border-top-0">متوفر</th>
+                                            <th class="border-top-0">اسماء البدائل</th>
+                                            <th class="border-top-0">مجاني </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($alters as $med)
+                                        @foreach ($medicines as $med)
                                             <tr
                                                 onclick="window.location.href = '{{ route('admin.medicines_show', ['med' => $med]) }}'">
                                                 <td>{{ $med->quantity }}</td>
                                                 <td>{{ $med->name }} / {{ $med->name_en }}</td>
                                                 <td>{{ $med->city->name }}</td>
                                                 <td>{{ $med->tags }}</td>
-                                                <td>{{ $med->price_type }}</td>
+                                                <td>{{ $med->price_type == 'free'? "مجاني" : "عير مجاني" }}</td>
                                                 {{-- <td>{{$med->price ?? '0'}}</td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $alters->links('pagination::bootstrap-4') }}
+                                {{ $medicines->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>

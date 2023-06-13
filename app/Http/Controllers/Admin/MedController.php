@@ -41,7 +41,7 @@ class MedController extends Controller
         $cities = $this->cities;
 
         // return $medicines;
-        return view('admin.meds', compact('medicines', 'cities'));
+        return view('admin.meds.meds', compact('medicines', 'cities'));
     }
 
 
@@ -93,13 +93,17 @@ class MedController extends Controller
     {
         // $cities = $this->cities;
 
-        $alters = Medicine::where('city_id', $med->city_id)->where(function ($query)  use ($med) {
+        $alters = Medicine::
+        where('city_id', $med->city_id)
+        // ->where('id', '!=', $med->id)
+            ->where(function ($query)  use ($med) {
+                $query->where('tags', 'like', '%' . $med->name . '%')
+                    ->orWhere('tags', 'like', '%' . $med->name_en . '%');
+            })->paginate(15);
 
-            $query->where('tags', 'like', '%' . $med->name . '%')
-                ->orWhere('tags', 'like', '%' . $med->name_en . '%');
-        })->paginate(15);
+        // return $alters;
 
-        return view('admin.med_show', compact('med', 'alters'));
+        return view('admin.meds.med_show', compact('med', 'alters'));
     }
 
 
@@ -113,13 +117,13 @@ class MedController extends Controller
     public function newMedPharm(User $pharm,)
     {
         $categories = Category::all();
-        return view('admin.med_new_with_user', ['user' => $pharm, 'categories'=> $categories]);
+        return view('admin.meds.med_new_with_user', ['user' => $pharm, 'categories' => $categories]);
     }
 
     public function newMeduser(User $user,)
     {
         $categories = Category::all();
-        return view('admin.med_new_with_user', ['user' => $user, 'categories'=> $categories]);
+        return view('admin.meds.med_new_with_user', ['user' => $user, 'categories' => $categories]);
     }
 
     public function saveWithUser(Request $request)
@@ -150,6 +154,5 @@ class MedController extends Controller
 
     public function updateMedNotAvailable(Medicine $medicine, Request $request)
     {
-
     }
 }

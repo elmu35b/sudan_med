@@ -93,6 +93,9 @@
                                         <input id="phone" type="phone"
                                             class="form-control @error('phone') is-invalid @enderror" name="phone"
                                             value="{{ old('phone') }}" required autocomplete="phone">
+                                            <small style="color:red">
+                                                اكتب رقم التلفون مثل 09123456789  , 0123456789
+                                            </small>
 
                                         @error('phone')
                                             <span class="invalid-feedback" role="alert">

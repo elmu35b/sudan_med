@@ -43,21 +43,19 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
             @endif
             <!-- Row -->
             <div class="row">
                 <center>
                     <div class="col-8">
                         <div class="container">
-                            <form action="{{ route('admin.by_city') }}" method="post">
+                            <form action="{{ route('admin.users.search') }}" method="post">
                                 @csrf
-                                <label for="city_id"> اختــار المدينة </label>
-                                <br>
-                                <select name="city_id" class="form-control" id="">
-                                    @foreach ($cities as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="search" class="form-control"
+                                    placeholder="اكتب رقم هاتف الشخص">
+
+
                                 <!-- <div class="row"> -->
                                 <button class="form-control btn btn-primary mt-2 mb-1 d-flex justify-content-center"
                                     type="submit">
@@ -67,7 +65,7 @@
                             </form>
                         </div>
                     </div>
-                </center>
+                   </center>
                 <!-- column -->
                 <div class="col-sm-12">
                     <div class="card">
@@ -81,28 +79,24 @@
                                         <tr>
                                             {{-- <th class="border-top-0">#</th> --}}
                                             <th class="border-top-0">اسم </th>
-                                            <th class="border-top-0"> </th>
                                             <th class="border-top-0">العنوان</th>
                                             <th class="border-top-0">المدينة</th>
                                             <th class="border-top-0">رقم الهاتف</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($accounts as $account)
-                                            <tr
-                                                @if ($account->type == 'pharmacy') onclick="window.location.href = '{{ route('admin.pharm.show', ['pharm' => $account]) }}'"
-                                            @else
-                                            onclick="window.location.href = '{{ route('admin.users.show', ['user' => $account]) }}'" @endif>
-                                                <td>{{ $account->name }}</td>
-                                                <td>{{ $account->type == 'pharmacy' ? 'صيدلية' : "فرد" }}</td>
-                                                <td>{{ $account->address }}</td>
-                                                <td>{{ $account->city->name }}</td>
-                                                <td>{{ $account->phone }}</td>
+                                        @foreach ($users as $user)
+                                        <tr onclick="window.location.href = '{{route('admin.users.show',['user'=> $user])}}'">
+                                            <td>{{$user->name}}</td>
+                                                <td>{{$user->address}}</td>
+                                                <td>{{$user->city->name}}</td>
+                                                <td>{{$user->phone}}</td>
+                                                {{-- <td>@Sonu</td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $accounts->links('pagination::bootstrap-4') }}
+                                {{ $users->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>

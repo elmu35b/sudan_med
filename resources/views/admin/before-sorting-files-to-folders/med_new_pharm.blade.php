@@ -52,7 +52,9 @@
                     <div class="card">
                         <div class="card-body">
                             <form class="form-horizontal form-material mx-2" method="POST"
-                                action="{{ route('admin.medicines_save') }}" enctype="multipart/form-data">
+                                action="{{ route('admin.medicines_save') }}"
+                                    enctype="multipart/form-data"
+                                >
                                 @csrf
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">اسم الدواء عربي</label>
@@ -122,31 +124,17 @@
                                 </div>
 
                                 <div class="form-group">
-
-                                <label for="city_id"> اختــار التصنيف </label>
-
-                                <select name="category_id" class="form-control" id="" required>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                                </div>
-
-                                <div class="form-group">
                                     <label class="col-md-12 mb-0">تاريخ الانتهاء </label>
                                     <div class="col-md-12">
                                         <input type="text" name="ex_date" class="form-control ps-0 form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12 mb-0">كلمات دلالية … كلمات البحث </label>
+                                    <label class="col-md-12 mb-0">كلمات دلالية … اسماء البدائل </label>
                                     <div class="col-md-12">
                                         <textarea rows="5" class="form-control ps-0 form-control-line" name="tags"></textarea>
                                     </div>
                                 </div>
-
-
-                                <input type="text" name="user_id" value="{{ $user->id }}" id="">
 
 
                                 <div class="form-group">

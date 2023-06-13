@@ -82,7 +82,7 @@ class HomeController extends Controller
 
             $cities = Cache::get('cities');
         }
-        return view('admin.meds', compact('medicines', 'cities'))->with('search', $request->search);
+        return view('admin.meds.meds', compact('medicines', 'cities'))->with('search', $request->search);
 
         // $meds = User::  where('name','like','%'.$request->search .'%')->paginate(25);
     }
@@ -114,7 +114,7 @@ class HomeController extends Controller
 
             $cities = Cache::get('cities');
         }
-        return view('admin.by_city',compact('cities'));
+        return view('admin.users.by_city',compact('cities'));
     }
 
     public function byCityResult(Request $request)
@@ -130,9 +130,9 @@ class HomeController extends Controller
         }
 
         $accounts = User::where(
-            'city_id' , $request->city_id
-        )
+            'city_id' , $request->city_id,
+        )->where('type','!=','admin')
             ->paginate(25);
-        return view('admin.by_city_result',compact('cities','accounts'));
+        return view('admin.users.by_city_result',compact('cities','accounts'));
     }
 }
