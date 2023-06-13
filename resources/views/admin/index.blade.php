@@ -48,7 +48,7 @@
                 <center>
                     <div class="col-8">
                         <div class="container">
-                            <form action="{{ route('search') }}" method="post">
+                            <form action="{{ route('admin.search') }}" method="post">
                                 @csrf
                                 <input type="text" name="search" class="form-control"
                                     placeholder="اكتب اسم الدواء , عربي او انجليزي">
@@ -76,8 +76,8 @@
                         <div class="card-body">
                             <h4 class="card-title">الادوية </h4>
                             {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            <a href="{{ route('admin.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a
-                                href="{{ route('dash.medicines_new') }}">
+                            {{-- <a href="{{ route('admin.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a
+                                href="{{ route('dash.medicines_new') }}"> --}}
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>

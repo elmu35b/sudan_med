@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\City;
 use App\Models\Medicine;
 use App\Models\User;
@@ -40,13 +41,15 @@ class MedController extends Controller
         $cities = $this->cities;
 
         // return $medicines;
-        return view('admin.meds', compact('medicines','cities'));
+        return view('admin.meds', compact('medicines', 'cities'));
     }
 
 
     public function newMed()
     {
-        return view('admin.med_new');
+        $categories = Category::all();
+
+        return view('admin.med_new', compact('categories'));
     }
 
     public function saveMed(Request $request)
@@ -88,8 +91,15 @@ class MedController extends Controller
 
     public function show(Medicine $med)
     {
-        $cities = $this->cities;
-        return view('admin.med_show', compact('med','cities'));
+        // $cities = $this->cities;
+
+        $alters = Medicine::where('city_id', $med->city_id)->where(function ($query)  use ($med) {
+
+            $query->where('tags', 'like', '%' . $med->name . '%')
+                ->orWhere('tags', 'like', '%' . $med->name_en . '%');
+        })->paginate(15);
+
+        return view('admin.med_show', compact('med', 'alters'));
     }
 
 
@@ -100,16 +110,16 @@ class MedController extends Controller
     }
 
 
-    public function newMedPharm(User $pharm , )
+    public function newMedPharm(User $pharm,)
     {
-        return view('admin.med_new_with_user',['user'=> $pharm]);
-
+        $categories = Category::all();
+        return view('admin.med_new_with_user', ['user' => $pharm, 'categories'=> $categories]);
     }
 
-    public function newMeduser(User $user , )
+    public function newMeduser(User $user,)
     {
-        return view('admin.med_new_with_user',['user'=> $user]);
-
+        $categories = Category::all();
+        return view('admin.med_new_with_user', ['user' => $user, 'categories'=> $categories]);
     }
 
     public function saveWithUser(Request $request)
@@ -137,5 +147,9 @@ class MedController extends Controller
         return redirect()->route('admin.medicines')->with('success', 'success');
         // return redirect()->back();
     }
-}
 
+    public function updateMedNotAvailable(Medicine $medicine, Request $request)
+    {
+
+    }
+}

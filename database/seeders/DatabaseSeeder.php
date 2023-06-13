@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Category;
 use App\Models\City;
+use App\Models\Medicine;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -60,6 +62,23 @@ class DatabaseSeeder extends Seeder
             'hood'=> '--',
             'phone'=> '0121941942',
             'wa'=> '0121941942',
+        ]);
+
+        Category::create([
+            'name'=> "Cat 1",
+            "desc" => "Heart Disesase , "
+        ]);
+        Medicine::create([
+            'category_id'=> 1,
+            'city_id'=> 1,
+            'user_id'=> 1,
+            'name' => 'name',
+            'price_type' => 'not_free',
+            'dose' => 'dose',
+            'name_en' => 'name_en',
+            'ex_date' => 'ex_date',
+            'tags' => 'tags',
+            'quantity' => 'quantity'
         ]);
 
         // HERE IT

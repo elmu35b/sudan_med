@@ -81,22 +81,12 @@
                                 </div> --}}
 
                                 <div class="row">
-                                    {{-- <div class="col-6">
-                                        <div class="form-group">
-                                            <label class="col-md-12 mb-0">السعر</label>
-                                            <div class="col-md-12">
-                                                <input type="text" name="price"
-                                                    class="form-control ps-0 form-control-line">
-                                            </div>
-                                            <small>اذا كان الدواء مجانيا , اترك الحقل فارغا او اكتب 0</small>
-                                        </div>
-                                    </div> --}}
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label class="col-md-12 mb-0">هل الدواء مجاني ام مدفوع</label>
                                             <div class="col-md-12">
                                                 <select name="price_type" class="form-control">
-                                                    <option value="free">مجاتي</option>
+                                                    <option value="free">مجاني</option>
                                                     <option value="not_free">مدفوع</option>
                                                 </select>
                                                 {{-- <input type="text" name="price"
@@ -107,38 +97,35 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label class="col-md-12 mb-0">حجم الجرعة او الوصف</label>
-                                            <div class="col-md-12">
-                                                <input type="text" name="dose"
-                                                    class="form-control ps-0 form-control-line">
-                                            </div>
-                                            <small>يرجى كتابة وصف او حجم الجرعة </small>
+                                            <label class="col-md-12 mb-0">
+                                                {{-- هل الدواء مجاني ام مدفوع --}}
+                                                اختــار التصنيف
+
+
+                                            </label>
+
+                                            {{-- <label for="city_id">
+                                                 اختــار التصنيف
+                                                </label> --}}
+                                            <select name="category_id" class="form-control" id="" required>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-12 mb-0">الكمية المتوفرة</label>
-                                    <div class="col-md-12">
-                                        <input type="text" name="quantity" class="form-control ps-0 form-control-line">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-12 mb-0">تاريخ الانتهاء </label>
-                                    <div class="col-md-12">
-                                        <input type="text" name="ex_date" class="form-control ps-0 form-control-line">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-12 mb-0">كلمات دلالية … كلمات البحث </label>
+                                    <label class="col-md-12 mb-0">اسماء الادوية البديلة للدواء</label>
                                     <div class="col-md-12">
                                         <textarea rows="5" class="form-control ps-0 form-control-line" name="tags"></textarea>
                                     </div>
                                 </div>
 
 
-                                <input type="text"  name="user_id"  value="{{$user->id}}" id="">
-                                <input type="text"  name="city_id"  value="{{$user->city->id}}" id="">
+                                <input type="text"  name="user_id" hidden required  value="{{$user->id}}" id="">
+                                <input type="text"  name="city_id"  hidden required value="{{$user->city->id}}" id="">
 
 
                                 <div class="form-group">

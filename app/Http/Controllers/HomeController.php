@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\City;
 use App\Models\EssentialMedicine;
 use App\Models\Medicine;
 use App\Models\Pharmacy;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -43,8 +45,9 @@ class HomeController extends Controller
 
         //     // return $c->count();
         // }
-        $meds = [];
-        return view('shop', compact('cities',));
+        // $meds = [];
+        $categories = Category::all();
+        return view('home', compact('cities', 'categories'));
 
         // $cities = City::all();
 
@@ -64,7 +67,7 @@ class HomeController extends Controller
 
             $cities = Cache::get('cities');
         }
-        return view('med_show',compact('med','cities'));
+        return view('med_show', compact('med', 'cities'));
     }
     public function getCities()
     {
@@ -81,33 +84,28 @@ class HomeController extends Controller
         // return Medicine::all();
         //    return $request;
         // return Medicine::where(['city_id' => $request->city_id])->get();
-           $cities = Cache::get('cities');
-           if (!$cities) {
-               logger('caching');
-               $temp = $this->getCities();
-               $caching =   Cache::put('cities', $temp, 120);
+        $cities = Cache::get('cities');
+        if (!$cities) {
+            logger('caching');
+            $temp = $this->getCities();
+            $caching =   Cache::put('cities', $temp, 120);
 
-               $cities = Cache::get('cities');
-           }
+            $cities = Cache::get('cities');
+        }
 
-        $medicines = Medicine::where(['city_id' => $request->city_id, 'available' => true,])->where(function($query ) use ($request){
+        $medicines = Medicine::where(['city_id' => $request->city_id, 'available' => true,])->where(function ($query) use ($request) {
 
             $query->where('name', 'like', '%' . $request->search . '%');
             $query->orWhere('name_en', 'like', '%' . $request->search . '%');
             $query->orWhere('tags', 'like', '%' . $request->search . '%');
             // ->with('user')
-        })
-            ->paginate(25);
+        })->paginate(25);
 
-            $pharms = Pharmacy::where('active',true)->whereHas('user' ,function($query) use ($request){
-                $query->where('city_id',$request->city_id);
-            })
+        // $pharms = Pharmacy::where('active', true)->whereHas('user', function ($query) use ($request) {
+        //     $query->where('city_id', $request->city_id);
+        // })->paginate(25);
 
-            ->paginate(25);
-            // return $pharm;
-            // $pharms = User::where(['type'=> 'pharmacy'])->paginate(25);
-
-        return view('search', compact('medicines','cities','pharms'));
+        return view('search', compact('medicines', 'cities', ));
     }
     public function searchByLocation(Request $request)
     {
@@ -170,6 +168,40 @@ class HomeController extends Controller
         //     ->paginate(25);
 
         // return $medicines;
-        return view('search', compact('medicines','cities'));
+        return view('search', compact('medicines', 'cities'));
+    }
+
+
+    public function searchByCategory(Request $request)
+    {
+
+        $cities = Cache::get('cities');
+        if (!$cities) {
+            logger('caching');
+            $temp = $this->getCities();
+            $caching =   Cache::put('cities', $temp, 120);
+
+            $cities = Cache::get('cities');
+        }
+        // return Medicine::all();
+        $medicines = Medicine::where(['city_id' => $request->city_id, 'category_id' => $request->category_id])->paginate(25);
+
+        return view('search_category', compact('medicines', 'cities',));
+    }
+
+    public function searchByPharmacy(Request $request)
+    {
+        $cities = Cache::get('cities');
+        if (!$cities) {
+            logger('caching');
+            $temp = $this->getCities();
+            $caching =   Cache::put('cities', $temp, 120);
+
+            $cities = Cache::get('cities');
+        }
+
+        $pharms =   User::where(['type' => 'pharmacy', 'city_id' => $request->city_id])->paginate(25);
+
+        return view('search_pharmacy', compact('pharms', 'cities',));
     }
 }

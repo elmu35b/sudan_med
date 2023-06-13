@@ -42,6 +42,9 @@ Route::get('/x', function () {
 Route::get('/', [HomeController::class ,'index'])->name('home');
 Route::get('/show/{med}', [HomeController::class ,'show'])->name('medicine.show');
 Route::post('/search', [HomeController::class ,'searchByCity'])->name('search');
+Route::post('/search-by-category', [HomeController::class ,'searchByCategory'])->name('search_category');
+Route::post('/search-by-pharmacy', [HomeController::class ,'searchByPharmacy'])->name('search_pharmacy');
+
 // Route::post('/search', [HomeController::class ,'search'])->name('search');
 
 Auth::routes();
@@ -55,6 +58,7 @@ Auth::routes();
 Route::group( ['prefix'=> 'dashboard', 'as'=> 'dash.'], function () {
     Route::get('/', [DashController::class ,'home'])->name('home');
     Route::get('/meds', [DashController::class ,'myMedicines'])->name('medicines');
+    Route::get('/meds/{medicine}', [DashController::class ,'show'])->name('medicines.show');
     Route::get('/meds/create', [DashController::class ,'newMed'])->name('medicines_new');
     Route::post('/meds/save', [DashController::class ,'saveMed'])->name('medicines_save');
     Route::get('/profile', [DashController::class ,'profile'])->name('profile');

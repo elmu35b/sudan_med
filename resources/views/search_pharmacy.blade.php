@@ -23,14 +23,18 @@
     <link rel="stylesheet" href="{{ asset('ns/css/style.css') }}" type="text/css">
 </head>
 
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XQ8XSDXCH"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-9XQ8XSDXCH');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-9XQ8XSDXCH');
 </script>
 
 
@@ -88,8 +92,7 @@
                         <br>
                         <select name="city_id" class="form-control" id="">
                             @foreach ($cities as $city)
-                            <option value="{{ $city->id }}">{{ $city->name }}</option>
-
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
                             @endforeach
                         </select>
                         <!-- <div class="row"> -->
@@ -109,100 +112,47 @@
     </section>
     <!-- Hero Section End -->
 
-    <!-- Categories Section Begin -->
-    <section class="categories">
+    <section class="featured spad">
         <div class="container">
-
-        </div>
-    </section>
-    <!-- Categories Section End -->
-    <section class="product-details spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="">
-                        {{-- <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large"
-                                src="{{ asset('storage/' . $med->img_url) }}" alt="">
-                        </div> --}}
-
+            <div class="d-flex justify-content-center">
+                <h3>الصيدليات</h3>
+            </div>
+            <hr>
+            <div class="row ">
+                <!--  -->
+                @foreach ($pharms as $pharm)
+                    <div class="col-6 col-lg-4 col-md-4">
+                        <div class="card mb-1 mt-1 ">
+                            <div class="card-body ">
+                                <div class="card-title">
+                                    {{ $pharm->name }}
+                                </div>
+                                <p>{{ $pharm->city->name }}</p>
+                                <p>{{ $pharm->address }}</p>
+                                <p>{{ $pharm->hood }}</p>
+                                <a href="tel:{{ $pharm->phone }}" class="btn btn-success"> اتصال
+                                    {{ $pharm->phone }}</a>
+                                <br>
+                                <a href="tel:{{ $pharm->wa }}" class="btn btn-success"> واتساب
+                                    {{ $pharm->wa }}</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="product__details__text">
-                        <h3> {{$med->name}}</h3>
-                        <h4> {{$med->name}}</h4>
-                        <h5>{{$med->ex_date}}  : تاريخ الانتهاء</h5>
-
-                        <div class="product__details__price">{{$med->price_type}}</div>
-                        <p> {{$med->dose}}</p>
-
-                        <a href="tel:{{$med->user->phone}}" class="primary-btn">اتصــل : {{$med->user->phone}}</a>
-                        <a  class="primary-btn">واتساب : {{$med->user->wa}}</a>
-
-                    </div>
-                </div>
-
+                @endforeach
+                <!--  -->
+            </div>
+            <div class="d-flex justify-content-center">
+                {{ $pharms->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </section>
+    <!-- Featured Section End -->
 
 
 
 
     <!-- Footer Section Begin -->
-    <footer class="footer spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__about__logo">
-                            <!-- <a href="./index.html"><img src="img/logo.png" alt=""></a> -->
-                            <h4>الدعم الفني</h4>
-                        </div>
-                        <ul>
-                            <li>لو عند ادوية سجـــل حساب وضيف الادوية</li>
-                            <li>ســاعد اخوانك واخواتك</li>
 
-                            <li> <a href="tel:00249121941942">00249121941942</a> تلفون </li>
-                            <li> <a href="email:musabgaili@gmail.com"> musabgaili@gmail.com</a> ايميل </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                    <div class="footer__widget">
-                        <h6>Useful Links</h6>
-                        <ul>
-                            <li><a href="{{route('login')}}">دخــول لحسابك</a></li>
-                            <li><a href="{{route('register')}}">سجل حســاب</a></li>
-
-                        </ul>
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer__copyright">
-                        <div class="footer__copyright__text">
-                            <p>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script> All rights reserved | This
-                                template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                    href="https://colorlib.com" target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            </p>
-                        </div>
-                        <!-- <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->

@@ -12,14 +12,14 @@
         content="">
     <meta name="robots" content="noindex,nofollow">
     <title> Sudan Med</title>
-    <link rel="canonical" href="https://www.wrappixel.com/templates/materialpro-lite/" />
+    {{-- <link rel="canonical" href="https://www.wrappixel.com/templates/materialpro-lite/" /> --}}
     <!-- Favicon icon -->
     {{-- <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png"> --}}
 
 
     <!--This page css - Morris CSS -->
 
-    <link href="{{ asset('assets/assets/plugins/c3-master/c3.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('assets/assets/plugins/c3-master/c3.min.css') }}" rel="stylesheet"> --}}
     <!-- Custom CSS -->
     <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet">
 </head>
@@ -154,26 +154,26 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="{{ asset('assets/assets/plugins/jquery/dist/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/assets/plugins/jquery/dist/jquery.min.js') }}"></script> --}}
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ asset('assets/assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/app-style-switcher.js') }}"></script>
-    <!--Wave Effects -->
-    <script src="{{ asset('assets/js/waves.js') }}"></script>
+    {{-- <script src="{{ asset('assets/assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/app-style-switcher.js') }}"></script> --}}
+    {{-- <!--Wave Effects --> --}}
+    {{-- <script src="{{ asset('assets/js/waves.js') }}"></script> --}}
     <!--Menu sidebar -->
-    <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script> --}}
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!-- chartist chart -->
-    <script src="../assets/plugins/chartist-js/dist/chartist.min.js"></script>
-    <script src="../assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    {{-- <script src="../assets/plugins/chartist-js/dist/chartist.min.js"></script> --}}
+    {{-- <script src="../assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script> --}}
     <!--c3 JavaScript -->
-    <script src="../assets/plugins/d3/d3.min.js"></script>
-    <script src="../assets/plugins/c3-master/c3.min.js"></script>
-    <!--Custom JavaScript -->
-    <script src="{{ asset('assets/js/pages/dashboards/dashboard1.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    {{-- <script src="../assets/plugins/d3/d3.min.js"></script> --}}
+    {{-- <script src="../assets/plugins/c3-master/c3.min.js"></script> --}}
+    {{-- <!--Custom JavaScript --> --}}
+    {{-- <script src="{{ asset('assets/js/pages/dashboards/dashboard1.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/custom.js') }}"></script> --}}
 </body>
 
 </html>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Medicine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -29,6 +31,29 @@ class DashController extends Controller
         return view('dashboard.home', compact('medicines'));
     }
 
+    function show(Medicine $medicine): mixed
+    {
+        $categories = Category::all();
+
+        return $medicine->category;
+
+        return view('dashboard.med_show', compact('medicine','categories'));
+    }
+
+
+    function updateMed(Request $request , Medicine $medicine) : mixed {
+        $request->validate([
+            'name'=> 'required',
+            'name_en'=> 'required',
+            'category_id'=> 'required',
+            'price_type' => $request->price_type,
+
+        ]);
+        $medicine->update($request->all());
+        Session::flash('updated',true);
+        return redirect()->back();
+    }
+
     public function myMedicines()
     {
         $medicines = Medicine::where('user_id', Auth::user()->id)->paginate(20);
@@ -38,16 +63,13 @@ class DashController extends Controller
 
     public function newMed()
     {
-        return view('dashboard.med_new');
+        $categories = Category::all();
+        return view('dashboard.med_new', compact('categories'));
     }
 
     public function saveMed(Request $request)
     {
-        // return $request;
-        //  return   $this->imageResize($request->img);
-
-        // ini_set('upload_max_filesize',128);
-
+        return $request;
 
         $user =  Auth::user();
         $med = new Medicine([
@@ -58,7 +80,8 @@ class DashController extends Controller
             'ex_date' => $request->ex_date,
             'tags' => $request->tags,
             'user_id' => $user->id,
-            'quantity' => $request->quantity
+            'quantity' => $request->quantity,
+            'category_id'=> $request->category_id
         ]);
 
         // if($user->lat !=null  && $user->lng != null ){
@@ -130,10 +153,10 @@ class DashController extends Controller
     public function pharmInfoUpdate(Request $request)
     {
         // return $request;
-        $active = false ;
-       if ($request->active == false or $request->active == 'false'){
         $active = false;
-       }else $active = true;
+        if ($request->active == false or $request->active == 'false') {
+            $active = false;
+        } else $active = true;
 
 
 

@@ -59,7 +59,7 @@
                                 <table class="table user-table">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">#</th>
+                                        <th class="border-top-0">#</th>
                                             <th class="border-top-0">اسم الدواء</th>
                                             <th class="border-top-0">الاسم الانجليزي</th>
                                             {{-- <th class="border-top-0">كلمات البحث</th> --}}
@@ -68,8 +68,8 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($medicines as $med)
-                                            <tr>
-                                                <td></td>
+                                        <tr onclick="window.location.href = '{{route('dash.medicines.show',['medicine'=> $med])}}'">
+                                            <td></td>
                                                 <td>{{$med->name}}</td>
                                                 <td>{{$med->name_en}}</td>
                                                 <td></td>

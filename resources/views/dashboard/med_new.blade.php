@@ -103,7 +103,7 @@
                                             {{-- <small>اذا كان الدواء مجانيا , اترك الحقل فارغا او اكتب 0</small> --}}
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    {{-- <div class="col-6">
                                         <div class="form-group">
                                             <label class="col-md-12 mb-0">حجم الجرعة او الوصف</label>
                                             <div class="col-md-12">
@@ -112,23 +112,37 @@
                                             </div>
                                             <small>يرجى كتابة وصف او حجم الجرعة </small>
                                         </div>
+                                    </div> --}}
+                                    <div class="col-6">
+                                        <div class="form-group">
+
+                                            <label for="city_id" class="col-md-12 mb-0"> اختــار التصنيف </label>
+
+                                            <select name="category_id" class="form-control" id="" required>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label class="col-md-12 mb-0">الكمية المتوفرة</label>
                                     <div class="col-md-12">
                                         <input type="text" name="quantity" class="form-control ps-0 form-control-line">
                                     </div>
-                                </div>
+                                </div> --}}
 
+
+                                {{--
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">تاريخ الانتهاء </label>
                                     <div class="col-md-12">
                                         <input type="text" name="ex_date" class="form-control ps-0 form-control-line">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
-                                    <label class="col-md-12 mb-0">كلمات دلالية … كلمات البحث </label>
+                                    <label class="col-md-12 mb-0">اسماء الادوية البديلة للدواء</label>
                                     <div class="col-md-12">
                                         <textarea rows="5" class="form-control ps-0 form-control-line" name="tags"></textarea>
                                     </div>

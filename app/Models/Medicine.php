@@ -40,4 +40,13 @@ class Medicine extends Model
     {
         return $this->hasMany(EssentialMedicine::class);
     }
+
+    /**
+     * Get the category that owns the Medicine
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    **/
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

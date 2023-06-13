@@ -37,7 +37,7 @@
             @if (Session::has('password-success'))
                 <p class="alert alert-info">{{ Session::get('password-success') }}</p>
             @endif
-            <p class="alert alert-info"> او تغيير كلمة السر في حالة نسيها … {{$user->name}} …  يمكن هنا اضافة ادوية تابعة للصييدلية  </p>
+            <p class="alert alert-info"> او تغيير كلمة السر في حالة نسيها … {{__($user->name)}} …  يمكن هنا اضافة ادوية تابعة   </p>
 
             <!-- Row -->
             <div class="row">
@@ -107,7 +107,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                {{$user}}
+                                {{-- {{$user}} --}}
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">رقم الهاتف</label>
                                     <div class="col-md-12">

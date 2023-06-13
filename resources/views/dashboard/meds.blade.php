@@ -64,17 +64,17 @@
                                             <th class="border-top-0">#</th>
                                             <th class="border-top-0">اسم الدواء</th>
                                             <th class="border-top-0">الاسم الانجليزي</th>
-                                            <th class="border-top-0">السعر</th>
-                                            <th class="border-top-0">متوفر</th>
+                                            {{-- <th class="border-top-0">السعر</th> --}}
+                                            {{-- <th class="border-top-0">متوفر</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($medicines as $med)
-                                            <tr>
-                                                <td></td>
+                                        <tr onclick="window.location.href = '{{route('dash.medicines.show',['medicine'=> $med])}}'">
+                                            <td></td>
                                                 <td>{{$med->name}} </td>
                                                 <td>{{$med->name_en}}</td>
-                                                <td>{{$med->price_type == 'free'? "مجاني" : 'غير مجاني'}}</td>
+                                                {{-- <td>{{$med->price_type == 'free'? "مجاني" : 'غير مجاني'}}</td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
