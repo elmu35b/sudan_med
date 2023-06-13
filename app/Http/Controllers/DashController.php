@@ -35,22 +35,39 @@ class DashController extends Controller
     {
         $categories = Category::all();
 
-        return $medicine->category;
 
-        return view('dashboard.med_show', compact('medicine','categories'));
+
+        $extra_medicines = Medicine::where(['city_id' => Auth::user()->city_id, 'available' => true,])->where(function ($query) use ($medicine) {
+
+            $query->where('name', 'like', '%' . $medicine->name . '%');
+            $query->orWhere('name_en', 'like', '%' . $medicine->name_en . '%');
+
+            $query->orWhere('tags', 'like', '%' . $medicine->tags . '%');
+            $query->orWhere('name', 'like', '%' . $medicine->tags . '%');
+            $query->orWhere('name_en', 'like', '%' . $medicine->tags . '%');
+            // ->with('user')
+        })->paginate(25);
+        return view('dashboard.med_show', compact('medicine', 'categories','extra_medicines'));
     }
 
 
-    function updateMed(Request $request , Medicine $medicine) : mixed {
+    function updateMed(Request $request, Medicine $medicine): mixed
+    {
+        // return $request;
         $request->validate([
-            'name'=> 'required',
-            'name_en'=> 'required',
-            'category_id'=> 'required',
-            'price_type' => $request->price_type,
-
+            'name' => 'required',
+            'name_en' => 'required',
+            'category_id' => 'required',
+            'price_type' => 'required',
+            'tags'=> 'min:1'
         ]);
-        $medicine->update($request->all());
-        Session::flash('updated',true);
+        $medicine->fill($request->all());
+        $medicine->tags = $request->tags;
+        $medicine->save();
+        return $medicine->refresh();
+        // $medicine->update($request->all());
+
+        Session::flash('updated', true);
         return redirect()->back();
     }
 
@@ -81,7 +98,7 @@ class DashController extends Controller
             'tags' => $request->tags,
             'user_id' => $user->id,
             'quantity' => $request->quantity,
-            'category_id'=> $request->category_id
+            'category_id' => $request->category_id
         ]);
 
         // if($user->lat !=null  && $user->lng != null ){

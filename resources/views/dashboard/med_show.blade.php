@@ -58,22 +58,31 @@
                     <div class="card">
                         <div class="card-body">
                             <form class="form-horizontal form-material mx-2" method="POST"
-                                action="{{ route('dash.medicines_save') }}" enctype="multipart/form-data">
+                                action="{{ route('dash.medicines_update', ['medicine' => $medicine]) }}">
                                 @csrf
-                                <div class="form-group">
-                                    <label class="col-md-12 mb-0">اسم الدواء عربي</label>
-                                    <div class="col-md-12">
-                                        <input type="text" required name="name" value="{{$medicine->name}}"
+                                @method('PUT')
+                               <div class="row">
+                                <div class="col-6">
+
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">اسم الدواء عربي</label>
+                                        <div class="col-md-12">
+                                            <input type="text" required name="name" value="{{ $medicine->name }}"
                                             class="form-control ps-0 form-control-line">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="example-email" class="col-md-12">اسم الدواء انجليزي</label>
-                                    <div class="col-md-12">
-                                        <input type="text" name="name_en" class="form-control ps-0 form-control-line" value="{{$medicine->name_en}}"
-                                            name="example-email" id="example-email">
+                                <div class="col-6">
+
+                                    <div class="form-group">
+                                        <label for="example-email" class="col-md-12 mb-0">اسم الدواء انجليزي</label>
+                                        <div class="col-md-12">
+                                            <input type="text" name="name_en" class="form-control ps-0 form-control-line"
+                                            value="{{ $medicine->name_en }}" name="example-email" id="example-email">
+                                        </div>
                                     </div>
                                 </div>
+                               </div>
 
                                 {{-- <div class="form-group">
                                     <label for="example-email" class="col-md-12">صورة للدواء</label>
@@ -100,8 +109,8 @@
                                             <label class="col-md-12 mb-0">هل الدواء مجاني ام مدفوع</label>
                                             <div class="col-md-12">
                                                 <select name="price_type" class="form-control">
-                                                    <option value="{{$medicine->price_type}}" selected>
-                                                     {{$medicine->price_type == 'free' ? 'مجاني' : 'مدفوع'}}
+                                                    <option value="{{ $medicine->price_type }}" selected>
+                                                        {{ $medicine->price_type == 'free' ? 'مجاني' : 'مدفوع' }}
                                                     </option>
                                                     <option value="free">مجاني</option>
                                                     <option value="not_free">مدفوع</option>
@@ -126,9 +135,9 @@
                                         <div class="form-group">
                                             <label for="city_id" class="col-md-12 mb-0"> اختــار التصنيف </label>
                                             <select name="category_id" class="form-control" id="" required>
-                                                <option value="{{$medicine->category_id}}" selected>
-                                                    {{$medicine->category->name ?? ''}}
-                                                   </option>
+                                                <option value="{{ $medicine->category_id }}" selected>
+                                                    {{ $medicine->category->name ?? '' }}
+                                                </option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
@@ -154,7 +163,7 @@
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">اسماء الادوية البديلة للدواء</label>
                                     <div class="col-md-12">
-                                        <textarea rows="5" class="form-control ps-0 form-control-line" name="tags"></textarea>
+                                        <textarea rows="5" class="form-control ps-0 form-control-line" name="tags">{{$medicine->tags}}</textarea>
                                     </div>
                                 </div>
 
@@ -167,6 +176,40 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+
+
+                    {{-- Extra Medicines And Similar in other Pharmacies inside the same City --}}
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">الادوية المشابهة</h4>
+
+                            <div class="table-responsive">
+                                <table class="table user-table">
+                                    <thead>
+                                        <tr>
+                                        <th class="border-top-0">#</th>
+                                            <th class="border-top-0">اسم الدواء</th>
+                                            <th class="border-top-0">الاسم الانجليزي</th>
+                                            {{-- <th class="border-top-0">كلمات البحث</th> --}}
+                                            {{-- <th class="border-top-0">متوفر</th> --}}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($extra_medicines as $med)
+                                        <tr onclick="window.location.href = '{{route('dash.medicines.show',['medicine'=> $med])}}'">
+                                            <td></td>
+                                                <td>{{$med->name}}</td>
+                                                <td>{{$med->name_en}}</td>
+                                                <td></td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                {{ $extra_medicines->links('pagination::bootstrap-4') }}
+                            </div>
                         </div>
                     </div>
                 </div>

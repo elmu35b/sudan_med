@@ -58,9 +58,14 @@ Auth::routes();
 Route::group( ['prefix'=> 'dashboard', 'as'=> 'dash.'], function () {
     Route::get('/', [DashController::class ,'home'])->name('home');
     Route::get('/meds', [DashController::class ,'myMedicines'])->name('medicines');
-    Route::get('/meds/{medicine}', [DashController::class ,'show'])->name('medicines.show');
+    Route::get('/meds/show/{medicine}', [DashController::class ,'show'])->name('medicines.show');
+    Route::put('/meds/update/{medicine}', [DashController::class ,'updateMed'])->name('medicines_update');
     Route::get('/meds/create', [DashController::class ,'newMed'])->name('medicines_new');
     Route::post('/meds/save', [DashController::class ,'saveMed'])->name('medicines_save');
+
+
+
+
     Route::get('/profile', [DashController::class ,'profile'])->name('profile');
     Route::post('/profile/update-number', [DashController::class ,'updateNumber'])->name('update_number');
     Route::post('/profile/update-password', [DashController::class ,'updatePassword'])->name('update_password');
