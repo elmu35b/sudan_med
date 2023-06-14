@@ -42,38 +42,38 @@ class DatabaseSeeder extends Seeder
 
 
 
-        User::create([
-            'name'=> 'نادين',
-            'city_id'=> 1,
-            'password'=> Hash::make('N0911493546'),
-            'type'=> 'admin',
-            'address'=> '--',
-            'hood'=> '--',
-            'phone'=> '0911493546',
-            'wa'=> '0911493546',
-        ]);
+        // User::create([
+        //     'name'=> 'نادين',
+        //     'city_id'=> 1,
+        //     'password'=> Hash::make('N0911493546'),
+        //     'type'=> 'admin',
+        //     'address'=> '--',
+        //     'hood'=> '--',
+        //     'phone'=> '0911493546',
+        //     'wa'=> '0911493546',
+        // ]);
 
-        User::create([
-            'name'=> 'نجبل',
-            'city_id'=> 1,
-            'password'=> Hash::make('N0119114568'),
-            'type'=> 'admin',
-            'address'=> '--',
-            'hood'=> '--',
-            'phone'=> '0119114568',
-            'wa'=> '0119114568',
-        ]);
+        // User::create([
+        //     'name'=> 'نجبل',
+        //     'city_id'=> 1,
+        //     'password'=> Hash::make('N0119114568'),
+        //     'type'=> 'admin',
+        //     'address'=> '--',
+        //     'hood'=> '--',
+        //     'phone'=> '0119114568',
+        //     'wa'=> '0119114568',
+        // ]);
 
-        User::create([
-            'name'=> 'مختار',
-            'city_id'=> 1,
-            'password'=> Hash::make('M0126949107'),
-            'type'=> 'admin',
-            'address'=> '--',
-            'hood'=> '--',
-            'phone'=> '0126949107',
-            'wa'=> '0126949107',
-        ]);
+        // User::create([
+        //     'name'=> 'مختار',
+        //     'city_id'=> 1,
+        //     'password'=> Hash::make('M0126949107'),
+        //     'type'=> 'admin',
+        //     'address'=> '--',
+        //     'hood'=> '--',
+        //     'phone'=> '0126949107',
+        //     'wa'=> '0126949107',
+        // ]);
 
 
         // HERE IT

