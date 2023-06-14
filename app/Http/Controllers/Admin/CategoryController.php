@@ -35,4 +35,9 @@ class CategoryController extends Controller
        Session::flash('created',true);
        return redirect()->back();
     }
+
+    function delete(Category $category) : mixed {
+        $category->delete();
+        return redirect()->back();
+    }
 }

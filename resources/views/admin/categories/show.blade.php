@@ -34,15 +34,7 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
-            @if (Session::has('search'))
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    {{Session::get('search')}}
-                    نتــائج البحث ::
 
-
-                </div>
-
-            @endif
             <!-- Row -->
             <div class="row">
                 <!-- column -->
@@ -59,16 +51,22 @@
                                         <tr>
                                             <th class="border-top-0">الاسم</th>
                                             <th class="border-top-0">عدد الادوية</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{$category->name}}</td>
+                                            <td>{{ $category->name }}</td>
 
                                             <td>
-                                                {{$category->medicines->count()}}
+                                                {{ $category->medicines->count() }}
                                             </td>
-                                            </tr>
+                                            <td>
+                                                <a href="{{ route('admin.categories_delete',['category'=> $category]) }}" class="btn btn-danger">
+                                                    حذف
+                                                </a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -103,7 +101,7 @@
                                                 <td>{{ $med->name }} / {{ $med->name_en }}</td>
                                                 <td>{{ $med->city->name }}</td>
                                                 <td>{{ $med->tags }}</td>
-                                                <td>{{ $med->price_type == 'free'? "مجاني" : "عير مجاني" }}</td>
+                                                <td>{{ $med->price_type == 'free' ? 'مجاني' : 'عير مجاني' }}</td>
                                                 {{-- <td>{{$med->price ?? '0'}}</td> --}}
                                             </tr>
                                         @endforeach

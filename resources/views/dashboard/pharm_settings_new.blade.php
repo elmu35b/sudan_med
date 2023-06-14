@@ -46,7 +46,7 @@
                     <div class="card">
                         <div class="card-body">
                             <form class="form-horizontal form-material mx-2" method="POST"
-                                action="{{ route('dash.pharm_info_update') }}">
+                                action="{{ route('dash.pharm_info_save') }}">
                                 @csrf
 
 
@@ -56,7 +56,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">اسم الصيدلية</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="{{ Auth::user()->pharmacy->name ?? '' }}" name="name" required
+                                            <input type="text"  name="name" required
                                             class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
@@ -65,7 +65,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">مواعيد الفتح</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="{{ Auth::user()->pharmacy->opens_at ?? '' }}" name="open_at" required
+                                            <input type="text"  name="open_at" required
                                             class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
@@ -75,7 +75,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">مواعيد الاغلاق</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="{{ Auth::user()->pharmacy->close_at ?? '' }}" name="close_at" required
+                                            <input type="text"  name="close_at" required
                                             class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
@@ -84,7 +84,7 @@
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">رقم احتياطي للتواصل</label>
                                     <div class="col-md-12">
-                                        <input type="text" value="{{ Auth::user()->pharmacy->extra_number ?? '' }}"
+                                        <input type="text"
                                             name="extra_phone" class="form-control ps-0 form-control-line">
                                     </div>
                                 </div>
@@ -95,9 +95,7 @@
                                     <div class="col-md-12">
 
                                         <select name="active" id=""  class="form-control" required>
-                                            <option  value="{{ Auth::user()->pharmacy->active ?? null }}" >
-                                                {{ Auth::user()->pharmacy->active ?? null ? 'تعمل' : 'متوقفة' }}
-                                            </option>
+
                                             <option value="true">
                                                 تعمل
                                             </option>

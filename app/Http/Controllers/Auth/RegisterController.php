@@ -101,6 +101,7 @@ class RegisterController extends Controller
         if($data['type']== 'pharmacy'){
             Pharmacy::create([
                 'user_id'=> $user->id,
+                'name'=> $data['name'],
             ]);
         }
         return $user;

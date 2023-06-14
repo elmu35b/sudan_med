@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Medicine;
+use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -47,7 +48,7 @@ class DashController extends Controller
             $query->orWhere('name_en', 'like', '%' . $medicine->tags . '%');
             // ->with('user')
         })->paginate(25);
-        return view('dashboard.med_show', compact('medicine', 'categories','alter_medicines'));
+        return view('dashboard.med_show', compact('medicine', 'categories', 'alter_medicines'));
     }
 
 
@@ -59,7 +60,7 @@ class DashController extends Controller
             'name_en' => 'required',
             'category_id' => 'required',
             'price_type' => 'required',
-            'tags'=> 'min:1'
+            'tags' => 'min:1'
         ]);
         $medicine->fill($request->all());
         $medicine->tags = $request->tags;
@@ -167,6 +168,12 @@ class DashController extends Controller
         return view('dashboard.pharm_settings');
     }
 
+    public function pharmInfoNew()
+    {
+        return view('dashboard.pharm_settings_new');
+    }
+
+
     public function pharmInfoUpdate(Request $request)
     {
         // return $request;
@@ -185,5 +192,25 @@ class DashController extends Controller
         ]);
         // return Auth::user()->pharmacy;
         return view('dashboard.pharm_settings');
+    }
+
+    function pharmInfoSave(Request $request): mixed
+    {
+        // return $request;
+        $request->validate(['name'=> 'required|min:3']);
+        $active = false;
+        if ($request->active == false or $request->active == 'false') {
+            $active = false;
+        } else $active = true;
+        Pharmacy::create([
+            'name' => $request->name,
+            'opens_at' => $request->open_at,
+            'close_at' => $request->close_at,
+            'extra_number' => $request->extra_phone,
+            'active' => $active,
+            'user_id' => Auth::id()
+        ]);
+        return redirect()->route('dash.home');
+        // return view('dashboard.home');
     }
 }

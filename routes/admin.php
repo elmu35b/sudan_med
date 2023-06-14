@@ -65,6 +65,7 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->name('admin.')->group(
     Route::get('/categories/show/{category}', [CategoryController::class ,'show'])->name('categories_show');
     Route::get('/categories/create', [CategoryController::class ,'create'])->name('categories_create');
     Route::post('/categories/save', [CategoryController::class ,'save'])->name('categories_save');
+    Route::delete('/categories/delete/{category}', [CategoryController::class ,'delete'])->name('categories_delete');
 
     //
     Route::get('/cities', [CityController::class ,'index'])->name('cities');

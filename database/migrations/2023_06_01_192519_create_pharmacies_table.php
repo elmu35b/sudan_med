@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pharmacies', function (Blueprint $table) {
             $table->id();
+            // $table->string('name');
             $table->string('opens_at')->nullable();
             $table->string('close_at')->nullable();
             $table->string('extra_number')->nullable();

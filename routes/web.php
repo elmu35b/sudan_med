@@ -77,6 +77,8 @@ Route::group( ['prefix'=> 'dashboard', 'as'=> 'dash.'], function () {
 
     Route::get('/pharmacy-info', [DashController::class ,'pharmInfo'])->name('pharm_info');
     Route::post('/pharmacy-info-update', [DashController::class ,'pharmInfoUpdate'])->name('pharm_info_update');
+    Route::get('/pharmacy-info-new', [DashController::class ,'pharmInfoNew'])->name('pharm_info_new');
+    Route::post('/pharmacy-info-save', [DashController::class ,'pharmInfoSave'])->name('pharm_info_save');
 
 
     // Route::get('/profile/update-geo', [DashController::class ,'updategeo'])->name('update_geo');

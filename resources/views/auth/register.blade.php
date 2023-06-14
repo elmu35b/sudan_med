@@ -171,7 +171,6 @@
                                 <div class="row mb-3">
                                     <label for="phone"
                                         class="col-md-4 col-form-label text-md-end">{{ __('اسم الحي ') }}</label>
-
                                     <div class="col-md-6">
                                         <input id="hood" type="text"
                                             class="form-control @error('hood') is-invalid @enderror" name="hood"

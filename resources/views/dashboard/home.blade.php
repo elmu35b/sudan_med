@@ -53,8 +53,18 @@
                         <div class="card-body">
                             <h4 class="card-title">الادوية التي ادخلتها في النظام</h4>
                             {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            <a href="{{ route('dash.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a
-                                href="{{ route('dash.medicines_new') }}">
+                            @if (!Auth::user()->pharmacy || Auth::user()->pharmacy->name == null )
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>عفــوا</strong>
+                                رجاء  اضافة بيانات الصيدلية <a href="{{route('dash.pharm_info_new')}}">
+                                    من هنا
+                                </a>
+                                ثم العودة لادخال الادوية
+                            </div>
+                            @else
+                            <a href="{{ route('dash.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a>
+                            @endif
+
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
