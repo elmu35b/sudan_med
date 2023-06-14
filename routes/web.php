@@ -109,6 +109,17 @@ Route::get('/add-admin', function () {
             'phone'=> '0119114568',
             'wa'=> '0119114568',
         ]);
+
+        User::create([
+            'name'=> 'نسيبة',
+            'city_id'=> 1,
+            'password'=> Hash::make('N0906202421'),
+            'type'=> 'admin',
+            'address'=> '--',
+            'hood'=> '--',
+            'phone'=> '0906202421',
+            'wa'=> '0906202421',
+        ]);
     return User::where('phone','0119114568')->first();
 
 });
