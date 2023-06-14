@@ -27,7 +27,7 @@ class CategoryController extends Controller
         return view('admin.categories.create',);
     }
     function save(Request $request) : mixed {
-        return $request;
+        // return $request;
         $request->validate(['name'=> 'required']);
        $category = new Category($request->all());
        $category->desc = $request->desc;
