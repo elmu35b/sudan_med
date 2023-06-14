@@ -140,7 +140,7 @@
                                     {{ $med->dose }}
                                 </p> --}}
                                 <p>
-                                    {{ $med->price_type == 'free' ? 'مجاني' : 'غير مجاني' }}
+                                    {{ $med->price_type == 'free' ? 'مجاني' : 'بيع' }}
                                 </p>
                                 <p>{{ $med->city->name }}</p>
                                 <p>{{ $med->user->address }}</p>

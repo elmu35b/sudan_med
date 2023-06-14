@@ -56,6 +56,10 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->name('admin.')->group(
     Route::post('/pharm/search/', [PharmacyController::class, 'searchPharm'])->name('pharm.search');
     Route::get('pharm/meds/new/{pharm}', [MedController::class ,'newMedPharm'])->name('medicines_new.pharm');
 
+    Route::post('/pharm/info-update/{pharm}', [PharmacyController::class, 'pharmInfoUpdate'])->name('pharm_info_update');
+
+    // pharm_info_update
+
     Route::post('/meds/with-user/save', [MedController::class ,'saveWithUser'])->name('medicines_save_with_user');
 
 
@@ -65,7 +69,7 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->name('admin.')->group(
     Route::get('/categories/show/{category}', [CategoryController::class ,'show'])->name('categories_show');
     Route::get('/categories/create', [CategoryController::class ,'create'])->name('categories_create');
     Route::post('/categories/save', [CategoryController::class ,'save'])->name('categories_save');
-    Route::delete('/categories/delete/{category}', [CategoryController::class ,'delete'])->name('categories_delete');
+    Route::get('/categories/delete/{category}', [CategoryController::class ,'delete'])->name('categories_delete');
 
     //
     Route::get('/cities', [CityController::class ,'index'])->name('cities');

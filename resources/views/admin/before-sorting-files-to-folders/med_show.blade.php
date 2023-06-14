@@ -66,7 +66,7 @@
                                             <td>{{ $med->city->name }}</td>
                                             {{-- <td>{{ $med->tags }}</td> --}}
                                             <td></td>
-                                            <td>{{ $med->price_type == 'free' ? 'مجاني' : 'غير مجاني' }}</td>
+                                            <td>{{ $med->price_type == 'free' ? 'مجاني' : 'بيع' }}</td>
                                             {{-- <td>{{$med->price ?? '0'}}</td> --}}
                                         </tr>
                                         {{-- @endforeach --}}

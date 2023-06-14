@@ -74,7 +74,7 @@
                                             <td></td>
                                                 <td>{{$med->name}} </td>
                                                 <td>{{$med->name_en}}</td>
-                                                {{-- <td>{{$med->price_type == 'free'? "مجاني" : 'غير مجاني'}}</td> --}}
+                                                {{-- <td>{{$med->price_type == 'free'? "مجاني" : 'بيع'}}</td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

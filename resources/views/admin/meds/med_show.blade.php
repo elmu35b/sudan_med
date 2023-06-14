@@ -66,7 +66,7 @@
                                             <td>{{ $med->city->name }}</td>
                                             <td>{{ $med->tags }}</td>
 
-                                            <td>{{ $med->price_type == 'free' ? 'مجاني' : 'غير مجاني' }}</td>
+                                            <td>{{ $med->price_type == 'free' ? 'مجاني' : 'بيع' }}</td>
                                             {{-- <td>{{$med->price ?? '0'}}</td> --}}
                                         </tr>
                                         {{-- @endforeach --}}
@@ -132,7 +132,7 @@
                                                     <td>{{ $alter_med->name }} / {{ $alter_med->name_en }}</td>
                                                     <td>{{ $alter_med->city->name }}</td>
                                                     <td>{{ $alter_med->tags }}</td>
-                                                    <td>{{ $med->price_type == 'free' ? 'مجاني' : 'غير مجاني' }}</td>
+                                                    <td>{{ $med->price_type == 'free' ? 'مجاني' : 'بيع' }}</td>
 
                                                 </tr>
                                             @endif

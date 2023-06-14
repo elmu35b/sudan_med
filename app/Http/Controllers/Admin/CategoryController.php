@@ -33,11 +33,12 @@ class CategoryController extends Controller
        $category->desc = $request->desc;
        $category->save();
        Session::flash('created',true);
-       return redirect()->back();
+       return redirect()->route('admin.categories_index');
+
     }
 
     function delete(Category $category) : mixed {
         $category->delete();
-        return redirect()->back();
+        return redirect()->route('admin.categories_index');
     }
 }

@@ -62,7 +62,7 @@
                                                 {{ $category->medicines->count() }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.categories_delete',['category'=> $category]) }}" class="btn btn-danger">
+                                                <a href="{{ route('admin.categories_delete',['category'=> $category]) }}" class="btn btn-danger" onclick="confirm('حذف','الغاء')">
                                                     حذف
                                                 </a>
                                             </td>

@@ -37,7 +37,8 @@
             @if (Session::has('password-success'))
                 <p class="alert alert-info">{{ Session::get('password-success') }}</p>
             @endif
-            <p class="alert alert-info"> او تغيير كلمة السر في حالة نسيها … {{$pharm->name}} …  يمكن هنا اضافة ادوية تابعة للصييدلية  </p>
+            <p class="alert alert-info"> او تغيير كلمة السر في حالة نسيها … {{ $pharm->name }} … يمكن هنا اضافة ادوية تابعة
+                للصييدلية </p>
 
             <!-- Row -->
             <div class="row">
@@ -47,7 +48,8 @@
                         <div class="card-body">
                             <h4 class="card-title">الادوية </h4>
                             {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            <a href="{{ route('admin.medicines_new.pharm',['pharm'=> $pharm]) }}" class="btn btn-primary">اضــافة دواء </a>
+                            <a href="{{ route('admin.medicines_new.pharm', ['pharm' => $pharm]) }}"
+                                class="btn btn-primary">اضــافة دواء </a>
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
@@ -61,12 +63,13 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($medicines as $med)
-                                            <tr onclick="window.location.href = '{{route('admin.medicines_show',['med'=> $med])}}'">
-                                                <td>{{$med->quantity}}</td>
-                                                <td>{{$med->name}} / {{$med->name_en}}</td>
-                                                <td>{{$med->city->name}}</td>
-                                                <td>{{$med->tags}}</td>
-                                                <td>{{$med->price_type }}</td>
+                                            <tr
+                                                onclick="window.location.href = '{{ route('admin.medicines_show', ['med' => $med]) }}'">
+                                                <td>{{ $med->quantity }}</td>
+                                                <td>{{ $med->name }} / {{ $med->name_en }}</td>
+                                                <td>{{ $med->city->name }}</td>
+                                                <td>{{ $med->tags }}</td>
+                                                <td>{{ $med->price_type }}</td>
                                                 {{-- <td>{{$med->price ?? '0'}}</td> --}}
                                             </tr>
                                         @endforeach
@@ -126,6 +129,90 @@
                                     <div class="col-sm-12 d-flex">
                                         <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">
                                             تحــديث البيانات
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xlg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="form-horizontal form-material mx-2" method="POST"
+                                action="{{ route('admin.pharm_info_update',['pharm'=> $pharm]) }}">
+                                @csrf
+
+
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="col-md-12 mb-0">اسم الصيدلية</label>
+                                            <div class="col-md-12">
+                                                <input type="text" name="name" required
+                                                    value="{{ $pharm->pharmacy->name ?? '' }}"
+                                                    class="form-control ps-0 form-control-line">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="col-md-12 mb-0">مواعيد الفتح</label>
+                                            <div class="col-md-12">
+                                                <input type="text" name="open_at" required
+                                                    value="{{ $pharm->pharmacy->opens_at ?? '' }}"
+                                                    class="form-control ps-0 form-control-line">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+
+                                        <div class="form-group">
+                                            <label class="col-md-12 mb-0">مواعيد الاغلاق</label>
+                                            <div class="col-md-12">
+                                                <input type="text" name="close_at" required
+                                                    value="{{ $pharm->pharmacy->close_at ?? '' }}"
+                                                    class="form-control ps-0 form-control-line">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">رقم احتياطي للتواصل</label>
+                                    <div class="col-md-12">
+                                        <input type="text" name="extra_phone"
+                                            class="form-control ps-0 form-control-line"
+                                            value="{{ $pharm->pharmacy->extra_phone ?? '' }}">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">الصيدلية تعمل او متوقفة تماما</label>
+                                    <div class="col-md-12">
+
+                                        <select name="active" id="" class="form-control" required>
+
+                                            @if ($pharm->pharmacy)
+                                                <option value="{{ $pharm->pharmacy->active ?? '' }}" > {{$pharm->pharmacy->active == true ? "تعمل" : 'متوقفة تماما'}} </option>
+                                            @else
+                                            @endif
+                                            <option value="true">
+                                                تعمل
+                                            </option>
+                                            <option value="false">
+                                                متوقفة
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12 d-flex">
+                                        <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">
+                                            تحديث البيانات
                                         </button>
                                     </div>
                                 </div>

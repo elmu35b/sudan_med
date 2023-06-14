@@ -185,6 +185,7 @@ class DashController extends Controller
 
 
         Auth::user()->pharmacy->update([
+            'name'=> $request->name,
             'opens_at' => $request->open_at,
             'close_at' => $request->close_at,
             'extra_number' => $request->extra_phone,
