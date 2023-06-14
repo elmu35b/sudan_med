@@ -147,6 +147,21 @@
                                     <i class="mdi me-2 mdi-account-check"></i><span class="hide-menu">بيانات الصيدلية</span></a>
                             </li>
                         @endif
+
+
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();"
+                            aria-expanded="false">
+
+                            <span class="hide-menu">خروج</span></a></li>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                         {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{ route('dash.medicines') }}" aria-expanded="false"><i
                                     class="mdi me-2 mdi-table"></i><span class="hide-menu">الادوية</span></a></li> --}}

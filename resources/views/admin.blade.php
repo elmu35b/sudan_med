@@ -166,9 +166,23 @@
                                 href="{{ route('admin.cities') }}" aria-expanded="false"><i
                                     class="mdi me-2 mdi-table"></i><span class="hide-menu">المدن</span></a></li>
 
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="{{ route('admin.categories_index') }}" aria-expanded="false"><i
-                                            class="mdi me-2 mdi-table"></i><span class="hide-menu">التصنيفات</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('admin.categories_index') }}" aria-expanded="false"><i
+                                    class="mdi me-2 mdi-table"></i><span class="hide-menu">التصنيفات</span></a></li>
+
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();"
+                                aria-expanded="false">
+
+                                <span class="hide-menu">خروج</span></a></li>
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                         {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{route('tracking')}}" aria-expanded="false"><i
                                     class="mdi me-2 mdi-barcode"></i><span class="hide-menu">Tracking </span></a></li> --}}
