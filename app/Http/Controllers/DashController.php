@@ -86,7 +86,7 @@ class DashController extends Controller
 
     public function saveMed(Request $request)
     {
-        return $request;
+        // return $request;
 
         $user =  Auth::user();
         $med = new Medicine([
