@@ -47,7 +47,7 @@
             <!-- Row -->
             <div class="row">
                 <center>
-                    <div class="col-8">
+                    <div class="col-12">
                         <div class="container">
                             <form action="{{ route('admin.by_city') }}" method="post">
                                 @csrf
