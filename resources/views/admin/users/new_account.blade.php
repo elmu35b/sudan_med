@@ -35,7 +35,7 @@
             <!-- Start Page Content -->
 
             @foreach ($errors as $error)
-                {{$error}}
+                {{ $error }}
             @endforeach
             <div class="card">
                 <br>
@@ -46,7 +46,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('اسم') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end"> الاسم </label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text"
@@ -58,6 +58,9 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <small style="color: red">
+                                    اسم الشخص وليس الصيدلية
+                                </small>
                             </div>
                         </div>
 
@@ -94,8 +97,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="city"
-                                class="col-md-4 col-form-label text-md-end">{{ __('المدينة') }}</label>
+                            <label for="city" class="col-md-4 col-form-label text-md-end">{{ __('المدينة') }}</label>
 
                             <div class="col-md-6">
                                 {{-- <input id="city" type="city"
@@ -123,7 +125,8 @@
                                 {{-- <input id="city" type="city"
                                     class="form-control @error('city') is-invalid @enderror" name="city"
                                     value="{{ old('city') }}" required autocomplete="city"> --}}
-                                <select name="type" id="type" class="form-control">
+                                <select name="type" id="account_type" class="form-control"
+                                    onchange="accountTypeChange()">
 
                                     {{-- @foreach ($cities as $city) --}}
                                     {{-- <option value="{{$city->id}}">{{$city->name}}</option> --}}
@@ -192,6 +195,106 @@
                                 @enderror
                             </div>
                         </div>
+
+
+                        <hr>
+                        <br>
+
+
+                        {{-- Pharmacy Data --}}
+
+                        <div id="pharmacy_details" style="display: none;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">اسم الصيدلية</label>
+                                        <div class="col-md-12">
+                                            <input type="text" name="ph_name" id="ph_name"
+                                                class="form-control ps-0 form-control-line">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">مواعيد الفتح</label>
+                                        <div class="col-md-12">
+                                            <input type="text" name="open_at" id="open_at"
+                                                class="form-control ps-0 form-control-line">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">مواعيد الاغلاق</label>
+                                        <div class="col-md-12">
+                                            <input type="text" name="close_at" id="close_at"
+                                                class="form-control ps-0 form-control-line">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12 mb-0">رقم احتياطي للتواصل</label>
+                                <div class="col-md-12">
+                                    <input type="text" name="extra_phone" id="extra_phone"
+                                        class="form-control ps-0 form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12 mb-0">الصيدلية تعمل او متوقفة تماما</label>
+                                <div class="col-md-12">
+
+                                    <select name="active" id="active" id="" class="form-control" >
+
+                                        <option value="true">
+                                            تعمل
+                                        </option>
+                                        <option value="false">
+                                            متوقفة
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- End Pharmacy Data --}}
+                        <script>
+                            function accountTypeChange() {
+                                var account_type = document.getElementById('account_type');
+                                if (account_type.value == 'pharmacy') {
+                                    document.getElementById('pharmacy_details').style.display = 'block';
+                                    // document.getElementById('pharmacy_details').setAttribute("required", "false");
+                                    // document.getElementById("ph_name").setAttribute('required', true);
+                                    document.getElementById("ph_name").required = "true";
+                                    // document.getElementById("open_at").setAttribute('required', true);
+                                    document.getElementById("open_at").required = "true";
+                                    // document.getElementById("close_at").setAttribute('required', true);
+                                    document.getElementById("close_at").required = "true";
+                                    // document.getElementById("extra_phone").setAttribute('required', true);
+                                    document.getElementById("extra_phone").required = "true";
+                                    // document.getElementById("active").setAttribute('required', true);
+                                    document.getElementById("active").required = "true";
+                                } else {
+                                    document.getElementById('pharmacy_details').style.display = 'none';
+                                    // document.getElementById("ph_name").setAttribute('required', false);
+                                    document.getElementById("ph_name").required = "false";
+                                    // document.getElementById("open_at").setAttribute('required', false);
+                                    document.getElementById("open_at").required = "false";
+                                    // document.getElementById("close_at").setAttribute('required', false);
+                                    document.getElementById("close_at").required = "false";
+                                    // document.getElementById("extra_phone").setAttribute('required', false);
+                                    document.getElementById("extra_phone").required = "false";
+                                    // document.getElementById("active").setAttribute('required', false);
+                                    document.getElementById("active").required = "false";
+
+                                }
+                                console.log(account_type.value);
+                            }
+                        </script>
+
+
 
                         {{-- <div class="row mb-3">
                             <label for="password-confirm"
