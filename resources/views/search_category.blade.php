@@ -174,6 +174,36 @@
 
     <!-- Footer Section Begin -->
 
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
+                    <h3 class="footer-heading mb-4">روابط سريعة</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('register') }}">عندك ادوية ؟</a></li>
+                        <li><a href="{{ route('login') }}">تسجيــل دخول</a></li>
+                        {{-- <li><a href="#">Diet &amp; Nutrition</a></li>
+                        <li><a href="#">Tea &amp; Coffee</a></li> --}}
+                    </ul>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="block-5 mb-5">
+                        <h3 class="footer-heading mb-4">تواصل معنا</h3>
+                        <ul class="list-unstyled">
+
+                            <li class="phone"><a href="https://wa.me/+249919232991">+249919232991</a></li>
+                            <li class="email"><a href="email:musabgaili@gmail.com"> musabgaili@gmail.com</a></li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
