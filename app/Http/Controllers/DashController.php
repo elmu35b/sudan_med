@@ -37,7 +37,7 @@ class DashController extends Controller
 
 
 
-        $extra_medicines = Medicine::where(['city_id' => Auth::user()->city_id, 'available' => true,])->where(function ($query) use ($medicine) {
+        $alter_medicines = Medicine::where(['city_id' => Auth::user()->city_id, 'available' => true,])->where(function ($query) use ($medicine) {
 
             $query->where('name', 'like', '%' . $medicine->name . '%');
             $query->orWhere('name_en', 'like', '%' . $medicine->name_en . '%');
@@ -47,7 +47,7 @@ class DashController extends Controller
             $query->orWhere('name_en', 'like', '%' . $medicine->tags . '%');
             // ->with('user')
         })->paginate(25);
-        return view('dashboard.med_show', compact('medicine', 'categories','extra_medicines'));
+        return view('dashboard.med_show', compact('medicine', 'categories','alter_medicines'));
     }
 
 

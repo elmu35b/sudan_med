@@ -61,28 +61,30 @@
                                 action="{{ route('dash.medicines_update', ['medicine' => $medicine]) }}">
                                 @csrf
                                 @method('PUT')
-                               <div class="row">
-                                <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">
 
-                                    <div class="form-group">
-                                        <label class="col-md-12 mb-0">اسم الدواء عربي</label>
-                                        <div class="col-md-12">
-                                            <input type="text" required name="name" value="{{ $medicine->name }}"
-                                            class="form-control ps-0 form-control-line">
+                                        <div class="form-group">
+                                            <label class="col-md-12 mb-0">اسم الدواء عربي</label>
+                                            <div class="col-md-12">
+                                                <input type="text" required name="name" value="{{ $medicine->name }}"
+                                                    class="form-control ps-0 form-control-line">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+
+                                        <div class="form-group">
+                                            <label for="example-email" class="col-md-12 mb-0">اسم الدواء انجليزي</label>
+                                            <div class="col-md-12">
+                                                <input type="text" name="name_en"
+                                                    class="form-control ps-0 form-control-line"
+                                                    value="{{ $medicine->name_en }}" name="example-email"
+                                                    id="example-email">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
-
-                                    <div class="form-group">
-                                        <label for="example-email" class="col-md-12 mb-0">اسم الدواء انجليزي</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="name_en" class="form-control ps-0 form-control-line"
-                                            value="{{ $medicine->name_en }}" name="example-email" id="example-email">
-                                        </div>
-                                    </div>
-                                </div>
-                               </div>
 
                                 {{-- <div class="form-group">
                                     <label for="example-email" class="col-md-12">صورة للدواء</label>
@@ -163,7 +165,7 @@
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">اسماء الادوية البديلة للدواء</label>
                                     <div class="col-md-12">
-                                        <textarea rows="5" class="form-control ps-0 form-control-line" name="tags">{{$medicine->tags}}</textarea>
+                                        <textarea rows="5" class="form-control ps-0 form-control-line" name="tags">{{ $medicine->tags }}</textarea>
                                     </div>
                                 </div>
 
@@ -180,7 +182,7 @@
                     </div>
 
 
-                    {{-- Extra Medicines And Similar in other Pharmacies inside the same City --}}
+                    {{-- Alternative Medicines And Similar in other Pharmacies inside the same City --}}
 
                     <div class="card">
                         <div class="card-body">
@@ -190,7 +192,7 @@
                                 <table class="table user-table">
                                     <thead>
                                         <tr>
-                                        <th class="border-top-0">#</th>
+                                            <th class="border-top-0">#</th>
                                             <th class="border-top-0">اسم الدواء</th>
                                             <th class="border-top-0">الاسم الانجليزي</th>
                                             {{-- <th class="border-top-0">اسماء البدائل</th> --}}
@@ -198,17 +200,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($extra_medicines as $med)
-                                        <tr onclick="window.location.href = '{{route('dash.medicines.show',['medicine'=> $med])}}'">
-                                            <td></td>
-                                                <td>{{$med->name}}</td>
-                                                <td>{{$med->name_en}}</td>
-                                                <td></td>
-                                            </tr>
+                                        @foreach ($alter_medicines as $alter_med)
+                                            @if ($alter_med->id == $medicine->id)
+                                            @else
+                                                <tr
+                                                    onclick="window.location.href = '{{ route('dash.medicines.show', ['medicine' => $alter_med]) }}'">
+                                                    <td></td>
+                                                    <td>{{ $alter_med->name }}</td>
+                                                    <td>{{ $alter_med->name_en }}</td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $extra_medicines->links('pagination::bootstrap-4') }}
+                                {{ $alter_medicines->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>
