@@ -144,24 +144,25 @@
                         @if (auth()->user()->type == 'pharmacy')
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                     href="{{ route('dash.pharm_info') }}" aria-expanded="false">
-                                    <i class="mdi me-2 mdi-account-check"></i><span class="hide-menu">بيانات الصيدلية</span></a>
+                                    <i class="mdi me-2 mdi-account-check"></i><span class="hide-menu">بيانات
+                                        الصيدلية</span></a>
                             </li>
                         @endif
 
 
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
+                                href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();"
-                            aria-expanded="false">
+                                aria-expanded="false">
 
-                            <span class="hide-menu">خروج</span></a></li>
-                    </a>
+                                <span class="hide-menu">خروج</span></a></li>
+                        </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                         {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{ route('dash.medicines') }}" aria-expanded="false"><i
                                     class="mdi me-2 mdi-table"></i><span class="hide-menu">الادوية</span></a></li> --}}
@@ -207,6 +208,31 @@
     <!--Custom JavaScript -->
     {{-- <script src="{{ asset('assets/js/pages/dashboards/dashboard1.js') }}"></script> --}}
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+
+
+    <script>
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+        document.onkeydown = function(e) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                return false;
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -192,15 +192,39 @@
 
     <!-- Footer Section End -->
 
+
+
+    <script>
+        document.addEventListener('contextmenu', (e) => {
+                          e.preventDefault();
+                      });
+                      document.onkeydown = function(e) {
+                          if (event.keyCode == 123) {
+                              return false;
+                          }
+                          if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                              return false;
+                          }
+                          if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+                              return false;
+                          }
+                          if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                              return false;
+                          }
+                          if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                              return false;
+                          }
+                      }
+</script>
     <!-- Js Plugins -->
-    <script src="{{ asset('ns/js/jquery-3.3.1.min.js') }}"></script>
+    {{-- <script src="{{ asset('ns/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('ns/js/bootstrap.min.js') }}"></script>
     <!-- <script src="js/jquery.nice-select.min.js"></script> -->
     <script src="{{ asset('ns/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('ns/js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('ns/js/mixitup.min.js') }}"></script>
     <script src="{{ asset('ns/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('ns/js/main.js') }}"></script>
+    <script src="{{ asset('ns/js/main.js') }}"></script> --}}
 
 
 

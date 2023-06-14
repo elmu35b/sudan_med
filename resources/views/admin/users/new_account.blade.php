@@ -245,7 +245,7 @@
                                 <label class="col-md-12 mb-0">الصيدلية تعمل او متوقفة تماما</label>
                                 <div class="col-md-12">
 
-                                    <select name="active" id="active" id="" class="form-control" >
+                                    <select name="active" id="active" id="" class="form-control">
 
                                         <option value="true">
                                             تعمل
@@ -261,6 +261,8 @@
 
                         {{-- End Pharmacy Data --}}
                         <script>
+
+
                             function accountTypeChange() {
                                 var account_type = document.getElementById('account_type');
                                 if (account_type.value == 'pharmacy') {
