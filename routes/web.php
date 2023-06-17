@@ -96,9 +96,52 @@ Route::get('is', function (Request $request) {
 
 Route::get('/add-admin', function () {
 
-    // $n = User::where('phone','0119114568')->first();
-    // $n->delete();
+   
+     // User::create([
+        //     'name'=> 'musab',
+        //     'city_id'=> 2,
+        //     'password'=> Hash::make('123456'),
+        //     'type'=> 'admin',
+        //     'address'=> 'saudi arabia',
+        //     'hood'=> 'not-required',
+        //     'phone'=> '0919232991',
+        //     'wa'=> '0919232991',
+        // ]);
+        // User::create([
+        //     'name'=> 'Abdalla',
+        //     'city_id'=> 2,
+        //     'password'=> Hash::make('123456'),
+        //     'type'=> 'admin',
+        //     'address'=> '--',
+        //     'hood'=> '--',
+        //     'phone'=> '0121941942',
+        //     'wa'=> '0121941942',
+        // ]);
 
+
+
+        // User::create([
+        //     'name'=> 'نادين',
+        //     'city_id'=> 1,
+        //     'password'=> Hash::make('N0911493546'),
+        //     'type'=> 'admin',
+        //     'address'=> '--',
+        //     'hood'=> '--',
+        //     'phone'=> '0911493546',
+        //     'wa'=> '0911493546',
+        // ]);
+
+
+        // User::create([
+        //     'name'=> 'مختار',
+        //     'city_id'=> 1,
+        //     'password'=> Hash::make('M0126949107'),
+        //     'type'=> 'admin',
+        //     'address'=> '--',
+        //     'hood'=> '--',
+        //     'phone'=> '0126949107',
+        //     'wa'=> '0126949107',
+        // ]);
     //    User::create([
     //         'name'=> 'نجلاء',
     //         'city_id'=> 1,
@@ -120,7 +163,6 @@ Route::get('/add-admin', function () {
     //         'phone'=> '0906202421',
     //         'wa'=> '0906202421',
     //     ]);
-    // return User::where('phone','0119114568')->first();
     abort(404);
 
 });
