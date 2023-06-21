@@ -37,6 +37,12 @@
             @if (Session::has('password-success'))
                 <p class="alert alert-info">{{ Session::get('password-success') }}</p>
             @endif
+
+            @if (Session::has('successful'))
+                <p class="alert alert-info" dir="ltr">
+                    تم تحديث البيانات
+                </p>
+            @endif
             <p class="alert alert-info"> او تغيير كلمة السر في حالة نسيها … {{ $pharm->name }} … يمكن هنا اضافة ادوية تابعة
                 للصييدلية </p>
 
@@ -81,12 +87,13 @@
                     </div>
                 </div>
                 <!-- Column -->
-                <!-- Column -->
+
+                {{-- Pharmacy[Password] Details Update  --}}
                 <div class="col-lg-12 col-xlg-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <form class="form-horizontal form-material mx-2" method="POST"
-                                action="{{ route('admin.update_password') }}">
+                                action="{{ route('admin.accouns_password_update', ['user' => $pharm]) }}">
                                 @csrf
                                 {{-- <small style="color:red">Only Password can be updated</small> --}}
 
@@ -103,25 +110,66 @@
                                     <div class="col-md-12">
                                         <input type="password" required name="password"
                                             class="form-control  @error('password') is-invalid @enderror ">
+                                            @error('password')
+                                                <span style="color: red" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                     </div>
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12 d-flex">
+                                        <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">
+                                            تحــديث البيانات
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{-- End of  Pharmacy[Password] Details Update  --}}
+
+
+
+                {{-- Pharmacy[User] Details Update  --}}
+                <div class="col-lg-12 col-xlg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="form-horizontal form-material mx-2" method="POST"
+                                action="{{ route('admin.accouns_data_update', ['user' => $pharm]) }}">
+                                @csrf
+                                {{-- <small style="color:red">Only Password can be updated</small> --}}
+
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">الاسم</label>
+                                    <div class="col-md-12">
+                                        <input type="text" disabled value="{{ $pharm->name }}" name="name"
+                                            class="form-control ps-0 form-control-line">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">رقم الهاتف</label>
                                     <div class="col-md-12">
                                         <input type="number" value="{{ $pharm->phone }}" required name="phone"
                                             class="form-control ps-0 form-control-line">
+                                            @error('phone')
+                                            <span style="color: red" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">رقم الواتساب</label>
                                     <div class="col-md-12">
-                                        <input type="number" value="{{ $pharm->wa }}" required name="phone"
+                                        <input type="number" value="{{ $pharm->wa }}" required name="wa"
                                             class="form-control ps-0 form-control-line">
+                                            @error('wa')
+                                            <span style="color: red" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -136,14 +184,17 @@
                         </div>
                     </div>
                 </div>
+                {{-- End of  Pharmacy[User] Details Update  --}}
+
+
+
+                {{-- Pharmacy[Extra] Details Update  --}}
                 <div class="col-lg-12 col-xlg-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <form class="form-horizontal form-material mx-2" method="POST"
-                                action="{{ route('admin.pharm_info_update',['pharm'=> $pharm]) }}">
+                                action="{{ route('admin.pharm_info_update', ['pharm' => $pharm]) }}">
                                 @csrf
-
-
 
                                 <div class="row">
                                     <div class="col-12">
@@ -195,7 +246,9 @@
                                         <select name="active" id="" class="form-control" required>
 
                                             @if ($pharm->pharmacy)
-                                                <option value="{{ $pharm->pharmacy->active ?? '' }}" > {{$pharm->pharmacy->active == true ? "تعمل" : 'متوقفة تماما'}} </option>
+                                                <option value="{{ $pharm->pharmacy->active ?? '' }}">
+                                                    {{ $pharm->pharmacy->active == true ? 'تعمل' : 'متوقفة تماما' }}
+                                                </option>
                                             @else
                                             @endif
                                             <option value="true">
@@ -220,6 +273,8 @@
                         </div>
                     </div>
                 </div>
+                {{-- End of  Pharmacy[Extra] Details Update  --}}
+
                 <!-- Column -->
             </div>
             <!-- Row -->

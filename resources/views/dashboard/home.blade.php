@@ -43,33 +43,38 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
             @endif
             <!-- Row -->
             <div class="row">
                 <!-- column -->
                 <div class="col-sm-12">
+
+                                    @if (Session::has('successful'))
+                                        <p class="alert alert-info" dir="ltr">
+                                            تم تحديث البيانات
+                                        </p>
+                                    @endif
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">الادوية التي ادخلتها في النظام</h4>
                             {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
-                            @if (!Auth::user()->pharmacy || Auth::user()->pharmacy->name == null )
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong>عفــوا</strong>
-                                رجاء  اضافة بيانات الصيدلية <a href="{{route('dash.pharm_info_new')}}">
-                                    من هنا
-                                </a>
-                                ثم العودة لادخال الادوية
-                            </div>
+                            @if (!Auth::user()->pharmacy || Auth::user()->pharmacy->name == null)
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>عفــوا</strong>
+                                    رجاء اضافة بيانات الصيدلية <a href="{{ route('dash.pharm_info_new') }}">
+                                        من هنا
+                                    </a>
+                                    ثم العودة لادخال الادوية
+                                </div>
                             @else
-                            <a href="{{ route('dash.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a>
+                                <a href="{{ route('dash.medicines_new') }}" class="btn btn-primary">اضــافة دواء </a>
                             @endif
 
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
                                         <tr>
-                                        <th class="border-top-0">#</th>
+                                            <th class="border-top-0">#</th>
                                             <th class="border-top-0">اسم الدواء</th>
                                             <th class="border-top-0">الاسم الانجليزي</th>
                                             {{-- <th class="border-top-0">اسماء البدائل</th> --}}
@@ -78,10 +83,11 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($medicines as $med)
-                                        <tr onclick="window.location.href = '{{route('dash.medicines.show',['medicine'=> $med])}}'">
-                                            <td></td>
-                                                <td>{{$med->name}}</td>
-                                                <td>{{$med->name_en}}</td>
+                                            <tr
+                                                onclick="window.location.href = '{{ route('dash.medicines.show', ['medicine' => $med]) }}'">
+                                                <td></td>
+                                                <td>{{ $med->name }}</td>
+                                                <td>{{ $med->name_en }}</td>
                                                 <td></td>
                                             </tr>
                                         @endforeach

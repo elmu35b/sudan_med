@@ -211,6 +211,7 @@ class DashController extends Controller
             'active' => $active,
             'user_id' => Auth::id()
         ]);
+        Session::flash('successful',true);
         return redirect()->route('dash.home');
         // return view('dashboard.home');
     }

@@ -1,27 +1,23 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\CityController;
-use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\MedController;
-use App\Http\Controllers\Admin\PharmacyController;
-use App\Http\Controllers\Admin\UserController;
 use App\Models\Medicine;
 use App\Models\User;
+use App\Services\ApiDanger;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+
+
 use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('/danger')->group(function () {
 
     Route::post('/find/{id}', function (Request $request) {
-        if (!(new Danger())->hashedKey($request->key)) {
+        if (!(new ApiDanger())->hashedKey($request->key)) {
             // abort(404);
             return response()->json(['message' => 'not found'], 200,);
         }
         $request->validate(['id' => 'required', 'key' => 'required']);
-        if (!(new Danger())->hashedKey($request->key)) {
+        if (!(new ApiDanger())->hashedKey($request->key)) {
             // abort(404);
             return response()->json(['message' => 'not found'], 200,);
         }
@@ -29,7 +25,7 @@ Route::prefix('/danger')->group(function () {
     });
 
     Route::post('/delete-pharmacy', function (Request $request) {
-        if (!(new Danger())->hashedKey($request->key)) {
+        if (!(new ApiDanger())->hashedKey($request->key)) {
             // abort(404);
             return response()->json(['message' => 'not found'], 200,);
         }
@@ -47,7 +43,7 @@ Route::prefix('/danger')->group(function () {
     });
 
     Route::post('/delete-med', function (Request $request) {
-        if (!(new Danger())->hashedKey($request->key)) {
+        if (!(new ApiDanger())->hashedKey($request->key)) {
             // abort(404);
             return response()->json(['message' => 'not found'], 200,);
         }
@@ -56,15 +52,3 @@ Route::prefix('/danger')->group(function () {
     });
 });
 
-class Danger
-{
-    function hashedKey($key): bool
-    {
-
-        if ($key == '0919232991') {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}

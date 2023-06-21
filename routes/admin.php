@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\HomeController;
@@ -53,6 +54,9 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->name('admin.')->group(
     Route::get('pharm/meds/new/{pharm}', [MedController::class ,'newMedPharm'])->name('medicines_new.pharm');
 
     Route::post('/pharm/info-update/{pharm}', [PharmacyController::class, 'pharmInfoUpdate'])->name('pharm_info_update');
+
+    Route::post('/account/password-update/{user}', [AccountController::class, 'userPasswordUpdate'])->name('accouns_password_update');
+    Route::post('/account/data-update/{user}', [AccountController::class, 'userDataUpdate'])->name('accouns_data_update');
 
     // pharm_info_update
 

@@ -15,7 +15,7 @@ class UserController extends Controller
 
     public function users()
     {
-        $users = User::where('type','!=','admin')->paginate(25);
+        $users = User::where('type','single')->paginate(25);
         // return $users;
 
         return view('admin.users.users', compact('users'));
