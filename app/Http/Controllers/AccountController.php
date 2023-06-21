@@ -22,7 +22,7 @@ class AccountController extends Controller
      **/
     public function __construct()
     {
-        $this->middleware(['auth', 'is_admin']);
+        $this->middleware(['auth']);
     }
 
 
