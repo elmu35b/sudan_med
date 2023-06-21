@@ -56,14 +56,7 @@
                                             class="form-control ps-0 form-control-line">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="example-email" class="col-md-12">الايميل</label>
-                                    <div class="col-md-12">
-                                        <input type="email"  value="{{ Auth::user()->email }}" name="email"
-                                            class="form-control ps-0 form-control-line" name="example-email"
-                                            id="example-email">
-                                    </div>
-                                </div>
+
 
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">رقم الهاتف</label>

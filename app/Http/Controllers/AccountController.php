@@ -32,7 +32,6 @@ class AccountController extends Controller
         $user->update(['password' => Hash::make($request->password)]);
         Session::flash('successful', true);
         return redirect()->route('admin.pharm.show',['pharm'=> $user]);
-        // return redirect()->back();
     }
 
     function userDataUpdate(Request $request, User $user): mixed
@@ -41,6 +40,5 @@ class AccountController extends Controller
         $user->update(['phone' => $request->phone, 'wa' => $request->wa ]);
         Session::flash('successful', true);
         return redirect()->route('admin.pharm.show',['pharm'=> $user]);
-        // return redirect()->back();
     }
 }

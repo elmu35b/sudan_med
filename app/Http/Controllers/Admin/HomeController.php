@@ -98,7 +98,9 @@ class HomeController extends Controller
     {
         Auth::user()->update(['password' => Hash::make('password')]);
 
-        return redirect()->back()->with('password_updated', 'success');
+        Session::flash('password_updated',true);
+        return redirect()->route('admin.profile');
+
     }
 
 

@@ -28,12 +28,7 @@ class UserController extends Controller
         return view('admin.users.show_user', compact('user', 'medicines'));
     }
 
-    public function updateUser(Request $request, User $user)
-    {
-        $user->update(['password' => Hash::make('password')]);
 
-        return redirect()->back()->with('password_updated', 'success');
-    }
 
 
 

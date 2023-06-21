@@ -123,7 +123,10 @@ class DashController extends Controller
 
         Auth::user()->update(['password' => Hash::make('password')]);
 
-        return redirect()->back()->with('password_updated', 'success');
+        Session::flash('password_updated',true);
+        return redirect()->route('dash.profile');
+
+
     }
 
     public function updateData(Request $request)
@@ -136,7 +139,10 @@ class DashController extends Controller
             'wa' => $request->wa,
         ]);
 
-        return redirect()->back()->with('data_updated', 'success');
+        Session::flash('password_updated',true);
+        return redirect()->route('dash.profile');
+
+
     }
 
 

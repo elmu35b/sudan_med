@@ -46,12 +46,7 @@ class PharmacyController extends Controller
         return view('admin.pharmacies.pharmacy', compact('pharmas'));
     }
 
-    public function updatePassword(Request $request, User $user)
-    {
-        $user->update(['password' => Hash::make('password')]);
 
-        return redirect()->back()->with('password_updated', 'success');
-    }
 
 
     public function pharmInfoUpdate(Request $request, User $pharm)
