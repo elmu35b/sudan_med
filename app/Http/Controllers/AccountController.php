@@ -28,7 +28,6 @@ class AccountController extends Controller
 
     function userPasswordUpdate(Request $request, User $user): mixed
     {
-
         $request->validate(['password'=> 'min:4 |required']);
         $user->update(['password' => Hash::make($request->password)]);
         Session::flash('successful', true);
@@ -37,7 +36,7 @@ class AccountController extends Controller
 
     function userDataUpdate(Request $request, User $user): mixed
     {
-        $request->validate(['wa'=> 'required|numeric|min:10' , 'phone'=> 'required|numeric|min:10']);
+        $request->validate(['wa'=> 'required|numeric' , 'phone'=> 'required|numeric']);
         $user->update(['phone' => $request->phone, 'wa' => $request->wa ]);
         Session::flash('successful', true);
         return redirect()->back();
