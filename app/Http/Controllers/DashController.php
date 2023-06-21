@@ -60,12 +60,12 @@ class DashController extends Controller
             'name_en' => 'required',
             'category_id' => 'required',
             'price_type' => 'required',
-            'tags' => 'min:1'
+            // 'tags' => 'min:1'
         ]);
         $medicine->fill($request->all());
         $medicine->tags = $request->tags;
         $medicine->save();
-        return $medicine->refresh();
+        // return $medicine->refresh();
         // $medicine->update($request->all());
 
         Session::flash('updated', true);
