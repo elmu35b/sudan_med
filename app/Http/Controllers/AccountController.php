@@ -31,7 +31,8 @@ class AccountController extends Controller
         $request->validate(['password'=> 'min:4 |required']);
         $user->update(['password' => Hash::make($request->password)]);
         Session::flash('successful', true);
-        return redirect()->back();
+        return redirect()->route('admin.pharm.show',['pharm'=> $user]);
+        // return redirect()->back();
     }
 
     function userDataUpdate(Request $request, User $user): mixed
@@ -39,6 +40,7 @@ class AccountController extends Controller
         $request->validate(['wa'=> 'required|numeric' , 'phone'=> 'required|numeric']);
         $user->update(['phone' => $request->phone, 'wa' => $request->wa ]);
         Session::flash('successful', true);
-        return redirect()->back();
+        return redirect()->route('admin.pharm.show',['pharm'=> $user]);
+        // return redirect()->back();
     }
 }
