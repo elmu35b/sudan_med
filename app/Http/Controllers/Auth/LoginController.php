@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -54,10 +56,34 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        logger('type is '.$request->user()->type);
+        logger('type is ' . $request->user()->type);
         if ($request->user()->type == 'admin') {
             return redirect()->route('admin.home');
         } else
             return redirect()->route('dash.home');
+    }
+
+
+    public function customLogin(Request $request)
+    {
+        $request->validate([
+            'phone' => 'required',
+            'password' => 'required',
+        ]);
+
+        $credentials = $request->only('phone', 'password');
+        if (Auth::attempt($credentials)) {
+            if ($request->user()->type == 'admin') {
+                return redirect()->route('admin.home');
+            } else {
+
+                return redirect()->route('dash.home');
+            }
+            // return redirect()->route('dash.home');
+        }
+
+        Session::flash('fail',false);
+        return redirect()->route('login');
+        // return redirect("login")->withSuccess('Login details are not valid');
     }
 }

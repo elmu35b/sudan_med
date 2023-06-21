@@ -6,10 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords"
-        content="">
-    <meta name=""
-        content="">
+    <meta name="keywords" content="">
+    <meta name="" content="">
     <meta name="robots" content="noindex,nofollow">
     <title> Sudan Med</title>
     {{-- <link rel="canonical" href="https://www.wrappixel.com/templates/materialpro-lite/" /> --}}
@@ -63,6 +61,11 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
+                    @if (Session::has('fail'))
+                        <div class="alert alert-danger" role="alert">
+                            كلمة السر او رقم الهاتف خطأ
+                        </div>
+                    @endif
                     <div class="card">
 
                         <br>
@@ -131,7 +134,7 @@
 
                                         {{-- @if (Route::has('password.request')) --}}
                                         {{-- <a class="btn btn-link" href="{{ route('password.request') }}"> --}}
-                                        <a class="btn btn-link" href="{{route('register')}}">
+                                        <a class="btn btn-link" href="{{ route('register') }}">
                                             {{ __('لو ما عندك حساب ,, اعمل تسجيل') }}
                                         </a>
                                         {{-- @endif --}}

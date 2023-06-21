@@ -6,7 +6,8 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MedController;
 use App\Http\Controllers\Admin\PharmacyController;
 use App\Http\Controllers\Admin\UserController;
-use Illuminate\Support\Facades\Auth;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,11 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Auth::routes();
 
 Route::prefix('admin')->middleware(['auth', 'is_admin'])->name('admin.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');

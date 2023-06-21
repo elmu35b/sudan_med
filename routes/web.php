@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\HomeController;
 use App\Models\Medicine;
@@ -49,7 +50,7 @@ Route::post('/search-by-pharmacy', [HomeController::class ,'searchByPharmacy'])-
 
 // Route::post('/search', [HomeController::class ,'search'])->name('search');
 
-Auth::routes();
+Auth::routes(['login'=> false]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -93,6 +94,10 @@ Route::get('is', function (Request $request) {
    return $request->user()->type;
 });
 
+
+
+Route::get('/login',[LoginController::class , 'showLoginForm'])->name('login');
+Route::post('/login',[LoginController::class , 'customLogin'])->name('login');
 
 Route::get('/add-admin', function () {
 
