@@ -79,11 +79,14 @@
                 </div>
                 <!-- Column -->
                 <!-- Column -->
+
+
+                {{-- Pharmacy[Password] Details Update  --}}
                 <div class="col-lg-12 col-xlg-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <form class="form-horizontal form-material mx-2" method="POST"
-                                action="{{ route('admin.update_password') }}">
+                                action="{{ route('admin.accouns_password_update', ['user' => $user]) }}">
                                 @csrf
                                 {{-- <small style="color:red">Only Password can be updated</small> --}}
 
@@ -100,26 +103,66 @@
                                     <div class="col-md-12">
                                         <input type="password" required name="password"
                                             class="form-control  @error('password') is-invalid @enderror ">
+                                            @error('password')
+                                                <span style="color: red" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                     </div>
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
-                                {{-- {{$user}} --}}
+                                <div class="form-group">
+                                    <div class="col-sm-12 d-flex">
+                                        <button type="submit" class="btn btn-success mx-auto mx-md-0 text-white">
+                                            تحــديث البيانات
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{-- End of  Pharmacy[Password] Details Update  --}}
+
+
+
+                {{-- Pharmacy[User] Details Update  --}}
+                <div class="col-lg-12 col-xlg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="form-horizontal form-material mx-2" method="POST"
+                                action="{{ route('admin.accouns_data_update', ['user' => $user]) }}">
+                                @csrf
+                                {{-- <small style="color:red">Only Password can be updated</small> --}}
+
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">الاسم</label>
+                                    <div class="col-md-12">
+                                        <input type="text" disabled value="{{ $user->name }}" name="name"
+                                            class="form-control ps-0 form-control-line">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">رقم الهاتف</label>
                                     <div class="col-md-12">
-                                        <input  value="{{ $user->phone }}" required name="phone"
+                                        <input type="number" value="{{ $user->phone }}" required name="phone"
                                             class="form-control ps-0 form-control-line">
+                                            @error('phone')
+                                            <span style="color: red" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">رقم الواتساب</label>
                                     <div class="col-md-12">
-                                        <input  value="{{ $user->wa }}" required name="phone"
+                                        <input type="number" value="{{ $user->wa }}" required name="wa"
                                             class="form-control ps-0 form-control-line">
+                                            @error('wa')
+                                            <span style="color: red" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -134,6 +177,8 @@
                         </div>
                     </div>
                 </div>
+                {{-- End of  Pharmacy[User] Details Update  --}}
+
                 <!-- Column -->
             </div>
             <!-- Row -->

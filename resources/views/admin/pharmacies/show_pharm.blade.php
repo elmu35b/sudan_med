@@ -49,6 +49,8 @@
             <!-- Row -->
             <div class="row">
 
+                {{-- Pharmacy[Medicines] Details   --}}
+
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
@@ -86,6 +88,8 @@
                         </div>
                     </div>
                 </div>
+                {{-- End Pharmacy[Medicines] Details   --}}
+
                 <!-- Column -->
 
                 {{-- Pharmacy[Password] Details Update  --}}
