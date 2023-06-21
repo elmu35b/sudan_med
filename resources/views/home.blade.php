@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <meta name="description" content="عافية بتسهل عليك تفتيش الادوية وتعرف الدواء متوفر وين من دون ما تتعب تلف على الصيدليات">
+    <meta name="keywords" content="عافية , دواء ,أدوية">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Med</title>
+    <title>عافية للدواء</title>
 
     <!-- Google Font -->
     {{-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet"> --}}
@@ -24,7 +24,7 @@
 </head>
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9XQ8XSDXCH"></script>
+{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XQ8XSDXCH"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -34,7 +34,7 @@
     gtag('js', new Date());
 
     gtag('config', 'G-9XQ8XSDXCH');
-</script>
+</script> --}}
 
 
 
@@ -65,15 +65,16 @@
                         </ul>
                     </nav>
                 </div>
-                <!-- <div class="col-lg-3">
+                 <div class="col-lg-3">
                     <div class="header__cart">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                        </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+
+                        <div>
+                            <h3>
+                                عـــافية للدواء
+                            </h3>
+                        </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </header>

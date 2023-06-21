@@ -98,12 +98,12 @@ class RegisterController extends Controller
             'type' => $data['type']
         ]);
 
-        if($data['type']== 'pharmacy'){
-            Pharmacy::create([
-                'user_id'=> $user->id,
-                'name'=> $data['name'],
-            ]);
-        }
+        // if($data['type']== 'pharmacy'){
+        //     Pharmacy::create([
+        //         'user_id'=> $user->id,
+        //         'name'=> $data['name'],
+        //     ]);
+        // }
         return $user;
     }
 }

@@ -3,11 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+
+    <meta name="description" content="عافية بتسهل عليك تفتيش الادوية وتعرف الدواء متوفر وين من دون ما تتعب تلف على الصيدليات">
+    <meta name="keywords" content="عافية , دواء ,أدوية">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Med</title>
+    <title>عافية للدواء</title>
 
     <!-- Google Font -->
     {{-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet"> --}}
@@ -25,7 +27,7 @@
 
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9XQ8XSDXCH"></script>
+{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XQ8XSDXCH"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -35,7 +37,7 @@
     gtag('js', new Date());
 
     gtag('config', 'G-9XQ8XSDXCH');
-</script>
+</script> --}}
 
 
 <body>
@@ -65,15 +67,16 @@
                         </ul>
                     </nav>
                 </div>
-                <!-- <div class="col-lg-3">
+                 <div class="col-lg-3">
                     <div class="header__cart">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                        </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+
+                        <div>
+                            <h3>
+                                عـــافية للدواء
+                            </h3>
+                        </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </header>
@@ -125,11 +128,15 @@
                         <div class="card mb-1 mt-1 ">
                             <div class="card-body ">
                                 <div class="card-title">
-                                    {{ $pharm->name }}
+                                    {{ $pharm->pharmacy->name ?? $pharm->name }}
                                 </div>
                                 <p>{{ $pharm->city->name }}</p>
                                 <p>{{ $pharm->address }}</p>
                                 <p>{{ $pharm->hood }}</p>
+                                <small>
+                                    مواعيد العمل
+                                </small>
+                                <p dir="rtl">{{$pharm->pharmacy->opens_at ?? ''}} -  {{$pharm->pharmacy->close_at ?? ''}}  </p>
                                 <a href="tel:{{ $pharm->phone }}" class="btn btn-primary"> اتصال
                                     {{ $pharm->phone }}</a>
                                 <br>
