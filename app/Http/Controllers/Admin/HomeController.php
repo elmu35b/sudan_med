@@ -66,7 +66,7 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         // return $request;
-        $medicines = Medicine::where('name', 'like', '%' . $request->search . '%')
+        $medicines = Medicine:: where('available',true)-> where('name', 'like', '%' . $request->search . '%')
             ->orWhere('name_en', 'like', '%' . $request->search . '%')
             ->orWhere('tags', 'like', '%' . $request->search . '%')
             ->paginate(25);

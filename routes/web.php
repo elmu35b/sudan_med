@@ -66,6 +66,10 @@ Route::group( ['prefix'=> 'dashboard', 'as'=> 'dash.'], function () {
     Route::get('/meds/create', [DashController::class ,'newMed'])->name('medicines_new');
     Route::post('/meds/save', [DashController::class ,'saveMed'])->name('medicines_save');
 
+    Route::put('/meds/update/{medicine}/not-available', [DashController::class ,'updateMedNotAvailable'])->name('medicines_update_not_available');
+    Route::put('/meds/update/{medicine}/available', [DashController::class ,'updateMedAvailable'])->name('medicines_update_available');
+
+
 
 
 

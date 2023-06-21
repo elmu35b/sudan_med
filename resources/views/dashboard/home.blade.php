@@ -78,7 +78,7 @@
                                             <th class="border-top-0">اسم الدواء</th>
                                             <th class="border-top-0">الاسم الانجليزي</th>
                                             {{-- <th class="border-top-0">اسماء البدائل</th> --}}
-                                            {{-- <th class="border-top-0">متوفر</th> --}}
+                                            <th class="border-top-0">الحالة</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -88,7 +88,9 @@
                                                 <td></td>
                                                 <td>{{ $med->name }}</td>
                                                 <td>{{ $med->name_en }}</td>
-                                                <td></td>
+                                                <td>
+                                                    {{ $med->available == true ?  'متوفر' : 'غير متوفر' }}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

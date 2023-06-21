@@ -91,17 +91,12 @@ class MedController extends Controller
 
     public function show(Medicine $med)
     {
-        // $cities = $this->cities;
 
-        $alters = Medicine::
-        where('city_id', $med->city_id)
-        // ->where('id', '!=', $med->id)
+        $alters = Medicine::where(['city_id' => $med->city_id , 'available'=> true])
             ->where(function ($query)  use ($med) {
                 $query->where('tags', 'like', '%' . $med->name . '%')
                     ->orWhere('tags', 'like', '%' . $med->name_en . '%');
             })->paginate(15);
-
-        // return $alters;
 
         return view('admin.meds.med_show', compact('med', 'alters'));
     }
@@ -149,10 +144,19 @@ class MedController extends Controller
 
         $med->save();
         return redirect()->route('admin.medicines')->with('success', 'success');
-        // return redirect()->back();
+
     }
 
     public function updateMedNotAvailable(Medicine $medicine, Request $request)
     {
+        $medicine->update(['available'=> false]);
+        return redirect()->route('admin.medicines_show',['med'=> $medicine]);
+    }
+
+
+    public function updateMedAvailable(Medicine $medicine, Request $request)
+    {
+        $medicine->update(['available'=> true]);
+        return redirect()->route('admin.medicines_show',['med'=> $medicine]);
     }
 }

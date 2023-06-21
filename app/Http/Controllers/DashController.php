@@ -65,12 +65,11 @@ class DashController extends Controller
         $medicine->fill($request->all());
         $medicine->tags = $request->tags;
         $medicine->save();
-        // return $medicine->refresh();
-        // $medicine->update($request->all());
+
 
         Session::flash('updated', true);
         return redirect()->route('dash.medicines.show',['medicine'=>$medicine]);
-        // return redirect()->back();
+
     }
 
     public function myMedicines()
@@ -221,5 +220,19 @@ class DashController extends Controller
         Session::flash('successful',true);
         return redirect()->route('dash.home');
         // return view('dashboard.home');
+    }
+
+
+    public function updateMedNotAvailable(Medicine $medicine, Request $request)
+    {
+        $medicine->update(['available'=> false]);
+        return redirect()->route('dash.medicines.show',['med'=> $medicine]);
+    }
+
+
+    public function updateMedAvailable(Medicine $medicine, Request $request)
+    {
+        $medicine->update(['available'=> true]);
+        return redirect()->route('dash.medicines_show',['med'=> $medicine]);
     }
 }

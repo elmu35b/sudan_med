@@ -85,4 +85,9 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->name('admin.')->group(
     Route::get('/profile', [HomeController::class ,'profile'])->name('profile');
     Route::post('/profile/update-number', [HomeController::class ,'updateNumber'])->name('update_number');
     Route::post('/profile/update-password', [HomeController::class ,'updatePassword'])->name('update_password');
+
+
+
+    Route::put('/meds/update/{medicine}/not-available', [MedController::class ,'updateMedNotAvailable'])->name('medicines_update_not_available');
+    Route::put('/meds/update/{medicine}/available', [MedController::class ,'updateMedAvailable'])->name('medicines_update_available');
 });

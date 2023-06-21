@@ -41,6 +41,44 @@
             <div class="row">
                 {{-- Medicine Details --}}
 
+                <div class="col-lg-8 col-xlg-9 col-md-7">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>
+                                توفر الدواء لديك
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="col-6">
+
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">هل الدواء متوفر ام لا ؟</label>
+                                    <div class="col-md-12">
+                                       @if ($medicine->available)
+                                       <form action="{{route('dash.medicines_update_not_available',['medicine'=>$medicine])}}" method="POST" class="mt-1 mb-1">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-primary">
+                                            تعديل الحالة الى عير متوفر
+                                        </button>
+                                    </form>
+
+                                       @else
+                                       <form action="{{route('dash.medicines_update_available',['medicine'=>$medicine])}}" method="POST" class="mt-1 mb-1">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-primary">
+                                            تعديل الحالة الى  متوفر
+                                        </button>
+                                    </form>
+                                       @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="col-sm-12">
                     <div class="card">

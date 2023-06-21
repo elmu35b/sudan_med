@@ -123,7 +123,7 @@ class HomeController extends Controller
             $cities = Cache::get('cities');
         }
         // return Medicine::all();
-        $medicines = Medicine::where(['city_id' => $request->city_id, 'category_id' => $request->category_id])->paginate(25);
+        $medicines = Medicine::where(['city_id' => $request->city_id, 'category_id' => $request->category_id , 'available'=> true])->paginate(25);
         SearchHistoryAndResult::create([
             'search_type'=> 'cat',
             'key_word'=> Category::find($request->category_id)->name,
@@ -146,7 +146,11 @@ class HomeController extends Controller
             $cities = Cache::get('cities');
         }
 
-        $pharms =   User::where(['type' => 'pharmacy', 'city_id' => $request->city_id])->paginate(25);
+        $pharms =   User::where(['type' => 'pharmacy', 'city_id' => $request->city_id])
+            ->whereHas('pharmacy',function($ph){
+                $ph->where('active',true);
+            })
+        ->paginate(25);
         SearchHistoryAndResult::create([
             'search_type'=> 'phar',
             'key_word'=> 'pharmacy',
