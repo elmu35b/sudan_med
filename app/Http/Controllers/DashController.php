@@ -69,7 +69,8 @@ class DashController extends Controller
         // $medicine->update($request->all());
 
         Session::flash('updated', true);
-        return redirect()->back();
+        return redirect()->route('dash.medicines.show',['medicine'=>$medicine]);
+        // return redirect()->back();
     }
 
     public function myMedicines()
