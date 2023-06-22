@@ -54,8 +54,8 @@
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">هل الدواء متوفر ام لا ؟</label>
                                     <div class="col-md-12">
-                                       @if ($medicine->available)
-                                       <form action="{{route('dash.medicines_update_not_available',['medicine'=>$medicine])}}" method="POST" class="mt-1 mb-1">
+                                       @if ($med->available)
+                                       <form action="{{route('dash.medicines_update_not_available',['medicine'=>$med])}}" method="POST" class="mt-1 mb-1">
                                         @csrf
                                         @method('PUT')
                                         <button class="btn btn-primary">
@@ -64,7 +64,7 @@
                                     </form>
 
                                        @else
-                                       <form action="{{route('dash.medicines_update_available',['medicine'=>$medicine])}}" method="POST" class="mt-1 mb-1">
+                                       <form action="{{route('dash.medicines_update_available',['medicine'=>$med])}}" method="POST" class="mt-1 mb-1">
                                         @csrf
                                         @method('PUT')
                                         <button class="btn btn-primary">
