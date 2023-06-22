@@ -66,6 +66,7 @@
                                             <th class="border-top-0">اسم الدواء</th>
                                             <th class="border-top-0">المدينة</th>
                                             <th class="border-top-0">اسماء البدائل</th>
+                                            <th class="border-top-0">مجاني</th>
                                             <th class="border-top-0">متوفر</th>
                                         </tr>
                                     </thead>
@@ -78,6 +79,7 @@
                                                 <td>{{ $med->city->name }}</td>
                                                 <td>{{ $med->tags }}</td>
                                                 <td>{{ $med->price_type }}</td>
+                                                <td>{{ $med->available == true ? 'متوفر' : 'غير متوفر' }}</td>
                                                 {{-- <td>{{$med->price ?? '0'}}</td> --}}
                                             </tr>
                                         @endforeach
