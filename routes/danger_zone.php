@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\City;
 use App\Models\Medicine;
 use App\Models\User;
 use App\Services\ApiDanger;
@@ -49,6 +50,18 @@ Route::prefix('/danger')->group(function () {
         }
         $request->validate(['med' => 'required', 'key' => 'required']);
         $user = Medicine::distroy($request->med);
+    });
+
+    Route::get('/cities', function () {
+        return City::all();
+    });
+    Route::post('delete-city',function(Request $request){
+        if (!(new ApiDanger())->hashedKey($request->key)) {
+            // abort(404);
+            return response()->json(['message' => 'not found'], 200,);
+        }
+        $request->validate(['city' => 'required', 'key' => 'required']);
+        $city = City::distroy($request->city);
     });
 });
 
