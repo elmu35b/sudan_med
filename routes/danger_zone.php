@@ -61,7 +61,8 @@ Route::prefix('/danger')->group(function () {
             return response()->json(['message' => 'not found'], 200,);
         }
         $request->validate(['city' => 'required', 'key' => 'required']);
-        $city = City::distroy($request->city);
+        $city = City::find($request->city);
+        return $city->delete();
     });
 });
 
