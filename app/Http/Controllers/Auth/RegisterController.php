@@ -8,6 +8,8 @@ use App\Models\Pharmacy;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -77,7 +79,11 @@ class RegisterController extends Controller
             'type' => ['required', 'in:single,pharmacy'],
         ]);
 
-        logger($v->errors());
+        if($v->fails()){
+                logger('Failed');
+                return redirect()->route('register');
+        }
+        // logger($v->errors());
         return $v;
 
     }
@@ -109,5 +115,37 @@ class RegisterController extends Controller
         //     ]);
         // }
         return $user;
+    }
+
+
+
+    function register(Request $request) : mixed {
+      $v =  Validator::make( $request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'numeric', 'unique:users,phone'],
+            'wa' => ['required', 'numeric', 'unique:users,wa'],
+            'address' => ['required'],
+            'hood' => ['required'],
+            'password' => ['required', 'string', 'min:5',],
+            'type' => ['required', 'in:single,pharmacy'],
+        ]);
+
+        if($v->fails()){
+            return redirect()->route('register')->withErrors($v);
+        }
+        $user =  User::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'wa' => $request->wa,
+            'password' => Hash::make($request->password),
+            'city_id' => $request->city,
+            'address' => $request->address,
+            'hood' => $request->address,
+            'type' => $request->type
+        ]);
+
+        Auth::login($user);
+        return redirect()->route('dash.home');
     }
 }
