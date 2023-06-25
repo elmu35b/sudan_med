@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'type' => ['required', 'in:single,pharmacy'],
         ]);
 
-        logger($v);
+        logger($v->errors());
         return $v;
 
     }
